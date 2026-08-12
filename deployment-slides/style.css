@@ -1,0 +1,41 @@
+/* Control Mermaid Diagram sizes */
+.mermaid {
+  max-height: 260px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 0.5rem auto !important;
+}
+
+.mermaid svg {
+  max-height: 260px !important;
+  max-width: 100% !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+/* Table styling for light & dark themes */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: rgba(148, 163, 184, 0.15) !important;
+  color: currentColor !important;
+}
+
+td,
+th {
+  border: 1px solid rgba(148, 163, 184, 0.3) !important;
+  padding: 0.4rem 0.6rem !important;
+}
+
+/* High contrast fixes for light/dark themes */
+html.dark .slidev-layout {
+  color: #f1f5f9;
+}
+
+html:not(.dark) .slidev-layout {
+  color: #0f172a;
+}
