@@ -3,6 +3,8 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import mermaid from "astro-mermaid";
 
+import netlify from "@astrojs/netlify";
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [
@@ -44,4 +46,6 @@ export default defineConfig({
       ],
     }),
   ],
+
+  adapter: netlify(),
 });
