@@ -5,7 +5,7 @@ layout: section
 # Modul 3
 ## Deploy Backend TypeScript (Netlify Functions)
 
-Panduan mendalam membangun dan mendeploy Serverless Functions menggunakan TypeScript native di Netlify beserta manajemen Environment Variables.
+Panduan mendalam membangun dan me-deploy Serverless Functions menggunakan TypeScript native di Netlify beserta manajemen Environment Variables.
 
 ---
 layout: default
@@ -67,7 +67,9 @@ sources/02-backend-ts/
 layout: default
 ---
 
-# 3. Anatomi Netlify Function: `hello.ts`
+# 3. Anatomi Netlify Function: `hello.ts` (Part 1)
+
+**Membaca Query Parameter & Environment Variable**
 
 ```typescript [netlify/functions/hello.ts]
 import type { Context } from "@netlify/functions";
@@ -79,7 +81,22 @@ export default async (req: Request, context: Context) => {
 
   // 2. Membaca Environment Variable dari server
   const secretKey = process.env.MY_SECRET_KEY || "Secret belum diset";
+```
 
+<div class="mt-4 p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs">
+  • <code>new URL(req.url)</code>: Parsing URL HTTP request yang masuk.<br>
+  • <code>process.env.MY_SECRET_KEY</code>: Mengakses variabel lingkungan rahasia dari server cloud.
+</div>
+
+---
+layout: default
+---
+
+# 3. Anatomi Netlify Function: `hello.ts` (Part 2)
+
+**Mengembalikan Respon JSON**
+
+```typescript [netlify/functions/hello.ts]
   // 3. Mengembalikan Response JSON
   return new Response(
     JSON.stringify({
@@ -89,39 +106,69 @@ export default async (req: Request, context: Context) => {
     }),
     {
       status: 200,
-      headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*" // Mengizinkan akses CORS
+      }
     }
   );
 };
+```
+
+<div class="mt-4 p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs">
+  • <code>JSON.stringify(...)</code>: Mengubah object JavaScript menjadi string JSON.<br>
+  • <code>headers</code>: Menentukan `Content-Type` JSON dan header `Access-Control-Allow-Origin` untuk CORS.
+</div>
+
+---
+layout: default
+---
+
+# 4. Anatomi Netlify Function: `quotes.ts` (Part 1)
+
+**Definisi Type Interface & Mock Data**
+
+```typescript [netlify/functions/quotes.ts]
+import type { Context } from "@netlify/functions";
+
+// Definisi interface TypeScript untuk Quote data
+interface Quote {
+  id: number;
+  text: string;
+  author: string;
+}
+
+// Data kutipan dalam memori
+const quotes: Quote[] = [
+  { id: 1, text: "First, solve the problem. Then, write the code.", author: "John Johnson" },
+  { id: 2, text: "Simplicity is prerequisite for reliability.", author: "Edsger W. Dijkstra" }
+];
 ```
 
 ---
 layout: default
 ---
 
-# 3. Anatomi Netlify Function: `quotes.ts`
+# 4. Anatomi Netlify Function: `quotes.ts` (Part 2)
+
+**Validasi HTTP Method & Response Random Quote**
 
 ```typescript [netlify/functions/quotes.ts]
-import type { Context } from "@netlify/functions";
-
-interface Quote { id: number; text: string; author: string; }
-
-const quotes: Quote[] = [
-  { id: 1, text: "First, solve the problem. Then, write the code.", author: "John Johnson" },
-  { id: 2, text: "Simplicity is prerequisite for reliability.", author: "Edsger W. Dijkstra" }
-];
-
 export default async (req: Request, context: Context) => {
   // Validasi Metode HTTP (Hanya izinkan GET)
   if (req.method !== "GET") {
     return new Response(JSON.stringify({ error: "Method not allowed" }), {
-      status: 405, headers: { "Content-Type": "application/json" }
+      status: 405,
+      headers: { "Content-Type": "application/json" }
     });
   }
 
+  // Pilih quote secara acak
   const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+
   return new Response(JSON.stringify(randomQuote), {
-    status: 200, headers: { "Content-Type": "application/json" }
+    status: 200,
+    headers: { "Content-Type": "application/json" }
   });
 };
 ```
@@ -130,7 +177,7 @@ export default async (req: Request, context: Context) => {
 layout: default
 ---
 
-# 4. Konfigurasi `netlify.toml` untuk Backend
+# 5. Konfigurasi `netlify.toml` untuk Backend
 
 Agar URL endpoint API terlihat rapi (`/api/hello` bukannya `/.netlify/functions/hello`), kita buat **URL Rewrites** di `netlify.toml`:
 
@@ -155,7 +202,7 @@ Agar URL endpoint API terlihat rapi (`/api/hello` bukannya `/.netlify/functions/
 layout: default
 ---
 
-# 5. Mengelola Environment Variables
+# 6. Mengelola Environment Variables
 
 Jangan pernah menyimpan kunci rahasia (API Key, DB Password) di dalam file `.ts`.
 
@@ -185,11 +232,11 @@ Jangan pernah menyimpan kunci rahasia (API Key, DB Password) di dalam file `.ts`
 layout: default
 ---
 
-# 6. Uji Coba Lokal & Deployment Backend
+# 7. Uji Coba Lokal & Deployment Backend
 
 <ol class="space-y-3 mt-4 text-xs">
   <li class="p-3 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-    <span class="font-bold text-cyan-700 dark:text-cyan-400">Instal Ketergantungan (Dependencies):</span>
+    <span class="font-bold text-cyan-700 dark:text-cyan-400">Instal Dependencies:</span>
     <code class="block mt-1 bg-slate-200 dark:bg-slate-900 p-2 rounded text-cyan-800 dark:text-cyan-300 font-mono">cd sources/02-backend-ts && npm install</code>
   </li>
 
@@ -216,7 +263,7 @@ layout: default
 layout: default
 ---
 
-# 7. Troubleshooting Backend
+# 8. Troubleshooting Backend
 
 <div class="space-y-4 mt-4">
 

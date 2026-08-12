@@ -17,16 +17,16 @@ layout: default
 
 ### Struktur Source Code (`sources/01-frontend-static`)
 
-<div class="grid grid-cols-2 gap-4 mt-4">
+<div class="grid grid-cols-1 gap-4 mt-4">
 
-<div class="p-4 rounded-lg bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 font-mono text-xs space-y-2">
-  <div class="font-bold text-cyan-700 dark:text-cyan-400">sources/01-frontend-static/</div>
-  <div>├── index.html       <span class="opacity-60"># Interface Kalkulator Diskon</span></div>
-  <div>├── style.css        <span class="opacity-60"># Layout & visual design</span></div>
-  <div>├── script.js        <span class="opacity-60"># Logika kalkulasi browser</span></div>
-  <div>├── netlify.toml     <span class="opacity-60"># Konfigurasi deployment</span></div>
-  <div>└── README.md        <span class="opacity-60"># Ringkasan instruksi</span></div>
-</div>
+```plaintext
+sources/01-frontend-static
+  ├── index.html      # Interface Kalkulator Diskon
+  ├── style.css       # Layout & visual design
+  ├── script.js       # Logika kalkulasi browser
+  ├── netlify.toml    # Konfigurasi deployment
+  └── README.md       # Ringkasan instruksi
+```
 
 <div class="p-4 rounded-lg bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800/50 text-blue-950 dark:text-blue-100 text-xs leading-relaxed">
   <div class="font-bold text-blue-700 dark:text-blue-400 mb-2">📌 Karakteristik Utama Web Statis:</div>

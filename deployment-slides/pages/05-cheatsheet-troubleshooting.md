@@ -82,7 +82,9 @@ layout: default
 layout: default
 ---
 
-# 4. Template Cheat `netlify.toml`
+# 4. Template Cheat `netlify.toml` (Part 1)
+
+**Build Settings & API Rewrites**
 
 ```toml [netlify.toml]
 # netlify.toml - Template Serbaguna Fullstack Vanilla JS + TS Netlify Functions
@@ -96,7 +98,17 @@ layout: default
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
+```
 
+---
+layout: default
+---
+
+# 4. Template Cheat `netlify.toml` (Part 2)
+
+**SPA Fallback & Security HTTP Headers**
+
+```toml [netlify.toml]
 # 2. Redirect Fallback untuk Single Page Application (SPA)
 [[redirects]]
   from = "/*"

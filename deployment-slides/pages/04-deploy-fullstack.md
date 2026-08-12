@@ -89,14 +89,18 @@ Dengan menggunakan `netlify.toml`, frontend dan backend seolah-olah berada di **
 layout: default
 ---
 
-# 4. Bedah Kode Backend: `tasks.ts` (CRUD)
+# 4. Bedah Kode Backend: `tasks.ts` (Part 1)
+
+**Interface, In-Memory Store & CORS Preflight Header**
 
 ```typescript [netlify/functions/tasks.ts]
 import type { Context } from "@netlify/functions";
 
 interface Task { id: string; text: string; createdAt: string; }
+
 let tasksStore: Task[] = [
-  { id: "1", text: "Belajar konsep deployment web", createdAt: new Date().toISOString() }
+  { id: "1", text: "Belajar konsep deployment web", createdAt: new Date().toISOString() },
+  { id: "2", text: "Deploy frontend statis ke Netlify", createdAt: new Date().toISOString() }
 ];
 
 export default async (req: Request, context: Context) => {
@@ -108,20 +112,67 @@ export default async (req: Request, context: Context) => {
     "Access-Control-Allow-Methods": "GET, POST, DELETE, OPTIONS"
   };
 
-  if (method === "OPTIONS") return new Response(null, { status: 204, headers });
-  if (method === "GET") return new Response(JSON.stringify(tasksStore), { status: 200, headers });
+  // Response Preflight Request untuk OPTIONS
+  if (method === "OPTIONS") {
+    return new Response(null, { status: 204, headers });
+  }
+```
+
+---
+layout: default
+---
+
+# 4. Bedah Kode Backend: `tasks.ts` (Part 2)
+
+**Handling GET (Read) & POST (Create) Tasks**
+
+```typescript [netlify/functions/tasks.ts]
+  // GET /api/tasks -> Ambil daftar tugas
+  if (method === "GET") {
+    return new Response(JSON.stringify(tasksStore), { status: 200, headers });
+  }
+
+  // POST /api/tasks -> Tambah tugas baru
   if (method === "POST") {
     const body = await req.json();
-    const newTask: Task = { id: Date.now().toString(), text: body.text, createdAt: new Date().toISOString() };
+    const newTask: Task = {
+      id: Date.now().toString(),
+      text: body.text,
+      createdAt: new Date().toISOString()
+    };
     tasksStore.push(newTask);
     return new Response(JSON.stringify(newTask), { status: 201, headers });
   }
+```
+
+<div class="mt-4 p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs">
+  • Status <code>200 OK</code> untuk respon GET data array.<br>
+  • Status <code>201 Created</code> untuk respon sukses membuat item baru via POST.
+</div>
+
+---
+layout: default
+---
+
+# 4. Bedah Kode Backend: `tasks.ts` (Part 3)
+
+**Handling DELETE (Remove) & 405 Method Not Allowed**
+
+```typescript [netlify/functions/tasks.ts]
+  // DELETE /api/tasks?id=123 -> Hapus tugas
   if (method === "DELETE") {
     const id = url.searchParams.get("id");
     tasksStore = tasksStore.filter(t => t.id !== id);
-    return new Response(JSON.stringify({ message: "Berhasil dihapus" }), { status: 200, headers });
+    return new Response(
+      JSON.stringify({ message: "Berhasil dihapus" }),
+      { status: 200, headers }
+    );
   }
-  return new Response(JSON.stringify({ error: "Method not allowed" }), { status: 405, headers });
+
+  return new Response(
+    JSON.stringify({ error: "Method not allowed" }),
+    { status: 405, headers }
+  );
 };
 ```
 
@@ -129,14 +180,14 @@ export default async (req: Request, context: Context) => {
 layout: default
 ---
 
-# 5. Bedah Kode Frontend: `public/app.js`
+# 5. Bedah Kode Frontend: `app.js` (Part 1)
 
-Frontend memanggil endpoint `/api/tasks` secara asinkron menggunakan JavaScript `fetch`:
+**Mengambil (GET) & Menambah (POST) Task ke Backend**
 
 ```javascript [public/app.js]
 const API_URL = '/api/tasks';
 
-// 1. Mengambil data dari Backend saat halaman dimuat
+// 1. Mengambil data dari Backend saat halaman dimuat (GET)
 async function fetchTasks() {
   const res = await fetch(API_URL);
   const tasks = await res.json();
@@ -151,15 +202,35 @@ taskForm.addEventListener('submit', async (e) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ text: taskInput.value })
   });
+  taskInput.value = '';
   fetchTasks();
 });
+```
 
+---
+layout: default
+---
+
+# 5. Bedah Kode Frontend: `app.js` (Part 2)
+
+**Menghapus (DELETE) Task dari Backend**
+
+```javascript [public/app.js]
 // 3. Menghapus tugas dari Backend (DELETE)
 async function deleteTask(id) {
-  await fetch(`${API_URL}?id=${id}`, { method: 'DELETE' });
+  await fetch(`${API_URL}?id=${id}`, {
+    method: 'DELETE'
+  });
   fetchTasks();
 }
+
+// Initial fetch saat halaman pertama kali dibuka
+fetchTasks();
 ```
+
+<div class="mt-6 p-3 rounded-lg bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800/50 text-blue-950 dark:text-blue-100 text-xs">
+  💡 Panggilan <code>fetch(`${API_URL}?id=${id}`)</code> mengirim HTTP DELETE request dengan query parameter ID ke Serverless Function.
+</div>
 
 ---
 layout: default

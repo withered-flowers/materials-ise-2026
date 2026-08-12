@@ -1,6 +1,6 @@
 /* Control Mermaid Diagram sizes */
 .mermaid {
-  max-height: 260px !important;
+  max-height: 250px !important;
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
@@ -8,7 +8,7 @@
 }
 
 .mermaid svg {
-  max-height: 260px !important;
+  max-height: 250px !important;
   max-width: 100% !important;
   width: auto !important;
   height: auto !important;
