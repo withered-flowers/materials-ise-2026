@@ -1,0 +1,17 @@
+{
+  "name": "02-backend-ts",
+  "version": "1.0.0",
+  "description": "Contoh backend TypeScript menggunakan Netlify Functions native",
+  "main": "index.js",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@netlify/functions": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3"
+  }
+}

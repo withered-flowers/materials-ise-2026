@@ -1,0 +1,59 @@
+---
+title: Belajar Deployment Aplikasi Web di Netlify
+description: Panduan praktis & terstruktur dalam Bahasa Indonesia untuk Junior Developer yang ingin menguasai deployment frontend, backend serverless TypeScript, dan aplikasi fullstack di Netlify.
+template: splash
+hero:
+  tagline: Dari Lokal ke Production dengan Cepat, Aman, dan Efisien.
+  image:
+    file: ../../assets/houston.webp
+  actions:
+    - text: Mulai Pembelajaran
+      link: /modul-1/konsep-deployment/
+      icon: right-arrow
+    - text: Lihat Cheatsheet CLI
+      link: /referensi/cheatsheet-troubleshooting/
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+## Apa yang Akan Anda Pelajari?
+
+Dokumentasi ini dirancang khusus untuk **Junior Developer** agar dapat memahami alur kerja deployment modern dari nol hingga berhasil merilis aplikasi ke internet.
+
+<CardGrid stack>
+  <Card title="Modul 1: Konsep Deployment" icon="open-book">
+    Memahami apa itu deployment, perbedaan lingkungan **Local vs Production**, peran DNS/Domain, serta alur otomatisasi **CI/CD**.
+  </Card>
+  <Card title="Modul 2: Deploy Frontend Statis" icon="rocket">
+    Langkah demi langkah menyebarkan web statis (HTML, CSS, JS) menggunakan Netlify CLI dan integrasi GitHub repository.
+  </Card>
+  <Card title="Modul 3: Deploy Backend TypeScript" icon="setting">
+    Membuat dan me-deploy Serverless Functions menggunakan TypeScript native di Netlify beserta pengelolaan Environment Variables.
+  </Card>
+  <Card title="Modul 4: Deploy Fullstack App" icon="puzzle">
+    Menghubungkan Frontend dan Backend, menangani CORS, membuat URL rewrite/redirects, serta komunikasi REST API di cloud.
+  </Card>
+</CardGrid>
+
+---
+
+## Struktur Kode Sumber (Source Code)
+
+Seluruh contoh kode yang dibahas dalam modul dapat diakses pada folder repository `sources/`:
+
+- 📂 `sources/01-frontend-static/`: Web statis kalkulator diskon (Vanilla HTML/CSS/JS).
+- 📂 `sources/02-backend-ts/`: Serverless backend TypeScript dengan Netlify Functions.
+- 📂 `sources/03-fullstack/`: Aplikasi Task Manager fullstack yang saling berkomunikasi.
+
+---
+
+## Memulai Pembelajaran
+
+Silakan pilih modul di bawah ini atau gunakan menu navigasi di samping untuk memulai:
+
+<CardGrid>
+  <LinkCard title="Mulai dari Modul 1: Konsep Deployment" href="/modul-1/konsep-deployment/" description="Pahami perbedaan localhost dan server cloud." />
+  <LinkCard title="Langsung ke Cheatsheet Perintah CLI" href="/referensi/cheatsheet-troubleshooting/" description="Kumpulan perintah Git dan Netlify CLI penting." />
+</CardGrid>

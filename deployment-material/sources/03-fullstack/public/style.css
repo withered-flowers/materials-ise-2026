@@ -1,0 +1,158 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+  background-color: #0f172a;
+  color: #f8fafc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 520px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.badge {
+  display: inline-block;
+  background-color: #38bdf8;
+  color: #0f172a;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+h1 {
+  font-size: 26px;
+  color: #f8fafc;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+.card {
+  background-color: #1e293b;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  border: 1px solid #334155;
+}
+
+h2 {
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: #f1f5f9;
+}
+
+#task-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+#task-input {
+  flex: 1;
+  padding: 10px 14px;
+  font-size: 14px;
+  background-color: #0f172a;
+  color: #f8fafc;
+  border: 1px solid #475569;
+  border-radius: 6px;
+  outline: none;
+}
+
+#task-input:focus {
+  border-color: #38bdf8;
+}
+
+#btn-add {
+  background-color: #38bdf8;
+  color: #0f172a;
+  font-weight: bold;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#btn-add:hover {
+  background-color: #7dd3fc;
+}
+
+.message {
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.message.hidden {
+  display: none;
+}
+
+.message.error {
+  background-color: #451a1a;
+  color: #fca5a5;
+  border: 1px solid #991b1b;
+}
+
+.task-list {
+  list-style: none;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background-color: #0f172a;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  border: 1px solid #334155;
+}
+
+.task-item.loading {
+  color: #94a3b8;
+  font-style: italic;
+  justify-content: center;
+}
+
+.btn-delete {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background-color: #dc2626;
+}
+
+footer {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 12px;
+  color: #64748b;
+}

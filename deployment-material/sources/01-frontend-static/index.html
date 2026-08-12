@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aplikasi Web Statis - Modul 2</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <span class="badge">Modul 2</span>
+      <h1>Static Web Deployment</h1>
+      <p class="subtitle">Contoh aplikasi web statis Vanilla HTML, CSS, dan JavaScript untuk disebarkan di Netlify.</p>
+    </header>
+
+    <main class="card">
+      <h2>Kalkulator Diskon Sederhana</h2>
+      <form id="calc-form">
+        <div class="form-group">
+          <label for="price">Harga Asli (Rp):</label>
+          <input type="number" id="price" placeholder="Contoh: 100000" required min="0">
+        </div>
+        <div class="form-group">
+          <label for="discount">Diskon (%):</label>
+          <input type="number" id="discount" placeholder="Contoh: 20" required min="0" max="100">
+        </div>
+        <button type="submit" id="btn-calc">Hitung Total</button>
+      </form>
+
+      <div id="result" class="result-box hidden">
+        <h3>Hasil Perhitungan:</h3>
+        <p>Potongan Harga: <strong id="discount-amount">Rp 0</strong></p>
+        <p>Total Bayar: <strong id="final-price">Rp 0</strong></p>
+      </div>
+    </main>
+
+    <footer>
+      <p>Deployment Tutorial Netlify &copy; 2026</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

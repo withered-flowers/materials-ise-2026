@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fullstack App - Modul 4</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge">Modul 4</span>
+      <h1>Fullstack Web Application</h1>
+      <p class="subtitle">Frontend Vanilla JS berkomunikasi dengan Backend Netlify Functions TypeScript via REST API.</p>
+    </header>
+
+    <main class="card">
+      <h2>Daftar Tugas (Task Manager)</h2>
+      <form id="task-form">
+        <input type="text" id="task-input" placeholder="Masukkan tugas baru..." required>
+        <button type="submit" id="btn-add">Tambah</button>
+      </form>
+
+      <div id="status-message" class="message hidden"></div>
+
+      <ul id="task-list" class="task-list">
+        <li class="loading">Memuat data dari backend...</li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Deployment Tutorial Netlify &copy; 2026</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

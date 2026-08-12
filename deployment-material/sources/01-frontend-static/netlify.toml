@@ -1,0 +1,11 @@
+# Configuration file for Netlify Static Site Deployment
+
+[build]
+  publish = "."
+
+# Custom HTTP Headers (Opsional - Keamanan & Caching)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"

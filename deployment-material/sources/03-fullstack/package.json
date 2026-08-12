@@ -1,0 +1,17 @@
+{
+  "name": "03-fullstack",
+  "version": "1.0.0",
+  "description": "Aplikasi Web Fullstack (Frontend Static + Backend TS Netlify Functions)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@netlify/functions": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3"
+  }
+}

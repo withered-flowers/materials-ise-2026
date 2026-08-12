@@ -1,0 +1,15 @@
+[build]
+  publish = "public"
+  functions = "netlify/functions"
+
+# Rewrites agar endpoint /api/tasks mengarah ke serverless function tanpa isu CORS
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# Fallback SPA / Single Page App jika diperlukan
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
