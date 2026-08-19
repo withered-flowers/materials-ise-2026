@@ -1,0 +1,65 @@
+---
+title: "Quiz Deployment Aplikasi Web di Netlify"
+description: "Uji pemahaman komprehensif konsep deployment, Netlify CLI, Frontend Statis, Serverless TypeScript, CORS Rewrites, hingga Troubleshooting untuk Junior Developer."
+---
+
+import QuizApp from '../../../components/QuizApp.astro';
+import { Card, CardGrid, Badge } from '@astrojs/starlight/components';
+
+Quiz interaktif ini dirancang untuk menguji dan memperkuat pemahaman Anda mengenai seluruh materi yang telah dipelajari dari **Modul 1 hingga Modul 4** serta **Cheatsheet & Troubleshooting**.
+
+---
+
+## 📌 Petunjuk & Ketentuan Pengerjaan
+
+<CardGrid>
+  <Card title="Struktur & Jumlah Soal" icon="list-format">
+    Terdiri dari **20 soal pilihan ganda** berbobot sama (5 poin per soal, total skor 100).
+  </Card>
+  <Card title="Waktu & Timer" icon="seti:clock">
+    Batas waktu pengerjaan adalah **30 menit**. Timer mulai berjalan dari **00:00** dan akan otomatis mengumpulkan jawaban saat mencapai **30:00**.
+  </Card>
+  <Card title="Auto-Save (Local Storage)" icon="laptop">
+    Jawaban dan waktu pengerjaan Anda tersimpan otomatis di browser. Anda dapat merefresh halaman tanpa khawatir kehilangan progres.
+  </Card>
+  <Card title="Standar Kelulusan (KKM)" icon="star">
+    Batas kelulusan adalah **70% (14 dari 20 soal benar)**. Skor dan feedback evaluasi langsung ditampilkan setelah submit.
+  </Card>
+</CardGrid>
+
+---
+
+## 📝 Mulai Mengerjakan Quiz
+
+Pilihlah salah satu opsi jawaban (**A**, **B**, **C**, atau **D**) yang menurut Anda paling tepat untuk setiap butir pertanyaan berikut:
+
+<QuizApp />
+
+---
+
+## 🔑 Rangkuman Topik Evaluasi & Modul Acuan
+
+Berikut adalah peta distribusi materi dan kompetensi yang diuji dalam kuis ini:
+
+| No | Modul Acuan | Topik Utama yang Diuji |
+| :---: | :--- | :--- |
+| **1** | Modul 1: Konsep Deployment | Definisi proses deployment & perpindahan Local ke Production Environment |
+| **2** | Modul 1: Konsep Deployment | Fungsi DNS (*Domain Name System*) sebagai penerjemah domain ke IP address |
+| **3** | Modul 1 & 3: Keamanan & Env | Pengelolaan *Environment Variables* rahasia via Netlify CLI & Dashboard |
+| **4** | Modul 2: Deploy Frontend Statis | Perintah `npx netlify-cli deploy --prod` untuk rilis ke lingkungan live |
+| **5** | Modul 2: Deploy Frontend Statis | Diagnosis penyebab error HTTP 404 Page Not Found pada web statis |
+| **6** | Modul 3: Deploy Backend TS | Karakteristik *Serverless* (*event-driven*, *scale to zero*, hemat biaya) |
+| **7** | Modul 3 & 4: Backend & State | Sifat *ephemeral/stateless* Netlify Functions dan integrasi database cloud |
+| **8** | Modul 4: Deploy Fullstack App | Solusi penanganan CORS menggunakan fitur internal URL Rewrites (`status = 200`) |
+| **9** | Modul 4: Deploy Fullstack App | Pemahaman konfigurasi aturan `[[redirects]]` pada file `netlify.toml` |
+| **10** | Referensi & Troubleshooting | Perintah `npx netlify-cli functions:logs` untuk live debugging stack trace |
+| **11** | Modul 1: Konsep Deployment | Mekanisme Git Webhook pemicu otomatisasi alur CI/CD build di cloud |
+| **12** | Modul 1: Konsep Deployment | Peran jaringan Content Delivery Network (CDN) edge servers dalam latensi rendah |
+| **13** | Modul 2: Deploy Frontend Statis | Perintah `npx netlify-cli dev` untuk simulasi lokal di port 8888 |
+| **14** | Modul 2: Deploy Frontend Statis | Fungsi atribut `publish = "."` pada file konfigurasi `netlify.toml` |
+| **15** | Modul 2: Deploy Frontend Statis | Dampak path absolut lokal vs path relatif pada pemuatan aset HTML/CSS/JS |
+| **16** | Modul 2: Deploy Frontend Statis | Proteksi keamanan header `X-Frame-Options` (Clickjacking) & `nosniff` |
+| **17** | Modul 1: Konsep Deployment | Alasan penyembunyian error *stack trace* di Production (Information Disclosure) |
+| **18** | Modul 2: Deploy Frontend Statis | Perbedaan Draft Preview URL unik vs URL Production utama |
+| **19** | Modul 2: Deploy Frontend Statis | Perbedaan sifat *case-sensitivity* OS Windows/macOS vs server Linux Netlify |
+| **20** | Modul 2: Deploy Frontend Statis | Konfigurasi Build Settings yang tepat untuk Vanilla Web tanpa bundler |

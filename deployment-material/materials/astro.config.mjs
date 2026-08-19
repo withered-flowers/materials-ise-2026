@@ -43,6 +43,12 @@ export default defineConfig({
             { label: "Cheatsheet & Troubleshooting", slug: "referensi/cheatsheet-troubleshooting" },
           ],
         },
+        {
+          label: "Evaluasi & Quiz",
+          items: [
+            { label: "Quiz Deployment Netlify", slug: "quiz/quiz-deployment" },
+          ],
+        },
       ],
     }),
   ],
