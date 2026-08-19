@@ -1,0 +1,94 @@
+/* Hide quiz elements when quiz is not unlocked */
+:root:not(.quiz-unlocked) nav.sidebar li:has(a[href*="/quiz/"]),
+:root:not(.quiz-unlocked) nav.sidebar a[href*="/quiz/"],
+:root:not(.quiz-unlocked) .sl-link-card:has(a[href*="/quiz/"]),
+:root:not(.quiz-unlocked) .quiz-access-only {
+  display: none !important;
+}
+
+/* Quiz locked banner and lock/unlock indicators */
+.quiz-gate-card {
+  background: var(--sl-color-gray-6, #1e293b);
+  border: 2px dashed var(--sl-color-gray-4, #475569);
+  border-radius: 14px;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.quiz-gate-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.quiz-gate-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--sl-color-white, #f8fafc);
+}
+
+.quiz-gate-desc {
+  color: var(--sl-color-gray-2, #94a3b8);
+  max-width: 500px;
+  margin: 0 auto 1.5rem auto;
+  line-height: 1.6;
+}
+
+.quiz-gate-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.quiz-gate-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: none;
+  background: #2563eb;
+  color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.quiz-gate-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.quiz-active-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid #10b981;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: #10b981;
+}
+
+.quiz-lock-btn {
+  background: transparent;
+  border: 1px solid #10b981;
+  color: #10b981;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.quiz-lock-btn:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: #ef4444;
+  color: #ef4444;
+}

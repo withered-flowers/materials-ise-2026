@@ -3,230 +3,258 @@ import { quizQuestions } from '../data/quiz-data';
 ---
 
 <div id="quiz-container" class="quiz-root">
-  <!-- QUIZ TOP CONTROL BAR / STICKY HEADER -->
-  <div class="quiz-sticky-header">
-    <div class="quiz-header-content">
-      <div class="quiz-header-left">
-        <span class="quiz-title-badge">🎯 Quiz Netlify</span>
-        <div class="quiz-progress-info">
-          <span id="answered-count-text">Terjawab: <strong>0</strong> / {quizQuestions.length}</span>
-          <div class="quiz-progress-bar-wrapper">
-            <div id="quiz-progress-bar" class="quiz-progress-bar" style="width: 0%;"></div>
-          </div>
-        </div>
-      </div>
+  <!-- QUIZ ACCESS ACTIVE BANNER (SHOWN WHEN UNLOCKED) -->
+  <div id="quiz-active-banner" class="quiz-active-banner" style="display: none;">
+    <div class="active-badge-info">
+      <span>🔓 Mode Kuis: <strong>Aktif</strong> (Diakses via <code>?quiz=enabled</code>)</span>
+    </div>
+    <button id="btn-lock-quiz" class="quiz-lock-btn" type="button" title="Sembunyikan kuis kembali">
+      🔒 Kunci / Sembunyikan Kuis
+    </button>
+  </div>
 
-      <div class="quiz-header-right">
-        <div class="quiz-timer-box" id="timer-box" title="Waktu pengerjaan (Maksimal 30:00)">
-          <span class="timer-icon">⏱️</span>
-          <span id="timer-display" class="timer-display">00:00 / 30:00</span>
-        </div>
-        <button id="btn-submit-top" class="quiz-btn quiz-btn-primary" type="button">
-          Kirim Jawaban
-        </button>
-        <button id="btn-reset-top" class="quiz-btn quiz-btn-secondary" type="button" title="Mulai ulang quiz">
-          🔄 Reset
-        </button>
-      </div>
+  <!-- QUIZ GATE CARD (SHOWN WHEN LOCKED / DEFAULT) -->
+  <div id="quiz-gate-card" class="quiz-gate-card" style="display: none;">
+    <div class="quiz-gate-icon">🔒</div>
+    <h2 class="quiz-gate-title">Kuis Evaluasi Terkunci</h2>
+    <p class="quiz-gate-desc">
+      Bagian kuis evaluasi ini disembunyikan secara default. Untuk membuka kuis ini, silakan akses halaman dengan menambahkan query parameter <code>?quiz=enabled</code> pada URL atau klik tombol di bawah ini.
+    </p>
+    <div class="quiz-gate-actions">
+      <button id="btn-unlock-gate" class="quiz-gate-btn" type="button">
+        🔓 Buka Akses Kuis Sekarang
+      </button>
     </div>
   </div>
 
-  <!-- RESULT DASHBOARD (HIDDEN UNTIL SUBMISSION) -->
-  <div id="quiz-result-dashboard" class="quiz-result-dashboard" style="display: none;">
-    <div class="result-card">
-      <div class="result-header">
-        <div class="result-badge-container">
-          <div id="result-score-circle" class="result-score-circle">
-            <span id="result-score-number" class="score-number">0</span>
-            <span class="score-max">/ 100</span>
+  <!-- MAIN QUIZ AREA (HIDDEN WHEN LOCKED) -->
+  <div id="quiz-main-area" style="display: none;">
+    <!-- QUIZ TOP CONTROL BAR / STICKY HEADER -->
+    <div class="quiz-sticky-header">
+      <div class="quiz-header-content">
+        <div class="quiz-header-left">
+          <span class="quiz-title-badge">🎯 Quiz Netlify</span>
+          <div class="quiz-progress-info">
+            <span id="answered-count-text">Terjawab: <strong>0</strong> / {quizQuestions.length}</span>
+            <div class="quiz-progress-bar-wrapper">
+              <div id="quiz-progress-bar" class="quiz-progress-bar" style="width: 0%;"></div>
+            </div>
           </div>
         </div>
-        <div class="result-summary-text">
-          <h2 id="result-status-title" class="result-status-title">Hasil Quiz</h2>
-          <p id="result-status-message" class="result-status-message">Menghitung hasil...</p>
-          <div class="result-meta">
-            <span id="result-time-spent" class="meta-item">⏱️ Waktu Pengerjaan: 00:00</span>
-            <span id="result-timestamp" class="meta-item">📅 Tanggal: -</span>
+
+        <div class="quiz-header-right">
+          <div class="quiz-timer-box" id="timer-box" title="Waktu pengerjaan (Maksimal 30:00)">
+            <span class="timer-icon">⏱️</span>
+            <span id="timer-display" class="timer-display">00:00 / 30:00</span>
+          </div>
+          <button id="btn-submit-top" class="quiz-btn quiz-btn-primary" type="button">
+            Kirim Jawaban
+          </button>
+          <button id="btn-reset-top" class="quiz-btn quiz-btn-secondary" type="button" title="Mulai ulang quiz">
+            🔄 Reset
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULT DASHBOARD (HIDDEN UNTIL SUBMISSION) -->
+    <div id="quiz-result-dashboard" class="quiz-result-dashboard" style="display: none;">
+      <div class="result-card">
+        <div class="result-header">
+          <div class="result-badge-container">
+            <div id="result-score-circle" class="result-score-circle">
+              <span id="result-score-number" class="score-number">0</span>
+              <span class="score-max">/ 100</span>
+            </div>
+          </div>
+          <div class="result-summary-text">
+            <h2 id="result-status-title" class="result-status-title">Hasil Quiz</h2>
+            <p id="result-status-message" class="result-status-message">Menghitung hasil...</p>
+            <div class="result-meta">
+              <span id="result-time-spent" class="meta-item">⏱️ Waktu Pengerjaan: 00:00</span>
+              <span id="result-timestamp" class="meta-item">📅 Tanggal: -</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- STATS GRID -->
-      <div class="result-stats-grid">
-        <div class="stat-card stat-correct">
-          <span class="stat-icon">✅</span>
-          <span class="stat-label">Jawaban Benar</span>
-          <span id="stat-correct-count" class="stat-value">0</span>
+        <!-- STATS GRID -->
+        <div class="result-stats-grid">
+          <div class="stat-card stat-correct">
+            <span class="stat-icon">✅</span>
+            <span class="stat-label">Jawaban Benar</span>
+            <span id="stat-correct-count" class="stat-value">0</span>
+          </div>
+          <div class="stat-card stat-incorrect">
+            <span class="stat-icon">❌</span>
+            <span class="stat-label">Jawaban Salah</span>
+            <span id="stat-incorrect-count" class="stat-value">0</span>
+          </div>
+          <div class="stat-card stat-unanswered">
+            <span class="stat-icon">⚠️</span>
+            <span class="stat-label">Tidak Dijawab</span>
+            <span id="stat-unanswered-count" class="stat-value">0</span>
+          </div>
+          <div class="stat-card stat-accuracy">
+            <span class="stat-icon">📊</span>
+            <span class="stat-label">Akurasi</span>
+            <span id="stat-accuracy-rate" class="stat-value">0%</span>
+          </div>
         </div>
-        <div class="stat-card stat-incorrect">
-          <span class="stat-icon">❌</span>
-          <span class="stat-label">Jawaban Salah</span>
-          <span id="stat-incorrect-count" class="stat-value">0</span>
-        </div>
-        <div class="stat-card stat-unanswered">
-          <span class="stat-icon">⚠️</span>
-          <span class="stat-label">Tidak Dijawab</span>
-          <span id="stat-unanswered-count" class="stat-value">0</span>
-        </div>
-        <div class="stat-card stat-accuracy">
-          <span class="stat-icon">📊</span>
-          <span class="stat-label">Akurasi</span>
-          <span id="stat-accuracy-rate" class="stat-value">0%</span>
-        </div>
-      </div>
 
-      <!-- MODULE BREAKDOWN -->
-      <div class="module-breakdown-section">
-        <h3>📋 Evaluasi Pemahaman per Topik / Modul</h3>
-        <div id="module-breakdown-list" class="module-breakdown-list">
-          <!-- Dynamically inserted via JS -->
+        <!-- MODULE BREAKDOWN -->
+        <div class="module-breakdown-section">
+          <h3>📋 Evaluasi Pemahaman per Topik / Modul</h3>
+          <div id="module-breakdown-list" class="module-breakdown-list">
+            <!-- Dynamically inserted via JS -->
+          </div>
         </div>
-      </div>
 
-      <div class="result-actions">
-        <button id="btn-restart-quiz" class="quiz-btn quiz-btn-primary" type="button">
-          🔄 Ulangi Quiz
-        </button>
-        <button id="btn-scroll-to-questions" class="quiz-btn quiz-btn-secondary" type="button">
-          🔍 Pelajari Pembahasan Soal di Bawah
-        </button>
+        <div class="result-actions">
+          <button id="btn-restart-quiz" class="quiz-btn quiz-btn-primary" type="button">
+            🔄 Ulangi Quiz
+          </button>
+          <button id="btn-scroll-to-questions" class="quiz-btn quiz-btn-secondary" type="button">
+            🔍 Pelajari Pembahasan Soal di Bawah
+          </button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- QUESTION NAVIGATION GRID -->
-  <div class="quiz-nav-card">
-    <div class="quiz-nav-header">
-      <span class="quiz-nav-title">📌 Navigasi Nomor Soal</span>
-      <div class="quiz-nav-legend">
-        <span class="legend-item"><span class="legend-dot dot-unanswered"></span> Belum</span>
-        <span class="legend-item"><span class="legend-dot dot-answered"></span> Terisi</span>
-        <span class="legend-item review-only" style="display: none;"><span class="legend-dot dot-correct"></span> Benar</span>
-        <span class="legend-item review-only" style="display: none;"><span class="legend-dot dot-incorrect"></span> Salah</span>
+    <!-- QUESTION NAVIGATION GRID -->
+    <div class="quiz-nav-card">
+      <div class="quiz-nav-header">
+        <span class="quiz-nav-title">📌 Navigasi Nomor Soal</span>
+        <div class="quiz-nav-legend">
+          <span class="legend-item"><span class="legend-dot dot-unanswered"></span> Belum</span>
+          <span class="legend-item"><span class="legend-dot dot-answered"></span> Terisi</span>
+          <span class="legend-item review-only" style="display: none;"><span class="legend-dot dot-correct"></span> Benar</span>
+          <span class="legend-item review-only" style="display: none;"><span class="legend-dot dot-incorrect"></span> Salah</span>
+        </div>
+      </div>
+      <div class="quiz-nav-grid" id="quiz-nav-grid">
+        {quizQuestions.map((q) => (
+          <button
+            type="button"
+            class="quiz-nav-btn"
+            data-question-target={q.id}
+            id={`nav-btn-${q.id}`}
+          >
+            {q.id}
+          </button>
+        ))}
       </div>
     </div>
-    <div class="quiz-nav-grid" id="quiz-nav-grid">
+
+    <!-- MODULE FILTER TABS -->
+    <div class="quiz-filter-tabs">
+      <button type="button" class="filter-tab active" data-filter="all">Semua ({quizQuestions.length})</button>
+      <button type="button" class="filter-tab" data-filter="Modul 1">Modul 1 (5)</button>
+      <button type="button" class="filter-tab" data-filter="Modul 2">Modul 2 (8)</button>
+      <button type="button" class="filter-tab" data-filter="Modul 3">Modul 3 (3)</button>
+      <button type="button" class="filter-tab" data-filter="Modul 4">Modul 4 (3)</button>
+      <button type="button" class="filter-tab" data-filter="Referensi">Referensi (1)</button>
+    </div>
+
+    <!-- QUESTIONS LIST -->
+    <form id="quiz-form" class="quiz-questions-list">
       {quizQuestions.map((q) => (
-        <button
-          type="button"
-          class="quiz-nav-btn"
-          data-question-target={q.id}
-          id={`nav-btn-${q.id}`}
+        <article
+          class="quiz-question-card"
+          id={`question-card-${q.id}`}
+          data-question-id={q.id}
+          data-module-category={q.moduleCategory}
+          data-correct-answer={q.correctAnswer}
         >
-          {q.id}
-        </button>
-      ))}
-    </div>
-  </div>
-
-  <!-- MODULE FILTER TABS -->
-  <div class="quiz-filter-tabs">
-    <button type="button" class="filter-tab active" data-filter="all">Semua ({quizQuestions.length})</button>
-    <button type="button" class="filter-tab" data-filter="Modul 1">Modul 1 (5)</button>
-    <button type="button" class="filter-tab" data-filter="Modul 2">Modul 2 (8)</button>
-    <button type="button" class="filter-tab" data-filter="Modul 3">Modul 3 (3)</button>
-    <button type="button" class="filter-tab" data-filter="Modul 4">Modul 4 (3)</button>
-    <button type="button" class="filter-tab" data-filter="Referensi">Referensi (1)</button>
-  </div>
-
-  <!-- QUESTIONS LIST -->
-  <form id="quiz-form" class="quiz-questions-list">
-    {quizQuestions.map((q) => (
-      <article
-        class="quiz-question-card"
-        id={`question-card-${q.id}`}
-        data-question-id={q.id}
-        data-module-category={q.moduleCategory}
-        data-correct-answer={q.correctAnswer}
-      >
-        <div class="question-card-header">
-          <div class="question-badge-group">
-            <span class="question-number-badge">Soal #{q.id}</span>
-            <span class="question-module-badge">{q.module}</span>
+          <div class="question-card-header">
+            <div class="question-badge-group">
+              <span class="question-number-badge">Soal #{q.id}</span>
+              <span class="question-module-badge">{q.module}</span>
+            </div>
+            <div class="question-status-badge" id={`status-badge-${q.id}`}>
+              <!-- Benar / Salah will be shown here in review mode -->
+            </div>
           </div>
-          <div class="question-status-badge" id={`status-badge-${q.id}`}>
-            <!-- Benar / Salah will be shown here in review mode -->
-          </div>
-        </div>
 
-        <div class="question-body">
-          <h3 class="question-text">
-            {q.question.replace(/\*(.*?)\*/g, '$1')}
-          </h3>
+          <div class="question-body">
+            <h3 class="question-text">
+              {q.question.replace(/\*(.*?)\*/g, '$1')}
+            </h3>
 
-          {q.codeSnippet && (
-            <div class="quiz-code-block">
-              <div class="code-block-header">
-                <span>{q.codeSnippet.language}</span>
+            {q.codeSnippet && (
+              <div class="quiz-code-block">
+                <div class="code-block-header">
+                  <span>{q.codeSnippet.language}</span>
+                </div>
+                <pre><code>{q.codeSnippet.code}</code></pre>
               </div>
-              <pre><code>{q.codeSnippet.code}</code></pre>
-            </div>
-          )}
+            )}
 
-          <div class="quiz-options-group" role="radiogroup" aria-labelledby={`question-card-${q.id}`}>
-            {q.options.map((opt) => (
-              <label
-                class="quiz-option-label"
-                id={`option-label-${q.id}-${opt.id}`}
-                for={`q${q.id}_opt_${opt.id}`}
-              >
-                <input
-                  type="radio"
-                  id={`q${q.id}_opt_${opt.id}`}
-                  name={`question_${q.id}`}
-                  value={opt.id}
-                  class="quiz-option-input"
-                />
-                <span class="option-letter">{opt.id}</span>
-                <span class="option-text">{opt.text}</span>
-                <span class="option-feedback-icon" id={`opt-icon-${q.id}-${opt.id}`}></span>
-              </label>
-            ))}
-          </div>
-        </div>
-
-        <!-- REVIEW & EXPLANATION CALLOUT (HIDDEN UNTIL SUBMITTED) -->
-        <div class="question-explanation" id={`explanation-${q.id}`} style="display: none;">
-          <div class="explanation-content">
-            <div class="explanation-key">
-              <strong>🔑 Kunci Jawaban:</strong> Pilihan <span class="key-highlight">{q.correctAnswer}</span>
-            </div>
-            
-            <!-- FEEDBACK BENAR (Hanya tampil jika jawaban pengguna BENAR) -->
-            <div class="feedback-box feedback-correct" id={`fb-correct-${q.id}`} style="display: none;">
-              <strong>✅ Feedback Jawaban Benar:</strong>
-              <p>{q.correctFeedback}</p>
-            </div>
-
-            <!-- FEEDBACK SALAH (Hanya tampil jika jawaban pengguna SALAH atau TIDAK DIJAWAB) -->
-            <div class="feedback-box feedback-incorrect" id={`fb-incorrect-${q.id}`} style="display: none;">
-              <strong>💡 Feedback Jawaban Salah:</strong>
-              <p>{q.incorrectFeedback}</p>
-            </div>
-
-            <div class="explanation-footer">
-              <span class="ref-tag">📖 Modul Acuan: {q.reference}</span>
+            <div class="quiz-options-group" role="radiogroup" aria-labelledby={`question-card-${q.id}`}>
+              {q.options.map((opt) => (
+                <label
+                  class="quiz-option-label"
+                  id={`option-label-${q.id}-${opt.id}`}
+                  for={`q${q.id}_opt_${opt.id}`}
+                >
+                  <input
+                    type="radio"
+                    id={`q${q.id}_opt_${opt.id}`}
+                    name={`question_${q.id}`}
+                    value={opt.id}
+                    class="quiz-option-input"
+                  />
+                  <span class="option-letter">{opt.id}</span>
+                  <span class="option-text">{opt.text}</span>
+                  <span class="option-feedback-icon" id={`opt-icon-${q.id}-${opt.id}`}></span>
+                </label>
+              ))}
             </div>
           </div>
-        </div>
-      </article>
-    ))}
 
-    <!-- BOTTOM SUBMIT ACTIONS -->
-    <div class="quiz-bottom-actions">
-      <button type="button" id="btn-submit-bottom" class="quiz-btn quiz-btn-primary quiz-btn-large">
-        🚀 Kirim Jawaban & Lihat Hasil
-      </button>
-      <button type="button" id="btn-reset-bottom" class="quiz-btn quiz-btn-secondary">
-        🔄 Reset Jawaban
-      </button>
-    </div>
-  </form>
+          <!-- REVIEW & EXPLANATION CALLOUT (HIDDEN UNTIL SUBMITTED) -->
+          <div class="question-explanation" id={`explanation-${q.id}`} style="display: none;">
+            <div class="explanation-content">
+              <div class="explanation-key">
+                <strong>🔑 Kunci Jawaban:</strong> Pilihan <span class="key-highlight">{q.correctAnswer}</span>
+              </div>
+              
+              <!-- FEEDBACK BENAR (Hanya tampil jika jawaban pengguna BENAR) -->
+              <div class="feedback-box feedback-correct" id={`fb-correct-${q.id}`} style="display: none;">
+                <strong>✅ Feedback Jawaban Benar:</strong>
+                <p>{q.correctFeedback}</p>
+              </div>
+
+              <!-- FEEDBACK SALAH (Hanya tampil jika jawaban pengguna SALAH atau TIDAK DIJAWAB) -->
+              <div class="feedback-box feedback-incorrect" id={`fb-incorrect-${q.id}`} style="display: none;">
+                <strong>💡 Feedback Jawaban Salah:</strong>
+                <p>{q.incorrectFeedback}</p>
+              </div>
+
+              <div class="explanation-footer">
+                <span class="ref-tag">📖 Modul Acuan: {q.reference}</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+
+      <!-- BOTTOM SUBMIT ACTIONS -->
+      <div class="quiz-bottom-actions">
+        <button type="button" id="btn-submit-bottom" class="quiz-btn quiz-btn-primary quiz-btn-large">
+          🚀 Kirim Jawaban & Lihat Hasil
+        </button>
+        <button type="button" id="btn-reset-bottom" class="quiz-btn quiz-btn-secondary">
+          🔄 Reset Jawaban
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
 
 <!-- CLIENT JAVASCRIPT LOGIC -->
 <script is:inline define:vars={{ quizData: quizQuestions }}>
 (function () {
+  const STORAGE_KEY_ACCESS = 'quiz_unlocked_v1';
   const STORAGE_KEY_ANSWERS = 'netlify_quiz_answers_v2';
   const STORAGE_KEY_SUBMITTED = 'netlify_quiz_submitted_v2';
   const STORAGE_KEY_TIMER_ELAPSED = 'netlify_quiz_timer_elapsed_v2';
@@ -244,6 +272,12 @@ import { quizQuestions } from '../data/quiz-data';
   const container = document.getElementById('quiz-container');
   if (!container) return;
 
+  const gateCard = document.getElementById('quiz-gate-card');
+  const mainQuizArea = document.getElementById('quiz-main-area');
+  const activeBanner = document.getElementById('quiz-active-banner');
+  const btnUnlockGate = document.getElementById('btn-unlock-gate');
+  const btnLockQuiz = document.getElementById('btn-lock-quiz');
+
   const timerDisplay = document.getElementById('timer-display');
   const timerBox = document.getElementById('timer-box');
   const answeredCountText = document.getElementById('answered-count-text');
@@ -258,7 +292,43 @@ import { quizQuestions } from '../data/quiz-data';
   const quizForm = document.getElementById('quiz-form');
   const filterTabs = document.querySelectorAll('.filter-tab');
 
-  // Initialize
+  // Check access & Unlock gating
+  function checkAccessState() {
+    let isUnlocked = false;
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const quizParam = urlParams.get('quiz');
+      if (quizParam === 'enabled' || quizParam === 'true' || quizParam === '1') {
+        localStorage.setItem(STORAGE_KEY_ACCESS, 'true');
+      } else if (quizParam === 'disabled' || quizParam === 'false' || quizParam === '0') {
+        localStorage.removeItem(STORAGE_KEY_ACCESS);
+      }
+      isUnlocked = localStorage.getItem(STORAGE_KEY_ACCESS) === 'true';
+    } catch (e) {
+      console.warn('Storage check failed:', e);
+    }
+
+    if (isUnlocked) {
+      document.documentElement.classList.add('quiz-unlocked');
+      if (gateCard) gateCard.style.display = 'none';
+      if (mainQuizArea) mainQuizArea.style.display = 'block';
+      if (activeBanner) activeBanner.style.display = 'flex';
+      initQuiz();
+    } else {
+      document.documentElement.classList.remove('quiz-unlocked');
+      if (gateCard) gateCard.style.display = 'block';
+      if (mainQuizArea) mainQuizArea.style.display = 'none';
+      if (activeBanner) activeBanner.style.display = 'none';
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+    }
+
+    return isUnlocked;
+  }
+
+  // Initialize Quiz Logic
   function initQuiz() {
     loadStoredState();
     setupEventListeners();
@@ -277,7 +347,6 @@ import { quizQuestions } from '../data/quiz-data';
       const savedAnswers = localStorage.getItem(STORAGE_KEY_ANSWERS);
       if (savedAnswers) {
         answers = JSON.parse(savedAnswers);
-        // Apply checked state to radio inputs
         Object.entries(answers).forEach(([qId, selectedOpt]) => {
           const input = document.querySelector(`input[name="question_${qId}"][value="${selectedOpt}"]`);
           if (input) {
@@ -349,7 +418,6 @@ import { quizQuestions } from '../data/quiz-data';
     timerDisplay.textContent = `${formatted} / 30:00`;
 
     if (timerBox) {
-      // Approaching 30 mins: warning at >= 25 mins, danger at >= 28 mins
       if (timerSecondsElapsed >= 28 * 60) {
         timerBox.classList.add('timer-danger');
         timerBox.classList.remove('timer-warning');
@@ -367,7 +435,6 @@ import { quizQuestions } from '../data/quiz-data';
     const questionCard = document.getElementById(`question-card-${qId}`);
     if (!questionCard) return;
 
-    // Reset all labels in this question
     questionCard.querySelectorAll('.quiz-option-label').forEach((lbl) => {
       lbl.classList.remove('selected');
     });
@@ -377,7 +444,6 @@ import { quizQuestions } from '../data/quiz-data';
       activeLabel.classList.add('selected');
     }
 
-    // Update Nav Button
     const navBtn = document.getElementById(`nav-btn-${qId}`);
     if (navBtn) {
       navBtn.classList.add('answered');
@@ -407,21 +473,49 @@ import { quizQuestions } from '../data/quiz-data';
     });
   }
 
-  // Event Listeners
+  // Setup Event Listeners
+  let listenersAttached = false;
   function setupEventListeners() {
+    if (listenersAttached) return;
+    listenersAttached = true;
+
+    // Unlock Gate button
+    if (btnUnlockGate) {
+      btnUnlockGate.addEventListener('click', () => {
+        try { localStorage.setItem(STORAGE_KEY_ACCESS, 'true'); } catch (e) {}
+        const newUrl = new URL(window.location.href);
+        newUrl.searchParams.set('quiz', 'enabled');
+        window.history.replaceState({}, '', newUrl.toString());
+        checkAccessState();
+      });
+    }
+
+    // Lock Quiz button
+    if (btnLockQuiz) {
+      btnLockQuiz.addEventListener('click', () => {
+        try { localStorage.removeItem(STORAGE_KEY_ACCESS); } catch (e) {}
+        const newUrl = new URL(window.location.href);
+        newUrl.searchParams.delete('quiz');
+        window.history.replaceState({}, '', newUrl.toString());
+        checkAccessState();
+      });
+    }
+
     // Radio button changes
-    quizForm.addEventListener('change', (e) => {
-      if (isSubmitted) return;
-      const target = e.target;
-      if (target && target.matches('.quiz-option-input')) {
-        const qId = parseInt(target.name.replace('question_', ''), 10);
-        const val = target.value;
-        answers[qId] = val;
-        markOptionSelected(qId, val);
-        saveAnswersState();
-        updateProgressUI();
-      }
-    });
+    if (quizForm) {
+      quizForm.addEventListener('change', (e) => {
+        if (isSubmitted) return;
+        const target = e.target;
+        if (target && target.matches('.quiz-option-input')) {
+          const qId = parseInt(target.name.replace('question_', ''), 10);
+          const val = target.value;
+          answers[qId] = val;
+          markOptionSelected(qId, val);
+          saveAnswersState();
+          updateProgressUI();
+        }
+      });
+    }
 
     // Nav grid buttons
     document.querySelectorAll('.quiz-nav-btn').forEach((btn) => {
@@ -457,7 +551,7 @@ import { quizQuestions } from '../data/quiz-data';
     if (btnRestartQuiz) btnRestartQuiz.addEventListener('click', confirmResetQuiz);
 
     // Scroll to questions from results
-    if (btnScrollQuestions) {
+    if (btnScrollQuestions && quizForm) {
       btnScrollQuestions.addEventListener('click', () => {
         quizForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
@@ -587,23 +681,19 @@ import { quizQuestions } from '../data/quiz-data';
       }
     }
 
-    // Stop and display final timer if submitted
     if (timerInterval) {
       clearInterval(timerInterval);
       timerInterval = null;
     }
 
-    // Disable all radio inputs
     document.querySelectorAll('.quiz-option-input').forEach((input) => {
       input.disabled = true;
     });
 
-    // Update buttons
     if (btnSubmitTop) btnSubmitTop.style.display = 'none';
     if (btnSubmitBottom) btnSubmitBottom.style.display = 'none';
     document.querySelectorAll('.review-only').forEach((el) => (el.style.display = 'inline-flex'));
 
-    // Process each question card
     quizData.forEach((q) => {
       const userAnswer = answers[q.id];
       const isCorrect = userAnswer === q.correctAnswer;
@@ -664,14 +754,11 @@ import { quizQuestions } from '../data/quiz-data';
         }
       });
 
-      // Show explanation block
       if (explanation) {
         explanation.style.display = 'block';
       }
 
-      // FEEDBACK CONDITIONAL DISPLAY:
-      // When correct -> show ONLY correct feedback
-      // When incorrect / unanswered -> show ONLY incorrect feedback
+      // Feedback conditional display
       if (isCorrect) {
         if (fbCorrect) fbCorrect.style.display = 'block';
         if (fbIncorrect) fbIncorrect.style.display = 'none';
@@ -769,11 +856,11 @@ import { quizQuestions } from '../data/quiz-data';
     window.location.reload();
   }
 
-  // Start initialization when DOM is ready
+  // Start check on load
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initQuiz);
+    document.addEventListener('DOMContentLoaded', checkAccessState);
   } else {
-    initQuiz();
+    checkAccessState();
   }
 })();
 </script>
