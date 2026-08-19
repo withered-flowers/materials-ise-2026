@@ -1,16 +1,25 @@
 ---
 import { quizQuestions } from '../data/quiz-data';
+import Leaderboard from './Leaderboard.astro';
 ---
 
 <div id="quiz-container" class="quiz-root">
+  <!-- LEADERBOARD MODAL COMPONENT -->
+  <Leaderboard />
+
   <!-- QUIZ ACCESS ACTIVE BANNER (SHOWN WHEN UNLOCKED) -->
   <div id="quiz-active-banner" class="quiz-active-banner" style="display: none;">
     <div class="active-badge-info">
       <span>🔓 Mode Kuis: <strong>Aktif</strong> (Diakses via <code>?quiz=enabled</code>)</span>
     </div>
-    <button id="btn-lock-quiz" class="quiz-lock-btn" type="button" title="Sembunyikan kuis kembali">
-      🔒 Kunci / Sembunyikan Kuis
-    </button>
+    <div class="active-banner-actions">
+      <button id="btn-open-leaderboard-top" class="quiz-btn quiz-btn-secondary" type="button">
+        🏆 Papan Peringkat
+      </button>
+      <button id="btn-lock-quiz" class="quiz-lock-btn" type="button" title="Sembunyikan kuis kembali">
+        🔒 Kunci / Sembunyikan
+      </button>
+    </div>
   </div>
 
   <!-- QUIZ GATE CARD (SHOWN WHEN LOCKED / DEFAULT) -->
@@ -47,6 +56,9 @@ import { quizQuestions } from '../data/quiz-data';
             <span class="timer-icon">⏱️</span>
             <span id="timer-display" class="timer-display">00:00 / 30:00</span>
           </div>
+          <button id="btn-show-leaderboard-header" class="quiz-btn quiz-btn-secondary" type="button" title="Lihat Papan Peringkat">
+            🏆 Leaderboard
+          </button>
           <button id="btn-submit-top" class="quiz-btn quiz-btn-primary" type="button">
             Kirim Jawaban
           </button>
@@ -101,6 +113,49 @@ import { quizQuestions } from '../data/quiz-data';
           </div>
         </div>
 
+        <!-- SUBMIT TO LEADERBOARD FORM CARD -->
+        <div class="leaderboard-submit-card" id="leaderboard-submit-section">
+          <h3 class="lb-form-title">🏆 Daftarkan Skor ke Papan Peringkat (Leaderboard)</h3>
+          <p class="lb-form-subtitle">Simpan nama dan perolehan skor Anda ke database Turso.</p>
+
+          <form id="leaderboard-form" class="lb-form-body">
+            <div class="lb-form-fields">
+              <div class="lb-input-group">
+                <label for="input-player-name">Nama Peserta *</label>
+                <input
+                  type="text"
+                  id="input-player-name"
+                  class="lb-input"
+                  placeholder="Masukkan nama Anda..."
+                  maxlength="50"
+                  required
+                />
+              </div>
+              <div class="lb-input-group">
+                <label for="input-player-email">Email (Opsional)</label>
+                <input
+                  type="email"
+                  id="input-player-email"
+                  class="lb-input"
+                  placeholder="email@contoh.com"
+                  maxlength="100"
+                />
+              </div>
+            </div>
+
+            <div class="lb-form-action-row">
+              <button type="submit" id="btn-submit-score-lb" class="quiz-btn quiz-btn-primary">
+                Simpan ke Leaderboard
+              </button>
+              <button type="button" id="btn-view-leaderboard-direct" class="quiz-btn quiz-btn-secondary">
+                Lihat Papan Peringkat
+              </button>
+            </div>
+            
+            <div id="lb-submit-feedback" class="lb-submit-feedback" style="display: none;"></div>
+          </form>
+        </div>
+
         <!-- MODULE BREAKDOWN -->
         <div class="module-breakdown-section">
           <h3>📋 Evaluasi Pemahaman per Topik / Modul</h3>
@@ -113,8 +168,11 @@ import { quizQuestions } from '../data/quiz-data';
           <button id="btn-restart-quiz" class="quiz-btn quiz-btn-primary" type="button">
             🔄 Ulangi Quiz
           </button>
+          <button id="btn-open-leaderboard-result" class="quiz-btn quiz-btn-secondary" type="button">
+            🏆 Lihat Leaderboard
+          </button>
           <button id="btn-scroll-to-questions" class="quiz-btn quiz-btn-secondary" type="button">
-            🔍 Pelajari Pembahasan Soal di Bawah
+            🔍 Pelajari Pembahasan Soal
           </button>
         </div>
       </div>
@@ -218,13 +276,13 @@ import { quizQuestions } from '../data/quiz-data';
                 <strong>🔑 Kunci Jawaban:</strong> Pilihan <span class="key-highlight">{q.correctAnswer}</span>
               </div>
               
-              <!-- FEEDBACK BENAR (Hanya tampil jika jawaban pengguna BENAR) -->
+              <!-- FEEDBACK BENAR -->
               <div class="feedback-box feedback-correct" id={`fb-correct-${q.id}`} style="display: none;">
                 <strong>✅ Feedback Jawaban Benar:</strong>
                 <p>{q.correctFeedback}</p>
               </div>
 
-              <!-- FEEDBACK SALAH (Hanya tampil jika jawaban pengguna SALAH atau TIDAK DIJAWAB) -->
+              <!-- FEEDBACK SALAH -->
               <div class="feedback-box feedback-incorrect" id={`fb-incorrect-${q.id}`} style="display: none;">
                 <strong>💡 Feedback Jawaban Salah:</strong>
                 <p>{q.incorrectFeedback}</p>
@@ -259,14 +317,17 @@ import { quizQuestions } from '../data/quiz-data';
   const STORAGE_KEY_SUBMITTED = 'netlify_quiz_submitted_v2';
   const STORAGE_KEY_TIMER_ELAPSED = 'netlify_quiz_timer_elapsed_v2';
   const STORAGE_KEY_RESULT = 'netlify_quiz_result_v2';
+  const STORAGE_KEY_PLAYER_NAME = 'netlify_quiz_player_name_v1';
+  const STORAGE_KEY_LB_SUBMITTED = 'netlify_quiz_lb_submitted_v1';
 
   const TOTAL_QUESTIONS = quizData.length;
   const MAX_DURATION_SECONDS = 30 * 60; // 30 Minutes limit (1800 seconds)
 
   let answers = {};
   let isSubmitted = false;
-  let timerSecondsElapsed = 0; // Starts from 0:00
+  let timerSecondsElapsed = 0;
   let timerInterval = null;
+  let currentResultData = null;
 
   // DOM Elements
   const container = document.getElementById('quiz-container');
@@ -291,6 +352,27 @@ import { quizQuestions } from '../data/quiz-data';
   const resultDashboard = document.getElementById('quiz-result-dashboard');
   const quizForm = document.getElementById('quiz-form');
   const filterTabs = document.querySelectorAll('.filter-tab');
+
+  // Leaderboard Triggers
+  const btnOpenLbTop = document.getElementById('btn-open-leaderboard-top');
+  const btnShowLbHeader = document.getElementById('btn-show-leaderboard-header');
+  const btnOpenLbResult = document.getElementById('btn-open-leaderboard-result');
+  const btnViewLbDirect = document.getElementById('btn-view-leaderboard-direct');
+
+  // Leaderboard Form Elements
+  const lbForm = document.getElementById('leaderboard-form');
+  const inputPlayerName = document.getElementById('input-player-name');
+  const inputPlayerEmail = document.getElementById('input-player-email');
+  const btnSubmitScoreLb = document.getElementById('btn-submit-score-lb');
+  const lbSubmitFeedback = document.getElementById('lb-submit-feedback');
+
+  function openLeaderboard() {
+    if (typeof window.openQuizLeaderboard === 'function') {
+      window.openQuizLeaderboard();
+    } else {
+      window.dispatchEvent(new CustomEvent('open-quiz-leaderboard'));
+    }
+  }
 
   // Check access & Unlock gating
   function checkAccessState() {
@@ -367,6 +449,11 @@ import { quizQuestions } from '../data/quiz-data';
         if (isNaN(timerSecondsElapsed) || timerSecondsElapsed < 0) {
           timerSecondsElapsed = 0;
         }
+      }
+
+      const savedPlayerName = localStorage.getItem(STORAGE_KEY_PLAYER_NAME);
+      if (savedPlayerName && inputPlayerName) {
+        inputPlayerName.value = savedPlayerName;
       }
     } catch (e) {
       console.warn('LocalStorage not accessible:', e);
@@ -473,114 +560,6 @@ import { quizQuestions } from '../data/quiz-data';
     });
   }
 
-  // Setup Event Listeners
-  let listenersAttached = false;
-  function setupEventListeners() {
-    if (listenersAttached) return;
-    listenersAttached = true;
-
-    // Unlock Gate button
-    if (btnUnlockGate) {
-      btnUnlockGate.addEventListener('click', () => {
-        try { localStorage.setItem(STORAGE_KEY_ACCESS, 'true'); } catch (e) {}
-        const newUrl = new URL(window.location.href);
-        newUrl.searchParams.set('quiz', 'enabled');
-        window.history.replaceState({}, '', newUrl.toString());
-        checkAccessState();
-      });
-    }
-
-    // Lock Quiz button
-    if (btnLockQuiz) {
-      btnLockQuiz.addEventListener('click', () => {
-        try { localStorage.removeItem(STORAGE_KEY_ACCESS); } catch (e) {}
-        const newUrl = new URL(window.location.href);
-        newUrl.searchParams.delete('quiz');
-        window.history.replaceState({}, '', newUrl.toString());
-        checkAccessState();
-      });
-    }
-
-    // Radio button changes
-    if (quizForm) {
-      quizForm.addEventListener('change', (e) => {
-        if (isSubmitted) return;
-        const target = e.target;
-        if (target && target.matches('.quiz-option-input')) {
-          const qId = parseInt(target.name.replace('question_', ''), 10);
-          const val = target.value;
-          answers[qId] = val;
-          markOptionSelected(qId, val);
-          saveAnswersState();
-          updateProgressUI();
-        }
-      });
-    }
-
-    // Nav grid buttons
-    document.querySelectorAll('.quiz-nav-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const targetId = btn.getAttribute('data-question-target');
-        const targetCard = document.getElementById(`question-card-${targetId}`);
-        if (targetCard) {
-          resetFilterToAll();
-          targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          targetCard.classList.add('highlight-pulse');
-          setTimeout(() => targetCard.classList.remove('highlight-pulse'), 1200);
-        }
-      });
-    });
-
-    // Filter tabs
-    filterTabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        filterTabs.forEach((t) => t.classList.remove('active'));
-        tab.classList.add('active');
-        const filterVal = tab.getAttribute('data-filter');
-        applyFilter(filterVal);
-      });
-    });
-
-    // Submit buttons
-    if (btnSubmitTop) btnSubmitTop.addEventListener('click', () => submitQuiz(false));
-    if (btnSubmitBottom) btnSubmitBottom.addEventListener('click', () => submitQuiz(false));
-
-    // Reset buttons
-    if (btnResetTop) btnResetTop.addEventListener('click', confirmResetQuiz);
-    if (btnResetBottom) btnResetBottom.addEventListener('click', confirmResetQuiz);
-    if (btnRestartQuiz) btnRestartQuiz.addEventListener('click', confirmResetQuiz);
-
-    // Scroll to questions from results
-    if (btnScrollQuestions && quizForm) {
-      btnScrollQuestions.addEventListener('click', () => {
-        quizForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    }
-  }
-
-  function resetFilterToAll() {
-    filterTabs.forEach((t) => {
-      if (t.getAttribute('data-filter') === 'all') {
-        t.classList.add('active');
-      } else {
-        t.classList.remove('active');
-      }
-    });
-    applyFilter('all');
-  }
-
-  function applyFilter(filterVal) {
-    const cards = document.querySelectorAll('.quiz-question-card');
-    cards.forEach((card) => {
-      const modCategory = card.getAttribute('data-module-category');
-      if (filterVal === 'all' || modCategory === filterVal) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
-    });
-  }
-
   // Submit & Score Calculation
   function submitQuiz(force = false) {
     if (isSubmitted) return;
@@ -652,10 +631,13 @@ import { quizQuestions } from '../data/quiz-data';
       incorrectCount,
       unansweredCount,
       accuracy,
+      timeSpentSeconds,
       timeSpentFormatted: formattedTimeSpent,
       moduleStats,
       timestamp: new Date().toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' })
     };
+
+    currentResultData = resultData;
 
     try {
       localStorage.setItem(STORAGE_KEY_RESULT, JSON.stringify(resultData));
@@ -680,6 +662,8 @@ import { quizQuestions } from '../data/quiz-data';
         console.warn('Failed to load result:', e);
       }
     }
+
+    currentResultData = result;
 
     if (timerInterval) {
       clearInterval(timerInterval);
@@ -834,13 +818,231 @@ import { quizQuestions } from '../data/quiz-data';
           })
           .join('');
       }
+
+      // Check if already submitted to leaderboard
+      try {
+        const lbSubmitted = localStorage.getItem(STORAGE_KEY_LB_SUBMITTED);
+        if (lbSubmitted === 'true' && lbSubmitFeedback) {
+          lbSubmitFeedback.style.display = 'block';
+          lbSubmitFeedback.className = 'lb-submit-feedback lb-fb-success';
+          lbSubmitFeedback.innerHTML = '✅ Skor Anda sudah terdaftar di Leaderboard.';
+          if (btnSubmitScoreLb) btnSubmitScoreLb.disabled = true;
+        }
+      } catch (e) {}
     }
+  }
+
+  async function handleLeaderboardSubmit(e) {
+    e.preventDefault();
+
+    if (!currentResultData) {
+      alert('Selesaikan quiz terlebih dahulu sebelum menyimpan skor!');
+      return;
+    }
+
+    const name = inputPlayerName?.value.trim();
+    const email = inputPlayerEmail?.value.trim();
+
+    if (!name) {
+      alert('Nama wajib diisi!');
+      return;
+    }
+
+    try {
+      localStorage.setItem(STORAGE_KEY_PLAYER_NAME, name);
+    } catch (e) {}
+
+    if (btnSubmitScoreLb) {
+      btnSubmitScoreLb.disabled = true;
+      btnSubmitScoreLb.textContent = '⏳ Menyimpan...';
+    }
+
+    try {
+      const payload = {
+        name,
+        email: email || undefined,
+        score: currentResultData.score,
+        correctCount: currentResultData.correctCount,
+        timeSpentSeconds: currentResultData.timeSpentSeconds || 0,
+        timeSpentFormatted: currentResultData.timeSpentFormatted,
+        accuracy: currentResultData.accuracy,
+      };
+
+      const res = await fetch('/api/leaderboard', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const json = await res.json();
+
+      if (json.success) {
+        try {
+          localStorage.setItem(STORAGE_KEY_LB_SUBMITTED, 'true');
+        } catch (e) {}
+
+        if (lbSubmitFeedback) {
+          lbSubmitFeedback.style.display = 'block';
+          lbSubmitFeedback.className = 'lb-submit-feedback lb-fb-success';
+          lbSubmitFeedback.innerHTML = `🎉 <strong>Berhasil!</strong> Skor Anda telah disimpan di peringkat <strong>#${json.rank || 1}</strong>.`;
+        }
+
+        if (btnSubmitScoreLb) {
+          btnSubmitScoreLb.disabled = true;
+          btnSubmitScoreLb.textContent = '✅ Skor Tersimpan';
+        }
+
+        setTimeout(() => {
+          openLeaderboard();
+        }, 1000);
+      } else {
+        if (lbSubmitFeedback) {
+          lbSubmitFeedback.style.display = 'block';
+          lbSubmitFeedback.className = 'lb-submit-feedback lb-fb-error';
+          lbSubmitFeedback.innerHTML = `⚠️ ${json.error || 'Gagal menyimpan skor.'}`;
+        }
+        if (btnSubmitScoreLb) {
+          btnSubmitScoreLb.disabled = false;
+          btnSubmitScoreLb.textContent = 'Simpan ke Leaderboard';
+        }
+      }
+    } catch (error) {
+      console.error('Submit to leaderboard failed:', error);
+      if (lbSubmitFeedback) {
+        lbSubmitFeedback.style.display = 'block';
+        lbSubmitFeedback.className = 'lb-submit-feedback lb-fb-error';
+        lbSubmitFeedback.innerHTML = '⚠️ Terjadi kesalahan jaringan saat menghubungi API Leaderboard.';
+      }
+      if (btnSubmitScoreLb) {
+        btnSubmitScoreLb.disabled = false;
+        btnSubmitScoreLb.textContent = 'Simpan ke Leaderboard';
+      }
+    }
+  }
+
+  // Setup Event Listeners
+  let listenersAttached = false;
+  function setupEventListeners() {
+    if (listenersAttached) return;
+    listenersAttached = true;
+
+    // Unlock Gate button
+    if (btnUnlockGate) {
+      btnUnlockGate.addEventListener('click', () => {
+        try { localStorage.setItem(STORAGE_KEY_ACCESS, 'true'); } catch (e) {}
+        const newUrl = new URL(window.location.href);
+        newUrl.searchParams.set('quiz', 'enabled');
+        window.history.replaceState({}, '', newUrl.toString());
+        checkAccessState();
+      });
+    }
+
+    // Lock Quiz button
+    if (btnLockQuiz) {
+      btnLockQuiz.addEventListener('click', () => {
+        try { localStorage.removeItem(STORAGE_KEY_ACCESS); } catch (e) {}
+        const newUrl = new URL(window.location.href);
+        newUrl.searchParams.delete('quiz');
+        window.history.replaceState({}, '', newUrl.toString());
+        checkAccessState();
+      });
+    }
+
+    // Leaderboard Modal Triggers
+    if (btnOpenLbTop) btnOpenLbTop.addEventListener('click', openLeaderboard);
+    if (btnShowLbHeader) btnShowLbHeader.addEventListener('click', openLeaderboard);
+    if (btnOpenLbResult) btnOpenLbResult.addEventListener('click', openLeaderboard);
+    if (btnViewLbDirect) btnViewLbDirect.addEventListener('click', openLeaderboard);
+
+    // Submit to leaderboard form
+    if (lbForm) {
+      lbForm.addEventListener('submit', handleLeaderboardSubmit);
+    }
+
+    // Radio button changes
+    if (quizForm) {
+      quizForm.addEventListener('change', (e) => {
+        if (isSubmitted) return;
+        const target = e.target;
+        if (target && target.matches('.quiz-option-input')) {
+          const qId = parseInt(target.name.replace('question_', ''), 10);
+          const val = target.value;
+          answers[qId] = val;
+          markOptionSelected(qId, val);
+          saveAnswersState();
+          updateProgressUI();
+        }
+      });
+    }
+
+    // Nav grid buttons
+    document.querySelectorAll('.quiz-nav-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-question-target');
+        const targetCard = document.getElementById(`question-card-${targetId}`);
+        if (targetCard) {
+          resetFilterToAll();
+          targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          targetCard.classList.add('highlight-pulse');
+          setTimeout(() => targetCard.classList.remove('highlight-pulse'), 1200);
+        }
+      });
+    });
+
+    // Filter tabs
+    filterTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        filterTabs.forEach((t) => t.classList.remove('active'));
+        tab.classList.add('active');
+        const filterVal = tab.getAttribute('data-filter');
+        applyFilter(filterVal);
+      });
+    });
+
+    // Submit buttons
+    if (btnSubmitTop) btnSubmitTop.addEventListener('click', () => submitQuiz(false));
+    if (btnSubmitBottom) btnSubmitBottom.addEventListener('click', () => submitQuiz(false));
+
+    // Reset buttons
+    if (btnResetTop) btnResetTop.addEventListener('click', confirmResetQuiz);
+    if (btnResetBottom) btnResetBottom.addEventListener('click', confirmResetQuiz);
+    if (btnRestartQuiz) btnRestartQuiz.addEventListener('click', confirmResetQuiz);
+
+    // Scroll to questions from results
+    if (btnScrollQuestions && quizForm) {
+      btnScrollQuestions.addEventListener('click', () => {
+        quizForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+  }
+
+  function resetFilterToAll() {
+    filterTabs.forEach((t) => {
+      if (t.getAttribute('data-filter') === 'all') {
+        t.classList.add('active');
+      } else {
+        t.classList.remove('active');
+      }
+    });
+    applyFilter('all');
+  }
+
+  function applyFilter(filterVal) {
+    const cards = document.querySelectorAll('.quiz-question-card');
+    cards.forEach((card) => {
+      const modCategory = card.getAttribute('data-module-category');
+      if (filterVal === 'all' || modCategory === filterVal) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
   }
 
   // Reset quiz logic
   function confirmResetQuiz() {
     const confirmReset = window.confirm(
-      '🔄 Apakah Anda yakin ingin mengulang quiz dari awal?\n\nSeluruh jawaban dan skor yang tersimpan di browser akan dihapus.'
+      '🔄 Apakah Anda yakin ingin mengulang quiz dari awal?\n\nSeluruh jawaban dan skor lokal akan dihapus.'
     );
     if (!confirmReset) return;
 
@@ -849,6 +1051,7 @@ import { quizQuestions } from '../data/quiz-data';
       localStorage.removeItem(STORAGE_KEY_SUBMITTED);
       localStorage.removeItem(STORAGE_KEY_TIMER_ELAPSED);
       localStorage.removeItem(STORAGE_KEY_RESULT);
+      localStorage.removeItem(STORAGE_KEY_LB_SUBMITTED);
     } catch (e) {
       console.warn('Failed to clear storage:', e);
     }
@@ -950,7 +1153,8 @@ import { quizQuestions } from '../data/quiz-data';
 .quiz-header-right {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.6rem;
+  flex-wrap: wrap;
 }
 
 .quiz-timer-box {
@@ -1022,6 +1226,12 @@ import { quizQuestions } from '../data/quiz-data';
 .quiz-btn-large {
   padding: 0.85rem 1.75rem;
   font-size: 1.05rem;
+}
+
+.active-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 }
 
 /* RESULT DASHBOARD */
@@ -1151,6 +1361,87 @@ import { quizQuestions } from '../data/quiz-data';
   font-weight: 700;
 }
 
+/* LEADERBOARD SUBMIT CARD */
+.leaderboard-submit-card {
+  background: var(--sl-color-bg, #0f172a);
+  border: 1px solid var(--qz-card-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.lb-form-title {
+  margin: 0 0 0.25rem 0 !important;
+  font-size: 1.15rem !important;
+  color: var(--sl-color-white, #ffffff);
+}
+
+.lb-form-subtitle {
+  margin: 0 0 1.25rem 0;
+  font-size: 0.85rem;
+  color: var(--qz-text-muted);
+}
+
+.lb-form-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.lb-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.lb-input-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--qz-text);
+}
+
+.lb-input {
+  background: var(--qz-card-bg);
+  border: 1px solid var(--qz-card-border);
+  border-radius: 8px;
+  padding: 0.65rem 0.85rem;
+  color: var(--qz-text);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.lb-input:focus {
+  border-color: #3b82f6;
+}
+
+.lb-form-action-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.lb-submit-feedback {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.lb-fb-success {
+  background: var(--qz-success-bg);
+  border: 1px solid var(--qz-success-border);
+  color: #10b981;
+}
+
+.lb-fb-error {
+  background: var(--qz-danger-bg);
+  border: 1px solid var(--qz-danger-border);
+  color: #ef4444;
+}
+
+/* MODULE BREAKDOWN */
 .module-breakdown-section {
   background: var(--sl-color-bg, #0f172a);
   border: 1px solid var(--qz-card-border);
