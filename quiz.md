@@ -40,41 +40,41 @@ Highlight Jika Jawaban Salah:
 
 Soal 03
 
-Mengapa platform deployment modern seperti Netlify menggunakan arsitektur *Content Delivery Network* (CDN)?
+Apa salah satu tantangan atau kelemahan utama dari *Traditional Deployment* langsung ke Virtual Private Server (VPS) jika dibandingkan dengan *Modern Serverless Hosting*?
 
-- A. Agar berkas website disalin ke berbagai server di seluruh dunia, sehingga pengunjung dapat mengakses website dari server terdekat dengan sangat cepat.
-- B. Agar sistem operasi komputer developer dapat terhubung langsung ke komputer pengunjung tanpa perantara.
-- C. Untuk membatasi pengunjung website hanya bagi orang yang memiliki kata sandi khusus.
-- D. Untuk menghapus berkas CSS dan JavaScript secara berkala dari server cloud.
+- A. Traditional VPS mengharuskan developer mengelola sistem operasi, pembaruan keamanan, konfigurasi web server manual, serta rentan downtime jika server kehabisan kapasitas.
+- B. Traditional VPS tidak dapat digunakan untuk menjalankan file HTML dan CSS sama sekali.
+- C. Traditional VPS hanya bisa diakses oleh komputer yang memiliki sistem operasi Windows XP.
+- D. Traditional VPS mewajibkan semua website dirilis menggunakan jaringan satelit luar angkasa.
 
 Jawaban: 
 - A
+
+Highlight Jika Jawaban Benar:
+- Tepat sekali. Pada traditional VPS, pengembang bertanggung jawab penuh atas instalasi OS, patch keamanan, web server (Nginx/Apache), dan penanganan beban server secara manual.
+
+Highlight Jika Jawaban Salah:
+- Kurang tepat. Kelemahan utama traditional VPS adalah beban pengelolaan server manual (OS, firewall, Nginx, SSL) dan risiko server crash saat lonjakan pengunjung, berbeda dengan serverless managed cloud.
+
+---
+
+Soal 04
+
+Mengapa platform deployment modern seperti Netlify memanfaatkan jaringan *Content Delivery Network* (CDN)?
+
+- A. Untuk menghapus seluruh berkas CSS dan JavaScript yang berukuran lebih dari 1 MB secara otomatis.
+- B. Agar berkas website disalin ke berbagai server edge di seluruh dunia, sehingga pengunjung dapat mengunduh halaman dari server terdekat dengan sangat cepat.
+- C. Untuk memaksa pengunjung memasukkan password khusus setiap kali membuka website.
+- D. Untuk mengubah alamat IP komputer pengunjung menjadi domain unik Netlify.
+
+Jawaban: 
+- B
 
 Highlight Jika Jawaban Benar:
 - Tepat sekali. CDN menduplikasi berkas website statis ke jaringan server global Netlify sehingga pengunjung dapat memuat halaman dari lokasi geografis terdekat dengan cepat.
 
 Highlight Jika Jawaban Salah:
 - Kurang tepat. CDN berfungsi mendistribusikan salinan berkas website ke banyak server di berbagai belahan dunia agar waktu pemuatan halaman menjadi sangat cepat bagi seluruh pengguna.
-
----
-
-Soal 04
-
-Mengapa rincian pesan kesalahan (*error stack trace*) sengaja disembunyikan pada lingkungan *Production*, berbeda dengan lingkungan lokal (*localhost*)?
-
-- A. Karena server cloud tidak memiliki memori yang cukup untuk mencetak teks pesan error.
-- B. Demi alasan keamanan, agar struktur internal sistem dan celah keamanan tidak terekspos ke publik (mencegah Information Disclosure).
-- C. Agar tampilan antarmuka website terlihat tetap rapi meskipun aplikasi mengalami kerusakan total.
-- D. Karena browser di perangkat ponsel tidak mendukung tampilan pesan kesalahan berbasis teks.
-
-Jawaban: 
-- B
-
-Highlight Jika Jawaban Benar:
-- Tepat sekali. Menyembunyikan detail stack trace pada Production bertujuan mencegah pembocoran informasi internal sistem yang dapat dimanfaatkan oleh pihak tidak bertanggung jawab.
-
-Highlight Jika Jawaban Salah:
-- Kurang tepat. Pada lingkungan produksi, detail error disembunyikan demi alasan keamanan untuk mencegah pihak luar mengetahui struktur internal sistem (Information Disclosure).
 
 ---
 
@@ -180,41 +180,41 @@ Highlight Jika Jawaban Salah:
 
 Soal 10
 
-Perintah Netlify CLI mana yang digunakan untuk merilis website secara langsung ke lingkungan *Production (Live URL)*?
+Saat menggunakan Netlify Dashboard (Web UI) tanpa command line, langkah apa yang dilakukan untuk menghubungkan proyek website Anda?
 
-- A. npx netlify-cli dev
-- B. npx netlify-cli status
-- C. npx netlify-cli deploy
-- D. npx netlify-cli deploy --prod
-
-Jawaban: 
-- D
-
-Highlight Jika Jawaban Benar:
-- Tepat sekali. Menambahkan flag `--prod` pada perintah `deploy` memastikan hasil rilis diterapkan langsung pada URL produksi resmi website Anda.
-
-Highlight Jika Jawaban Salah:
-- Kurang tepat. Perintah `deploy` tanpa flag `--prod` hanya menghasilkan draft preview. Untuk rilis produksi, gunakan `npx netlify-cli deploy --prod`.
-
----
-
-Soal 11
-
-Saat mengembangkan website di komputer lokal, perintah Netlify CLI mana yang digunakan untuk menjalankan server simulasi lokal di port 8888?
-
-- A. npx netlify-cli dev
-- B. npx netlify-cli run
-- C. npx netlify-cli serve
-- D. npx netlify-cli test
+- A. Membuka menu Add new site > Import an existing project, lalu memilih provider GitHub dan menentukan repositori proyek.
+- B. Menyalin seluruh kode HTML ke dalam kolom komentar di forum Netlify Community.
+- C. Mengirimkan flashdisk berisi kode ke kantor perwakilan Netlify melalui pos.
+- D. Mengetikkan perintah npx netlify-cli di browser Google Chrome.
 
 Jawaban: 
 - A
 
 Highlight Jika Jawaban Benar:
-- Tepat sekali. Perintah `npx netlify-cli dev` menjalankan server pengujian lokal di `http://localhost:8888` untuk meninjau website sebelum di-deploy.
+- Tepat sekali. Pada Netlify Dashboard, proses import proyek dilakukan secara visual dengan mengeklik 'Add new site' > 'Import an existing project' lalu memilih akun GitHub.
 
 Highlight Jika Jawaban Salah:
-- Kurang tepat. Perintah yang tepat untuk memutar server lokal Netlify adalah `npx netlify-cli dev`.
+- Kurang tepat. Cara menghubungkan proyek di Netlify Dashboard adalah melalui tombol 'Add new site' > 'Import an existing project' dan memilih repositori GitHub yang sesuai.
+
+---
+
+Soal 11
+
+Setelah repositori GitHub terhubung dengan Netlify, apa yang terjadi secara otomatis saat developer menjalankan perintah `git push` pembaruan kode?
+
+- A. Website akan otomatis terhapus dari server cloud Netlify.
+- B. Netlify menerima sinyal Webhook dari GitHub, lalu secara otomatis merilis versi terbaru website tanpa perlu tindakan manual di Netlify Dashboard.
+- C. Developer wajib login ke server Linux Netlify via SSH untuk merestart komputer server.
+- D. Netlify akan mematikan koneksi internet developer selama 24 jam.
+
+Jawaban: 
+- B
+
+Highlight Jika Jawaban Benar:
+- Tepat sekali. Inilah esensi Continuous Deployment (CI/CD): setiap push baru di branch main otomatis memicu proses deployment di Netlify tanpa intervensi manual.
+
+Highlight Jika Jawaban Salah:
+- Kurang tepat. Berkat integrasi CI/CD Netlify, setiap kali ada commit baru yang di-push ke GitHub, Netlify secara otomatis mendeteksi dan memperbarui website live.
 
 ---
 
@@ -222,7 +222,7 @@ Soal 12
 
 Setelah melakukan deployment ke Netlify, URL website menampilkan pesan error '404 Page Not Found'. Apa penyebab paling umum dari kendala ini?
 
-- A. Berkas HTML utama tidak bernama index.html atau lokasi publish directory salah dikonfigurasi.
+- A. Berkas HTML utama tidak bernama index.html atau berada di dalam subfolder yang tidak terdaftar di akar repositori.
 - B. Netlify belum menerima pembayaran langganan sertifikat SSL dari developer.
 - C. Komputer developer dalam keadaan mati saat pengguna internet membuka website.
 - D. Akun GitHub yang terhubung tidak memiliki centang verifikasi biru.
@@ -231,30 +231,30 @@ Jawaban:
 - A
 
 Highlight Jika Jawaban Benar:
-- Tepat sekali. Server web Netlify secara default mencari berkas `index.html` pada direktori publish. Jika berkas bernama lain atau direktori publish keliru, akan muncul error 404.
+- Tepat sekali. Server web Netlify secara default mencari berkas `index.html` pada akar repositori. Jika berkas bernama lain atau disimpan di dalam subfolder, akan muncul error 404.
 
 Highlight Jika Jawaban Salah:
-- Kurang tepat. Error 404 Page Not Found umumnya terjadi karena berkas utama tidak bernama `index.html` atau lokasi folder publish tidak mengarah ke lokasi berkas tersebut.
+- Kurang tepat. Error 404 Page Not Found umumnya terjadi karena berkas utama tidak bernama `index.html` atau tersimpan di dalam subfolder sehingga tidak ditemukan di akar proyek.
 
 ---
 
 Soal 13
 
-Pada berkas konfigurasi `netlify.toml` untuk website statis tanpa bundler, apakah arti dari pengaturan `publish = '.'`?
+Saat mengonfigurasi Build Settings di Netlify Dashboard untuk website statis murni (Vanilla HTML/CSS/JS), mengapa kolom *Build command* sebaiknya dikosongkan?
 
-- A. Menandakan bahwa website tidak boleh diakses oleh publik di internet.
-- B. Memberitahu Netlify bahwa berkas website utama (index.html) berada langsung di akar folder proyek.
-- C. Menginstruksikan Netlify untuk menghapus berkas setiap 24 jam sekali.
-- D. Menjadikan website hanya dapat dibuka satu kali oleh setiap pengunjung.
+- A. Karena website statis murni tidak membutuhkan proses kompilasi kode sehingga berkas siap langsung disajikan ke CDN.
+- B. Karena Netlify melarang pengisian teks pada kolom Build command untuk semua jenis website.
+- C. Agar sistem operasi Netlify dapat mengunduh database MySQL secara otomatis.
+- D. Karena kolom Build command hanya boleh diisi oleh pengguna berbayar.
 
 Jawaban: 
-- B
+- A
 
 Highlight Jika Jawaban Benar:
-- Tepat sekali. Simbol titik (`.`) merepresentasikan direktori kerja saat ini (akar folder proyek), tempat berkas `index.html`, `style.css`, dan `script.js` berada.
+- Tepat sekali. Berkas Vanilla HTML, CSS, dan JavaScript tidak memerlukan proses build/kompilasi seperti framework React/Vite, sehingga Build command cukup dikosongkan.
 
 Highlight Jika Jawaban Salah:
-- Kurang tepat. Pada `netlify.toml`, atribut `publish = '.'` berarti direktori publikasi adalah akar folder proyek saat ini tempat berkas utama berada.
+- Kurang tepat. Website statis murni tidak membutuhkan proses build/kompilasi. Jika Build command diisi tanpa adanya file package.json/script, proses rilis justru akan gagal.
 
 ---
 
@@ -280,27 +280,7 @@ Highlight Jika Jawaban Salah:
 
 Soal 15
 
-Apa tujuan utama dilakukannya audit dan *benchmark performa* menggunakan Google Lighthouse pada website yang telah di-deploy?
-
-- A. Untuk menguji kecepatan pemuatan, kestabilan tampilan, aksesibilitas, dan kualitas keseluruhan halaman web secara terukur.
-- B. Untuk mengubah bahasa pemrograman JavaScript menjadi bahasa Python secara otomatis.
-- C. Untuk mendaftarkan hak cipta kode program ke organisasi internet dunia.
-- D. Untuk memblokir pengguna yang menggunakan browser selain Google Chrome.
-
-Jawaban: 
-- A
-
-Highlight Jika Jawaban Benar:
-- Tepat sekali. Google Lighthouse digunakan untuk mengukur dan mengevaluasi performa, aksesibilitas, best practices, dan SEO agar website optimal bagi pengguna.
-
-Highlight Jika Jawaban Salah:
-- Kurang tepat. Tujuan audit Lighthouse adalah mengukur dan menganalisis kualitas halaman website dalam aspek performa kecepatan, aksesibilitas, best practices, dan SEO.
-
----
-
-Soal 16
-
-Empat kategori utama apa sajakah yang dievaluasi dalam laporan audit Google Lighthouse?
+Empat kategori utama apa sajakah yang dinilai dalam laporan audit Google Lighthouse?
 
 - A. Frontend, Backend, Database, dan Server Hardware
 - B. Performance, Accessibility, Best Practices, dan SEO
@@ -311,67 +291,87 @@ Jawaban:
 - B
 
 Highlight Jika Jawaban Benar:
-- Tepat sekali. Empat pilar penilaian Google Lighthouse adalah Performance (kecepatan), Accessibility (ramah disabilitas), Best Practices (standar keamanan), dan SEO (optimasi mesin pencari).
+- Tepat sekali. Empat pilar penilaian Google Lighthouse adalah Performance (kecepatan), Accessibility (kemudahan akses/disabilitas), Best Practices (standar keamanan), dan SEO (optimasi mesin pencari).
 
 Highlight Jika Jawaban Salah:
-- Kurang tepat. Empat kategori utama yang dinilai oleh Lighthouse adalah Performance, Accessibility, Best Practices, dan SEO.
+- Kurang tepat. Empat kategori utama yang dinilai oleh Google Lighthouse adalah Performance, Accessibility, Best Practices, dan SEO.
 
 ---
 
-Soal 17
+Soal 16
 
-Dalam indikator Core Web Vitals, apa yang diukur oleh metrik *Largest Contentful Paint* (LCP)?
+Pada evaluasi Google Lighthouse, apa fokus utama dari kategori *Accessibility* (Aksesibilitas)?
 
-- A. Jumlah total baris kode CSS yang ditulis di dalam proyek.
-- B. Waktu yang dibutuhkan browser untuk menampilkan elemen visual konten terbesar di layar pengguna (target ideal < 2,5 detik).
-- C. Waktu yang dibutuhkan server Netlify untuk mencetak sertifikat SSL.
-- D. Kapasitas maksimal memori RAM yang digunakan oleh teks editor saat mengetik kode.
-
-Jawaban: 
-- B
-
-Highlight Jika Jawaban Benar:
-- Tepat sekali. LCP mengukur waktu hingga konten visual terbesar di layar selesai dirender oleh browser, dengan target ideal di bawah 2,5 detik.
-
-Highlight Jika Jawaban Salah:
-- Kurang tepat. LCP (Largest Contentful Paint) mengukur waktu yang diperlukan browser untuk merender elemen konten terbesar pada viewport layar pengunjung.
-
----
-
-Soal 18
-
-Apa yang diukur oleh metrik *Cumulative Layout Shift* (CLS) pada Google Lighthouse?
-
-- A. Tingkat pergeseran tata letak elemen visual yang tidak terduga saat halaman sedang dimuat (target ideal < 0,1).
-- B. Kecepatan koneksi internet pengguna yang diukur dalam satuan Mbps.
-- C. Berapa kali pengguna melakukan klik pada tombol navigasi halaman.
-- D. Jumlah repository GitHub publik yang dimiliki oleh seorang developer.
+- A. Memastikan website dapat diakses dan digunakan dengan baik oleh semua orang, termasuk pengguna dengan disabilitas (kontras teks, atribut alt gambar, label form).
+- B. Memastikan kecepatan server cloud dalam menampung jutaan data transaksi per detik.
+- C. Menilai seberapa mahal harga sewa domain yang dibeli oleh pemilik website.
+- D. Memeriksa apakah website memiliki integrasi pembayaran perbankan internasional.
 
 Jawaban: 
 - A
 
 Highlight Jika Jawaban Benar:
-- Tepat sekali. CLS mengukur kestabilan visual halaman agar elemen tampilan tidak meloncat atau bergeser secara tiba-tiba saat konten baru dimuat.
+- Tepat sekali. Accessibility menilai keramahan website bagi pengguna dengan kebutuhan khusus, seperti kecukupan kontras warna, atribut alt gambar, dan keteraturan label input.
 
 Highlight Jika Jawaban Salah:
-- Kurang tepat. CLS (Cumulative Layout Shift) mengukur kestabilan visual antarmuka halaman untuk memastikan elemen tidak bergeser secara tidak terduga saat memuat aset.
+- Kurang tepat. Kategori Accessibility berfokus pada kemudahan akses bagi pengguna difabel, memastikan elemen web memiliki kontras warna baik, teks alt gambar, dan navigasi ramah screen reader.
+
+---
+
+Soal 17
+
+Apa saja poin penting yang dievaluasi pada kategori *Best Practices* dan *SEO* di Google Lighthouse?
+
+- A. Koneksi aman HTTPS penuh, bebas pesan error di console, serta keberadaan tag title, meta description, dan viewport responsif.
+- B. Jumlah total baris kode HTML minimal harus mencapai 10.000 baris.
+- C. Keberadaan fitur animasi 3D dan pemutar video otomatis di latar belakang.
+- D. Apakah website dibuat menggunakan komputer berspesifikasi gaming tinggi.
+
+Jawaban: 
+- A
+
+Highlight Jika Jawaban Benar:
+- Tepat sekali. Best Practices menguji standar keamanan modern (HTTPS, bebas error console), sedangkan SEO menguji metadata dasar (tag title, meta description, viewport mobile).
+
+Highlight Jika Jawaban Salah:
+- Kurang tepat. Best Practices menguji kepatuhan standar web modern (HTTPS, konsistensi kode), sementara SEO menguji kesiapan dokumen HTML untuk dirayapi mesin pencari (title, description, viewport).
+
+---
+
+Soal 18
+
+Dalam kategori *Performance*, metrik Core Web Vitals *Largest Contentful Paint* (LCP) mengukur apa dan berapa target nilai idealnya?
+
+- A. Mengukur waktu render elemen visual konten terbesar di layar pengguna, dengan target ideal di bawah 2,5 detik.
+- B. Mengukur kapasitas penyimpanan harddisk server, dengan target ideal di atas 1 Terabyte.
+- C. Mengukur jumlah klik mouse pengunjung, dengan target minimal 100 klik.
+- D. Mengukur kecepatan mengetik developer di Visual Studio Code.
+
+Jawaban: 
+- A
+
+Highlight Jika Jawaban Benar:
+- Tepat sekali. LCP mengukur waktu yang dibutuhkan hingga konten visual utama selesai dimuat, dengan batas ideal di bawah 2,5 detik.
+
+Highlight Jika Jawaban Salah:
+- Kurang tepat. LCP (Largest Contentful Paint) mengukur waktu pemuatan elemen konten terbesar pada viewport layar dengan target ideal kurang dari 2,5 detik.
 
 ---
 
 Soal 19
 
-Mengapa menjalankan pengujian Google Lighthouse disarankan dilakukan pada *Jendela Penyamaran* (Incognito Window) browser?
+Mengapa menjalankan pengujian Google Lighthouse sangat disarankan dilakukan pada *Jendela Penyamaran* (Incognito Window) Google Chrome?
 
 - A. Agar riwayat penelusuran developer tidak terbaca oleh server Netlify.
-- B. Agar hasil skor audit murni dan tidak terpengaruh oleh ekstensi browser pihak ketiga yang terpasang.
-- C. Karena fitur tab Lighthouse hanya dapat dibuka pada jendela penyamaran saja.
+- B. Agar hasil skor audit murni dan tidak terpengaruh oleh ekstensi browser pihak ketiga yang dapat memperlambat proses halaman.
+- C. Karena fitur tab Lighthouse hanya dapat diaktifkan pada jendela penyamaran saja.
 - D. Untuk mempercepat koneksi internet pengguna secara instan hingga sepuluh kali lipat.
 
 Jawaban: 
 - B
 
 Highlight Jika Jawaban Benar:
-- Tepat sekali. Ekstensi browser (seperti adblocker atau translator) dapat menyisipkan script tambahan yang memperlambat waktu muat, sehingga Incognito Window menghasilkan pengujian yang bersih dan akurat.
+- Tepat sekali. Ekstensi browser (seperti adblocker atau plugin lain) dapat menyisipkan script tambahan yang memperlambat waktu muat, sehingga Incognito Window menghasilkan pengujian yang bersih dan objektif.
 
 Highlight Jika Jawaban Salah:
 - Kurang tepat. Jendela penyamaran digunakan agar ekstensi browser yang terpasang tidak ikut berjalan dan tidak mendistorsi pengukuran performa halaman web.

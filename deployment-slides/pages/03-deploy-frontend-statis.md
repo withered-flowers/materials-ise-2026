@@ -5,7 +5,7 @@ layout: section
 # Modul 3
 ## Deploy Website Statis ke Netlify
 
-Panduan langkah demi langkah mempublikasikan website statis Vanilla HTML, CSS, dan JavaScript ke Netlify menggunakan Netlify CLI dan integrasi GitHub.
+Panduan langkah demi langkah mempublikasikan website statis langsung dari repositori GitHub ke Netlify menggunakan antarmuka web dashboard tanpa command line dan tanpa netlify.toml.
 
 ---
 layout: default
@@ -24,16 +24,15 @@ sources/01-frontend-static/
   ├── index.html   # Antarmuka kalkulator
   ├── style.css    # Desain visual halaman
   ├── script.js    # Perhitungan di browser
-  ├── netlify.toml # Konfigurasi rilis
   └── README.md    # Petunjuk proyek
 ```
 
 <div class="p-3 rounded-lg bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800/50 text-blue-950 dark:text-blue-100 leading-relaxed">
-  <div class="font-bold text-blue-700 dark:text-blue-400 mb-2">Keunggulan Web Statis:</div>
-  • <b>Cepat & Ringan:</b> Di-cache oleh CDN global Netlify.<br>
-  • <b>Hemat Biaya:</b> Paket gratis Netlify sangat mencukupi.<br>
-  • <b>Aman:</b> Tidak ada celah server database langsung.<br>
-  • <b>Mudah Di-maintain:</b> Cocok untuk pemula.
+  <div class="font-bold text-blue-700 dark:text-blue-400 mb-2">Keunggulan Web Statis di Netlify:</div>
+  • <b>Tanpa Konfigurasi Rumit:</b> Netlify otomatis mendeteksi berkas <code>index.html</code>.<br>
+  • <b>Tanpa <code>netlify.toml</code>:</b> Cukup struktur folder standar.<br>
+  • <b>Cepat & Ringan:</b> Langsung di-cache oleh CDN global.<br>
+  • <b>Hemat Biaya:</b> Paket gratis Netlify sangat mencukupi.
 </div>
 
 </div>
@@ -42,76 +41,25 @@ sources/01-frontend-static/
 layout: default
 ---
 
-# 2. Berkas Konfigurasi: `netlify.toml`
+# 2. Mengapa Memilih Netlify Dashboard (Web UI)?
 
-`netlify.toml` adalah berkas konfigurasi yang dibaca oleh Netlify saat memproses deployment website Anda:
+Bagi pemula, antarmuka web grafis (*dashboard*) Netlify memberikan kemudahan maksimal:
 
-```toml [netlify.toml]
-# netlify.toml - Konfigurasi Website Statis
-[build]
-  publish = "."   # Direktori publikasi (titik berarti akar folder proyek)
+<div class="grid grid-cols-3 gap-4 mt-6 text-xs">
 
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
-```
-
-<div class="mt-4 p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs">
-  • <code>publish = "."</code>: Memberitahu Netlify bahwa berkas utama <code>index.html</code> berada di akar folder.<br>
-  • <code>[[headers]]</code>: Menambahkan header keamanan dasar seperti proteksi dari serangan <i>Clickjacking</i>.
+<div class="p-4 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-center">
+  <div class="font-bold text-cyan-700 dark:text-cyan-400 text-sm mb-2">1. Tanpa CLI Terminal</div>
+  Tidak perlu menginstal peralatan Netlify CLI tambahan di komputer Anda.
 </div>
 
----
-layout: default
----
-
-# 3. Cara 1: Deployment Menggunakan Netlify CLI
-
-Netlify CLI memungkinkan pengujian lokal dan rilis website langsung dari terminal:
-
-<div class="space-y-2 mt-2 text-xs">
-
-<div class="flex items-start space-x-3">
-  <div class="bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 font-bold px-2 py-1 rounded">Langkah 1</div>
-  <div>
-    <b>Masuk ke folder proyek:</b>
-    <code class="block mt-1 bg-slate-100 dark:bg-slate-900 px-2 py-1 rounded text-cyan-700 dark:text-cyan-300 font-mono">cd sources/01-frontend-static</code>
-  </div>
+<div class="p-4 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-center">
+  <div class="font-bold text-emerald-700 dark:text-emerald-400 text-sm mb-2">2. Visual & Transparan</div>
+  Riwayat rilis, status deployment, dan pratinjau situs terpantau jelas di browser.
 </div>
 
-<div class="flex items-start space-x-3">
-  <div class="bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 font-bold px-2 py-1 rounded">Langkah 2</div>
-  <div>
-    <b>Login ke Akun Netlify:</b>
-    <code class="block mt-1 bg-slate-100 dark:bg-slate-900 px-2 py-1 rounded text-cyan-700 dark:text-cyan-300 font-mono">npx netlify-cli login</code>
-  </div>
-</div>
-
-<div class="flex items-start space-x-3">
-  <div class="bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 font-bold px-2 py-1 rounded">Langkah 3</div>
-  <div>
-    <b>Uji di Komputer Lokal (<code>http://localhost:8888</code>):</b>
-    <code class="block mt-1 bg-slate-100 dark:bg-slate-900 px-2 py-1 rounded text-cyan-700 dark:text-cyan-300 font-mono">npx netlify-cli dev</code>
-  </div>
-</div>
-
-<div class="flex items-start space-x-3">
-  <div class="bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 font-bold px-2 py-1 rounded">Langkah 4</div>
-  <div>
-    <b>Deploy ke Draft / Preview Environment:</b>
-    <code class="block mt-1 bg-slate-100 dark:bg-slate-900 px-2 py-1 rounded text-cyan-700 dark:text-cyan-300 font-mono">npx netlify-cli deploy</code>
-    <span class="opacity-75">Pilih 'Create & configure a new site', isi <code>.</code> untuk publish directory.</span>
-  </div>
-</div>
-
-<div class="flex items-start space-x-3">
-  <div class="bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold px-2 py-1 rounded">Langkah 5</div>
-  <div>
-    <b>Deploy ke Production (Live URL Resmi):</b>
-    <code class="block mt-1 bg-slate-100 dark:bg-slate-900 px-2 py-1 rounded text-emerald-700 dark:text-emerald-300 font-mono">npx netlify-cli deploy --prod</code>
-  </div>
+<div class="p-4 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-center">
+  <div class="font-bold text-purple-700 dark:text-purple-400 text-sm mb-2">3. Terhubung ke GitHub</div>
+  Satu kali klik otorisasi, seluruh rilis berikutnya berjalan otomatis via <i>Continuous Deployment</i>.
 </div>
 
 </div>
@@ -120,47 +68,24 @@ Netlify CLI memungkinkan pengujian lokal dan rilis website langsung dari termina
 layout: default
 ---
 
-# 4. Cara 2: Deployment Otomatis via GitHub (CI/CD)
-
-Alur kerja standar industri yang otomatis memperbarui website setiap kali ada push ke GitHub:
-
-```mermaid {scale: 0.55}
-sequenceDiagram
-    autonumber
-    actor Dev as Developer
-    participant Git as GitHub Repository
-    participant Netlify as Netlify Cloud Engine
-    actor User as Pengunjung Website
-
-    Dev->>Git: git push origin main
-    Git-->>Netlify: Webhook Event (Commit Baru)
-    Netlify->>Netlify: Salin & Publikasikan Berkas Statis
-    Netlify-->>User: Akses Website Versi Terbaru (Live)!
-```
-
----
-layout: default
----
-
-# 4. Langkah Integrasi GitHub di Netlify Dashboard
+# 3. Langkah Deploy via Netlify Dashboard
 
 <ol class="space-y-2 text-xs mt-2">
   <li class="p-2 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-    <span class="font-bold text-cyan-700 dark:text-cyan-400">1. Pastikan Kode Sudah di GitHub:</span>
-    <pre class="bg-slate-200 dark:bg-slate-900 p-1.5 rounded text-cyan-800 dark:text-cyan-300 font-mono mt-1">git add . && git commit -m "feat: website kalkulator"
-git push -u origin main</pre>
+    <span class="font-bold text-cyan-700 dark:text-cyan-400">1. Buka Netlify & Login:</span> Masuk ke <a href="https://app.netlify.com" target="_blank" class="underline text-cyan-600">app.netlify.com</a> ➔ Klik <b>Sign in with GitHub</b>.
   </li>
   <li class="p-2 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-    <span class="font-bold text-cyan-700 dark:text-cyan-400">2. Buka Netlify Dashboard:</span> Masuk ke <a href="https://app.netlify.com" target="_blank" class="underline text-cyan-600">app.netlify.com</a> ➔ Klik <b>Add new site</b> ➔ <b>Import from an existing project</b>.
+    <span class="font-bold text-cyan-700 dark:text-cyan-400">2. Tambahkan Situs:</span> Klik tombol <b>Add new site</b> ➔ Pilih <b>Import an existing project</b>.
   </li>
   <li class="p-2 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-    <span class="font-bold text-cyan-700 dark:text-cyan-400">3. Hubungkan GitHub & Pilih Repository:</span> Berikan izin ke repository <code>kalkulator-diskon</code>.
+    <span class="font-bold text-cyan-700 dark:text-cyan-400">3. Pilih Provider GitHub:</span> Klik <b>GitHub</b> ➔ Pilih repositori <code>kalkulator-diskon</code> yang telah dibuat di Modul 2.
   </li>
   <li class="p-2 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-    <span class="font-bold text-cyan-700 dark:text-cyan-400">4. Atur Build Settings:</span> Branch = <code>main</code>, Build command = (kosongkan), Publish directory = <code>.</code>.
+    <span class="font-bold text-cyan-700 dark:text-cyan-400">4. Konfigurasi Build Settings di Web:</span>
+    Branch = <code>main</code>, Base directory = (kosongkan), Build command = (kosongkan), Publish directory = (kosongkan / <code>.</code>).
   </li>
   <li class="p-2 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-    <span class="font-bold text-emerald-700 dark:text-emerald-400">5. Klik Deploy Site:</span> Dalam hitungan detik website Anda sudah aktif dan live secara global.
+    <span class="font-bold text-emerald-700 dark:text-emerald-400">5. Klik Deploy:</span> Klik <b>Deploy kalkulator-diskon</b>. Dalam beberapa detik, status berubah menjadi <b>Published</b> dan website sudah online!
   </li>
 </ol>
 
@@ -168,25 +93,48 @@ git push -u origin main</pre>
 layout: default
 ---
 
-# 5. Pengujian & Verifikasi Hasil Deployment
+# 4. Alur Kerja Otomatisasi GitHub ke Netlify
 
-Buka URL produksi yang diberikan Netlify di browser Anda:
+Setelah terhubung, arsitektur otomatisasi bekerja secara transparan:
 
-<div class="grid grid-cols-3 gap-4 mt-6">
+```mermaid {scale: 0.55}
+sequenceDiagram
+    autonumber
+    actor Dev as Developer
+    participant GH as GitHub Repository
+    participant Netlify as Netlify Web Dashboard
+    actor User as Pengunjung Website
 
-<div class="p-4 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-center">
-  <div class="font-bold text-emerald-700 dark:text-emerald-400 text-sm mb-1">1. Enkripsi HTTPS</div>
-  <div class="text-xs opacity-80 mt-1">Pastikan ikon gembok aman (HTTPS) aktif di address bar browser.</div>
+    Dev->>GH: git push origin main
+    GH-->>Netlify: Notifikasi Webhook Otomatis
+    Netlify->>Netlify: Salin Berkas index.html, style.css, script.js
+    Netlify-->>User: Akses Website Versi Terbaru (Live Global)!
+```
+
+---
+layout: default
+---
+
+# 5. Mengubah Nama Subdomain di Netlify
+
+Nama domain acak (seperti `brave-curie-123456.netlify.app`) dapat diubah agar mudah dibaca:
+
+<div class="space-y-3 mt-4 text-xs">
+
+<div class="p-3 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+  <span class="font-bold text-cyan-700 dark:text-cyan-400">1. Buka Menu Konfigurasi Situs:</span>
+  Masuk ke halaman situs di Netlify Dashboard ➔ Klik menu <b>Site configuration</b> di bilah kiri.
 </div>
 
-<div class="p-4 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-center">
-  <div class="font-bold text-cyan-700 dark:text-cyan-400 text-sm mb-1">2. Form Kalkulator</div>
-  <div class="text-xs opacity-80 mt-1">Input harga: <code>100000</code> dan diskon: <code>20</code>. Klik Hitung Diskon.</div>
+<div class="p-3 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+  <span class="font-bold text-cyan-700 dark:text-cyan-400">2. Pilih Site Details:</span>
+  Pilih menu <b>General</b> ➔ <b>Site details</b>.
 </div>
 
-<div class="p-4 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-center">
-  <div class="font-bold text-purple-700 dark:text-purple-400 text-sm mb-1">3. Console Bebas Error</div>
-  <div class="text-xs opacity-80 mt-1">Buka Developer Tools (F12) ➔ Tab Console bersih tanpa pesan merah.</div>
+<div class="p-3 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+  <span class="font-bold text-emerald-700 dark:text-emerald-400">3. Klik Change Site Name:</span>
+  Masukkan nama yang diinginkan (contoh: <code>kalkulator-diskon-budi</code>) ➔ Klik <b>Save</b>.<br>
+  Tautan resmi website Anda kini menjadi: <code>https://kalkulator-diskon-budi.netlify.app</code>.
 </div>
 
 </div>
@@ -195,32 +143,45 @@ Buka URL produksi yang diberikan Netlify di browser Anda:
 layout: default
 ---
 
-# 6. Penyelesaian Masalah Umum (Troubleshooting)
+# 6. Membuktikan Otomatisasi CI/CD
 
-<div class="space-y-4 mt-4">
+Uji alur otomatisasi pembaruan kode secara langsung:
 
-<div class="p-3 rounded-lg bg-amber-50 dark:bg-amber-950/40 border-l-4 border-amber-500 text-amber-950 dark:text-amber-100">
-  <div class="font-bold text-amber-700 dark:text-amber-400 text-xs">Kendala: Halaman 404 Page Not Found saat membuka URL</div>
-  <div class="text-xs mt-1 leading-relaxed">
-    • <b>Penyebab:</b> Berkas utama tidak bernama <code>index.html</code> atau lokasi publish directory salah.<br>
-    • <b>Solusi:</b> Pastikan berkas bernama <code>index.html</code> (huruf kecil) dan berada tepat pada direktori publish.
-  </div>
+<ol class="space-y-3 mt-4 text-xs">
+  <li class="p-3 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+    <span class="font-bold text-cyan-700 dark:text-cyan-400">1. Ubah Kode di VS Code:</span>
+    Edit teks judul di <code>index.html</code> atau warna tombol di <code>style.css</code>.
+  </li>
+  <li class="p-3 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+    <span class="font-bold text-cyan-700 dark:text-cyan-400">2. Jalankan Perintah Git di Terminal:</span>
+    <pre class="bg-slate-200 dark:bg-slate-900 p-1.5 rounded text-cyan-800 dark:text-cyan-300 font-mono mt-1">git add . && git commit -m "style: ubah warna tombol" && git push</pre>
+  </li>
+  <li class="p-3 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+    <span class="font-bold text-emerald-700 dark:text-emerald-400">3. Pantau Tab Deploys di Browser Netlify:</span>
+    Netlify otomatis mendeteksi commit baru dan memperbarui website live dalam hitungan detik tanpa perlu menekan tombol apa pun di Netlify!
+  </li>
+</ol>
+
+---
+layout: default
+---
+
+# 7. Pengujian & Penyelesaian Masalah
+
+<div class="space-y-3 mt-3 text-xs">
+
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+  <div class="font-bold text-emerald-700 dark:text-emerald-400 mb-1">Verifikasi Hasil Rilis:</div>
+  • Pastikan ikon gembok <b>HTTPS</b> aktif di browser.<br>
+  • Uji fungsionalitas kalkulator diskon (input harga & persentase).<br>
+  • Buka <b>Console (F12)</b> untuk memastikan bebas dari error JavaScript.
 </div>
 
 <div class="p-3 rounded-lg bg-amber-50 dark:bg-amber-950/40 border-l-4 border-amber-500 text-amber-950 dark:text-amber-100">
-  <div class="font-bold text-amber-700 dark:text-amber-400 text-xs">Kendala: CSS atau JS tidak termuat (tampilan berantakan)</div>
-  <div class="text-xs mt-1 leading-relaxed">
-    • <b>Penyebab:</b> Tag HTML menggunakan absolute path lokal komputer (seperti <code>C:/Users/style.css</code>).<br>
-    • <b>Solusi:</b> Gunakan relative path di HTML: <code>&lt;link rel="stylesheet" href="style.css"&gt;</code>.
-  </div>
-</div>
-
-<div class="p-3 rounded-lg bg-amber-50 dark:bg-amber-950/40 border-l-4 border-amber-500 text-amber-950 dark:text-amber-100">
-  <div class="font-bold text-amber-700 dark:text-amber-400 text-xs">Kendala: Berfungsi di Windows lokal tapi 404 di Netlify</div>
-  <div class="text-xs mt-1 leading-relaxed">
-    • <b>Penyebab:</b> Server Linux Netlify bersifat <i>case-sensitive</i> (membedakan <code>Index.html</code> dan <code>index.html</code>).<br>
-    • <b>Solusi:</b> Selalu gunakan huruf kecil untuk penamaan seluruh berkas website.
-  </div>
+  <div class="font-bold text-amber-700 dark:text-amber-400 mb-1">Kendala Umum & Solusi:</div>
+  • <b>404 Page Not Found:</b> Pastikan berkas utama bernama persis <code>index.html</code> (huruf kecil) di akar repositori.<br>
+  • <b>CSS Tidak Muncul:</b> Ganti absolute path lokal (<code>C:/...</code>) dengan relative path (<code>href="style.css"</code>).<br>
+  • <b>Case-Sensitivity:</b> Server Linux Netlify membedakan huruf besar/kecil (gunakan huruf kecil semua).
 </div>
 
 </div>
@@ -235,17 +196,22 @@ layout: default
 
 <div class="flex items-center space-x-2">
   <carbon:checkmark-filled class="text-emerald-600 dark:text-emerald-400" />
-  <span><b>Netlify CLI:</b> Menggunakan <code>npx netlify-cli deploy --prod</code> untuk rilis cepat via terminal.</span>
+  <span><b>Netlify Dashboard (Web UI):</b> Deploy visual yang ramah pemula tanpa instalasi CLI dan tanpa <code>netlify.toml</code>.</span>
 </div>
 
 <div class="flex items-center space-x-2">
   <carbon:checkmark-filled class="text-emerald-600 dark:text-emerald-400" />
-  <span><b>Integrasi GitHub:</b> Otomatisasi rilis (*Continuous Deployment*) setiap kali terjadi push ke branch <code>main</code>.</span>
+  <span><b>Integrasi GitHub:</b> Menghubungkan repositori untuk memicu proses build dan deploy otomatis di cloud.</span>
 </div>
 
 <div class="flex items-center space-x-2">
   <carbon:checkmark-filled class="text-emerald-600 dark:text-emerald-400" />
-  <span><b>Konfigurasi <code>netlify.toml</code>:</b> Menentukan <code>publish = "."</code> dan header keamanan HTTP dasar.</span>
+  <span><b>Otomatisasi CI/CD:</b> Cukup <code>git push</code>, website langsung terperbarui otomatis secara instan.</span>
+</div>
+
+<div class="flex items-center space-x-2">
+  <carbon:checkmark-filled class="text-emerald-600 dark:text-emerald-400" />
+  <span><b>Pengaturan Subdomain:</b> Menyesuaikan nama alamat website agar rapi dan mudah dibagikan.</span>
 </div>
 
 </div>

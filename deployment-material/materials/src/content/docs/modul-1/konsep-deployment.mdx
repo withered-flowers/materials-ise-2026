@@ -1,6 +1,6 @@
 ---
 title: "Modul 1: Konsep Dasar Deployment"
-description: Memahami konsep dasar deployment, perbedaan lingkungan Local vs Production, serta infrastruktur cloud modern untuk pemula.
+description: Memahami konsep dasar deployment, evolusi dari traditional VPS ke modern CI/CD dan serverless, serta arsitektur cloud untuk pemula.
 ---
 
 import { Steps } from '@astrojs/starlight/components';
@@ -25,7 +25,72 @@ Menulis kode di komputer lokal diibaratkan seperti menulis catatan pada buku har
 
 ---
 
-## 2. Perbedaan Lingkungan: Local vs Production
+## 2. Evolusi Deployment: Tradisional vs Modern
+
+Untuk memahami mengapa platform cloud modern seperti Netlify sangat populer, kita perlu melihat bagaimana cara pengembang web merilis website dari masa ke masa.
+
+```mermaid
+graph TD
+    subgraph Traditional [Metode Tradisional: VPS / Server Fisik]
+        T1["Sewa VPS (Ubuntu / Linux)"] --> T2["Akses Manual via SSH / FTP"]
+        T2 --> T3["Konfigurasi Nginx / Apache Manual"]
+        T3 --> T4["Update & Security Patch Dikelola Sendiri"]
+    end
+
+    subgraph Modern [Metode Modern: CI/CD & Serverless Managed Hosting]
+        M1["Push Kode ke GitHub"] --> M2["Pipeline Otomatis (CI/CD)"]
+        M2 --> M3["Serverless & CDN Edge Distribution"]
+        M3 --> M4["Bebas Pengelolaan Server Fisik"]
+    end
+```
+
+### A. Traditional Deployment (Deploy Langsung ke VPS)
+
+Pada pendekatan tradisional, pengembang harus menyewa komputer server virtual yang disebut **Virtual Private Server (VPS)** (misalnya DigitalOcean, Linode, atau AWS EC2):
+
+1. **Akses Manual**: Pengembang masuk ke server jarak jauh menggunakan terminal melalui protokol **SSH (Secure Shell)** atau mengirimkan berkas via **FTP/SFTP** (seperti aplikasi FileZilla).
+2. **Konfigurasi Web Server**: Pengembang harus menginstal dan mengonfigurasi perangkat lunak web server secara manual, seperti **Nginx** atau **Apache**.
+3. **Keamanan & SSL Manual**: Pengembang wajib memperbarui sistem operasi (*OS security patch*), mengatur firewall port, dan memasang sertifikat SSL secara berkala menggunakan alat seperti Certbot.
+4. **Tantangan Utama**:
+   - **Tanggung Jawab Pemeliharaan**: Jika server kehabisan memori RAM atau mengalami gangguan sistem, website akan mati (*down*) dan pengembang harus memperbaikinya secara manual.
+   - **Biaya Tetap**: Pengembang tetap harus membayar biaya sewa bulanan server meskipun website sedang sepi pengunjung.
+   - **Tidak Otomatis**: Setiap kali ada pembaruan kode, pengembang harus mengunggah ulang berkas ke server atau menarik perubahan secara manual melalui SSH.
+
+### B. Modern Deployment: CI/CD dan Serverless
+
+Metode modern hadir untuk mengatasi kerumitan di atas, memindahkan fokus pengembang dari **mengurus infrastruktur server** menjadi **fokus membuat produk**:
+
+1. **Deployment via CI/CD (Continuous Integration & Continuous Deployment)**:
+   - **CI/CD** adalah alur kerja otomatisasi di mana setiap kali pengembang melakukan `git push` ke repositori seperti GitHub, sistem otomatis di cloud akan mendeteksi perubahan tersebut.
+   - Server cloud akan langsung mengambil kode terbaru, mengujinya, dan mempublikasikannya ke internet secara instan tanpa perlu intervensi manual.
+   - Jika terjadi kesalahan, pengembang dapat melakukan *rollback* (mengembalikan versi website ke commit sebelumnya) hanya dengan satu klik.
+
+2. **Deployment via Serverless & Managed CDN Hosting (seperti Netlify)**:
+   - Istilah **Serverless** bukan berarti tidak ada server sama sekali, melainkan **pengembang tidak perlu mengelola, merawat, atau memikirkan server fisik tersebut**.
+   - Untuk website statis, platform modern menggunakan **Edge Network / Global CDN**. Berkas HTML, CSS, dan JavaScript disalin dan disebarkan ke puluhan server di seluruh dunia.
+   - **Keuntungan Besar bagi Pemula**:
+     - **Skala Otomatis (*Auto-Scaling*)**: Mampu menangani lonjakan ribuan pengunjung secara otomatis tanpa risiko server crash.
+     - **Hemat Biaya**: Tersedia paket gratis yang sangat memadai untuk belajar (*scale-to-zero* saat tidak ada trafik).
+     - **SSL Otomatis**: Enkripsi HTTPS sudah terpasang dan diperbarui secara otomatis tanpa biaya tambahan.
+
+---
+
+## 3. Perbandingan Metode Deployment
+
+Berikut adalah tabel ringkasan perbandingan antara Traditional VPS dan Modern CI/CD Serverless:
+
+| Aspek | Traditional Deployment (VPS) | Modern Deployment (Netlify / Serverless CI/CD) |
+| :--- | :--- | :--- |
+| **Pengelolaan Server** | Manual (Konfigurasi OS, Nginx, Firewall) | Dikelola penuh oleh platform cloud (*Zero Server Ops*) |
+| **Cara Mengunggah Kode** | Manual via SSH, FTP, atau Git pull di VPS | Otomatis terpicu saat melakukan `git push` ke GitHub |
+| **Sertifikat SSL (HTTPS)** | Dikonfigurasi dan diperpanjang manual | Otomatis aktif (*Let's Encrypt*) secara gratis |
+| **Distribusi Berkas** | Terpusat pada satu lokasi server VPS | Tersebar di puluhan server **Global CDN** di seluruh dunia |
+| **Toleransi Lonjakan Trafik**| Terbatas pada kapasitas RAM/CPU VPS | Skala otomatis (*Auto-scaling*) tanpa risiko server down |
+| **Kemudahan bagi Pemula** | Membutuhkan keahlian sistem Linux & DevOps | Sangat ramah pemula, cukup menghubungkan repositori GitHub |
+
+---
+
+## 4. Perbedaan Lingkungan: Local vs Production
 
 Dalam dunia pengembangan perangkat lunak, lingkungan kerja dipisahkan menjadi dua bagian utama:
 
@@ -41,10 +106,8 @@ graph LR
         P2 --> P3["https://situs-anda.netlify.app (Publik)"]
     end
 
-    Local -- "Git Push ke GitHub -> Netlify" --> Cloud
+    Local -- "Git Push ke GitHub -> Netlify Auto Deploy" --> Cloud
 ```
-
-Berikut adalah tabel perbandingan antara lingkungan lokal dan lingkungan produksi:
 
 | Karakteristik | Lingkungan Lokal (*Local Environment*) | Lingkungan Produksi (*Production Environment*) |
 | :--- | :--- | :--- |
@@ -56,13 +119,13 @@ Berikut adalah tabel perbandingan antara lingkungan lokal dan lingkungan produks
 
 ---
 
-## 3. Komponen Utama Infrastruktur Web Cloud
+## 5. Komponen Utama Infrastruktur Web Cloud
 
 Sebelum mempraktikkan proses deployment, penting bagi pemula untuk memahami istilah dasar dalam infrastruktur web:
 
 ### A. Web Hosting dan Content Delivery Network (CDN)
-- **Web Hosting**: Komputer server yang terus menyala 24 jam sehari untuk menyimpan berkas website Anda agar dapat diakses kapan saja.
-- **Content Delivery Network (CDN)**: Jaringan server yang tersebar di berbagai wilayah di dunia. Netlify menyalin berkas website Anda ke puluhan server CDN tersebut, sehingga saat pengunjung membuka website dari Indonesia, berkas akan dikirim dari server terdekat agar halaman termuat sangat cepat.
+- **Web Hosting**: Tempat penyimpanan berkas website agar dapat diakses kapan saja di internet.
+- **Content Delivery Network (CDN)**: Jaringan server yang tersebar di berbagai belahan dunia. Netlify menyalin berkas website Anda ke puluhan server CDN tersebut, sehingga saat pengunjung membuka website dari Indonesia, berkas akan dikirim dari server terdekat agar halaman termuat sangat cepat.
 
 ### B. Nama Domain dan DNS
 - **IP Address**: Alamat numerik unik server (misalnya: `75.2.60.5`).
@@ -75,9 +138,9 @@ Sebelum mempraktikkan proses deployment, penting bagi pemula untuk memahami isti
 
 ---
 
-## 4. Alur Kerja Otomatisasi Deployment (CI/CD)
+## 6. Alur Kerja Otomatisasi Deployment Modern (CI/CD)
 
-Pada era modern, developer tidak lagi mengunggah berkas website secara manual satu per satu menggunakan aplikasi transfer file lama. Standar industri saat ini menggunakan alur **Continuous Integration & Continuous Deployment (CI/CD)**:
+Standar industri modern menghubungkan pengembang ke cloud melalui alur kerja otomatis:
 
 <Steps>
 1. **Menulis Kode**: Anda membuat atau memperbarui website di komputer lokal menggunakan teks editor (misalnya Visual Studio Code).
@@ -96,12 +159,12 @@ graph TD
 
 ---
 
-## 5. Ringkasan Pembelajaran
+## 7. Ringkasan Pembelajaran
 
 Pada Modul 1 ini, Anda telah memahami konsep penting:
 - Pengertian deployment sebagai proses membawa aplikasi dari lingkungan lokal ke server publik internet.
+- Evolusi dari **Traditional Deployment (VPS)** yang memerlukan konfigurasi manual ke **Modern Deployment (CI/CD & Serverless)** yang otomatis dan bebas perawatan server fisik.
 - Perbedaan utama antara `localhost` (khusus komputer pribadi) dan lingkungan produksi (dapat diakses masyarakat umum).
 - Peran CDN dalam mempercepat loading web, fungsi DNS sebagai penerjemah nama domain, serta pentingnya HTTPS/SSL untuk keamanan.
-- Gambaran umum alur kerja otomatisasi rilis menggunakan Git, GitHub, dan platform hosting Netlify.
 
-Pada **Modul 2**, kita akan mempelajari dasar-dasar **Git dan GitHub** sebagai jembatan utama untuk mengelola kode sebelum melakukan deployment.
+Pada **Modul 2**, kita akan mempelajari dasar-dasar **Git dan GitHub** sebagai fondasi utama sebelum melakukan deployment otomatis ke Netlify.

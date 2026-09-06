@@ -1,9 +1,9 @@
 ---
 title: "Cheatsheet & Troubleshooting"
-description: Referensi ringkas perintah Git, Netlify CLI, metrik Google Lighthouse, serta panduan pemecahan masalah untuk pengembang web pemula.
+description: Referensi ringkas perintah Git, panduan navigasi Netlify Dashboard, matriks skor Google Lighthouse, serta penyelesaian masalah untuk pemula.
 ---
 
-Halaman ini menyajikan rangkuman referensi cepat yang dapat Anda jadikan rujukan praktis dalam mengelola repositori Git, menjalankan proses deployment di Netlify, serta mengevaluasi performa website.
+Halaman ini menyajikan rangkuman referensi cepat yang dapat Anda jadikan rujukan praktis saat mengelola repositori Git, melakukan deployment di Netlify Dashboard, serta mengevaluasi kualitas website menggunakan Google Lighthouse.
 
 ---
 
@@ -17,52 +17,71 @@ Halaman ini menyajikan rangkuman referensi cepat yang dapat Anda jadikan rujukan
 | `git commit -m "pesan"` | Menyimpan rekaman riwayat perubahan (*snapshot*) dengan keterangan yang jelas. |
 | `git branch -M main` | Menamai branch utama proyek menjadi `main`. |
 | `git remote add origin <URL>` | Menghubungkan repositori lokal dengan repositori remote di GitHub. |
-| `git push -u origin main` | Mengunggah riwayat commit lokal ke branch `main` di GitHub untuk pertama kali. |
+| `git push -u origin main` | Mengunggah commit lokal ke branch `main` di GitHub untuk pertama kali. |
 | `git push` | Mengunggah commit terbaru ke GitHub setelah remote origin terhubung. |
 | `git pull` | Mengambil dan menggabungkan pembaruan kode terbaru dari GitHub ke komputer lokal. |
 
 ---
 
-## 2. Cheatsheet Perintah Netlify CLI
+## 2. Panduan Alur Kerja Netlify Dashboard (Web UI)
 
-| Perintah | Deskripsi Fungsi |
+Tanpa perlu menginstal Netlify CLI di terminal, seluruh pengelolaan situs dapat dilakukan secara visual melalui browser:
+
+| Tindakan di Netlify Dashboard | Lokasi Menu & Langkah |
 | :--- | :--- |
-| `npx netlify-cli login` | Membuka jendela browser untuk proses otentikasi login ke akun Netlify. |
-| `npx netlify-cli status` | Memeriksa informasi akun yang aktif dan status tautan situs yang terhubung. |
-| `npx netlify-cli dev` | Menjalankan server pengujian lokal di komputer Anda pada alamat `http://localhost:8888`. |
-| `npx netlify-cli deploy` | Merilis website ke lingkungan **Draft / Preview** untuk pengujian sebelum rilis resmi. |
-| `npx netlify-cli deploy --prod` | Merilis website secara langsung ke lingkungan **Production (Live URL)**. |
-| `npx netlify-cli sites:list` | Menampilkan seluruh daftar situs web yang terdaftar di akun Netlify Anda. |
+| **Menambahkan Proyek Baru** | Klik **Add new site** > **Import an existing project** > Pilih **GitHub** > Pilih repositori Anda. |
+| **Konfigurasi Build Statis** | *Branch*: `main`, *Build command*: (kosongkan), *Publish directory*: (kosongkan / `.`). |
+| **Mengubah Nama Subdomain** | Masuk ke situs > **Site configuration** > **General** > **Site details** > Klik **Change site name**. |
+| **Memantau Status Deployment** | Buka tab **Deploys** untuk melihat riwayat rilis otomatis dari commit GitHub (*Published* atau *Building*). |
+| **Melihat Log Rilis** | Klik pada salah satu riwayat deploy di tab **Deploys** untuk melihat log pemrosesan Netlify secara mendalam. |
 
 ---
 
-## 3. Ambang Batas Metrik Google Lighthouse (Core Web Vitals)
+## 3. Ambang Batas & Kategori Audit Google Lighthouse
+
+### A. Rentang Skor Kategori
+
+| Rentang Skor | Warna Indikator | Makna & Status Kualitas |
+| :---: | :---: | :--- |
+| **90 – 100** | Hijau | **Sangat Baik (Optimal)**: Memenuhi standar industri web modern. |
+| **50 – 89** | Oranye | **Cukup Baik**: Berfungsi normal, namun masih ada peluang penghematan waktu muat. |
+| **0 – 49** | Merah | **Perlu Perbaikan Segera**: Terdapat kendala performa atau aksesibilitas yang mendesak. |
+
+### B. Metrik Kunci Core Web Vitals (Performance)
 
 | Indikator Metrik | Kategori Baik (Hijau) | Perlu Peningkatan (Oranye) | Kategori Buruk (Merah) |
 | :--- | :--- | :--- | :--- |
 | **LCP (Largest Contentful Paint)** | ≤ 2,5 detik | 2,5 – 4,0 detik | > 4,0 detik |
 | **INP (Interaction to Next Paint)** | ≤ 200 ms | 200 – 500 ms | > 500 ms |
 | **CLS (Cumulative Layout Shift)** | ≤ 0,1 | 0,1 – 0,25 | > 0,25 |
-| **Skor Keseluruhan Kategori** | 90 – 100 | 50 – 89 | 0 – 49 |
+| **FCP (First Contentful Paint)** | ≤ 1,8 detik | 1,8 – 3,0 detik | > 3,0 detik |
+
+### C. Fokus Pemeriksaan 4 Kategori Audit
+
+| Kategori Audit | Fokus Evaluasi Utama |
+| :--- | :--- |
+| **Performance** | Kecepatan pemuatan berkas, efisiensi script, dan kestabilan layout visual. |
+| **Accessibility** | Kontras warna teks, atribut `alt` pada gambar, label formulir, dan tombol yang jelas. |
+| **Best Practices** | Koneksi HTTPS penuh, bebas dari error di console browser, dan keamanan library. |
+| **SEO** | Keberadaan tag `<title>`, `<meta name="description">`, meta viewport, dan link deskriptif. |
 
 ---
 
 ## 4. Matriks Penyelesaian Masalah (Troubleshooting)
 
-### 1. Halaman Menampilkan "404 Page Not Found"
+### 1. Halaman Menampilkan "404 Page Not Found" di Netlify
 - **Gejala**: Ketika membuka tautan URL situs Netlify, muncul halaman bertuliskan *Page Not Found*.
 - **Penyebab**:
   1. Berkas HTML utama tidak bernama `index.html` (misalnya bernama `home.html` atau `Index.html`).
-  2. Pengaturan `publish` directory pada `netlify.toml` atau Netlify Dashboard tidak mengarah ke lokasi berkas `index.html`.
+  2. Berkas `index.html` berada di dalam subfolder yang tidak terdaftar, bukan di akar repositori GitHub.
 - **Solusi**:
-  - Pastikan berkas utama bernama persis `index.html` (seluruhnya huruf kecil).
-  - Jika berkas berada di akar folder, pastikan baris konfigurasi `publish = "."` pada `netlify.toml`.
+  - Pastikan berkas utama bernama persis `index.html` (huruf kecil semua) dan berada tepat di akar repositori.
 
-### 2. Tampilan CSS Tidak Muncul atau Gambar Tidak Tampil
-- **Gejala**: Halaman web hanya berupa teks polos tanpa warna, styling tata letak berantakan, atau gambar tidak termuat.
-- **Penyebab**: Tag HTML menggunakan jalur berkas absolut dari penyimpanan lokal komputer pengembang (misalnya: `href="C:/Users/Dokumen/proyek/style.css"`).
+### 2. Tampilan CSS Tidak Muncul atau Script Tidak Berfungsi
+- **Gejala**: Halaman web hanya berupa teks polos tanpa warna, tata letak berantakan, atau tombol tidak merespons.
+- **Penyebab**: Tag HTML menggunakan jalur berkas absolut dari harddisk komputer pribadi (misalnya: `href="C:/Users/Dokumen/style.css"`).
 - **Solusi**:
-  - Ganti seluruh pemanggilan berkas menjadi jalur relatif sederhana, seperti `<link rel="stylesheet" href="style.css">` dan `<img src="gambar.webp">`.
+  - Ganti seluruh pemanggilan berkas menjadi jalur relatif sederhana, seperti `<link rel="stylesheet" href="style.css">` dan `<script src="script.js"></script>`.
 
 ### 3. Kendala Git: "fatal: remote origin already exists"
 - **Gejala**: Muncul pesan error saat menjalankan `git remote add origin <URL>`.
@@ -74,32 +93,11 @@ Halaman ini menyajikan rangkuman referensi cepat yang dapat Anda jadikan rujukan
     git remote set-url origin <URL_REPOSITORY_BARU>
     ```
 
-### 4. Skor Google Lighthouse Rendah atau Tidak Stabil
+### 4. Skor Google Lighthouse Rendah atau Berfluktuasi
 - **Gejala**: Skor performa menunjukkan warna oranye atau merah padahal website statis berukuran kecil.
 - **Penyebab**:
-  1. Pengujian dilakukan di jendela browser biasa yang aktif dengan ekstensi pihak ketiga (adblocker atau extension lain menambah waktu pemrosesan).
-  2. Gambar belum terkompresi sehingga ukuran berkas sangat besar.
+  1. Pengujian dilakukan di jendela browser biasa yang aktif dengan ekstensi pihak ketiga (adblocker, translator, dsb.).
+  2. Gambar belum terkompresi atau tidak memiliki atribut `width` dan `height`.
 - **Solusi**:
   - Selalu jalankan audit Lighthouse pada **Jendela Penyamaran (Incognito Window)** Google Chrome.
-  - Kompres berkas gambar menjadi format WebP atau gunakan dimensi gambar yang sesuai dengan tampilan layar.
-
----
-
-## 5. Template Konfigurasi `netlify.toml` untuk Website Statis
-
-Berikut adalah contoh berkas konfigurasi standar yang dapat Anda salin ke proyek website statis Anda:
-
-```toml
-# netlify.toml - Konfigurasi Standar Website Statis
-
-[build]
-  publish = "."   # Direktori yang dipublikasikan ke server CDN Netlify
-
-# Aturan Header Keamanan HTTP
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-```
+  - Kompres berkas gambar menjadi format WebP dan tambahkan atribut dimensi pada tag `<img>`.

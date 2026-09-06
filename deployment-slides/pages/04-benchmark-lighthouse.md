@@ -5,7 +5,7 @@ layout: section
 # Modul 4
 ## Benchmark Performa dengan Google Lighthouse
 
-Panduan melakukan audit dan benchmark performa website statis menggunakan Google Lighthouse serta memahami indikator Core Web Vitals.
+Panduan melakukan audit dan benchmark performa website statis menggunakan Google Lighthouse serta pemahaman mendalam mengenai 4 kategori skor audit dan Core Web Vitals.
 
 ---
 layout: default
@@ -35,7 +35,7 @@ Ketika seseorang membuka website di ponsel atau komputer, setiap detik waktu pem
 </div>
 
 <div class="mt-6 p-3 rounded-lg bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800/50 text-blue-950 dark:text-blue-100 text-xs">
-  <b>Benchmark Performa:</b> Proses pengujian dan pengukuran efisiensi kecepatan website menggunakan indikator metrik standar yang terukur.
+  <b>Benchmark Performa:</b> Proses pengujian dan pengukuran efisiensi kualitas website menggunakan kumpulan indikator metrik standar yang terukur.
 </div>
 
 ---
@@ -44,16 +44,29 @@ layout: default
 
 # 2. Mengenal Google Lighthouse & 4 Kategori Audit
 
-**Google Lighthouse** adalah alat audit otomatis open-source dari Google yang tertanam langsung di dalam browser Google Chrome.
+**Google Lighthouse** adalah alat audit otomatis open-source dari Google yang tertanam langsung di dalam browser Google Chrome Developer Tools.
 
-<div class="text-xs mt-3">
+<div class="grid grid-cols-2 gap-4 mt-4 text-xs">
 
-| Kategori Audit | Aspek yang Dinilai | Target Ideal |
-| :--- | :--- | :--- |
-| **Performance** | Kecepatan pemuatan berkas, respon klik tombol, dan kestabilan antarmuka. | Skor 90 – 100 |
-| **Accessibility** | Ramah bagi seluruh kalangan pengguna (kontras warna teks, teks alt gambar). | Skor 90 – 100 |
-| **Best Practices** | Kepatuhan standar keamanan web modern (protokol HTTPS, sintaks aman). | Skor 90 – 100 |
-| **SEO** | Kelengkapan informasi dasar halaman agar mudah diindeks mesin pencari. | Skor 90 – 100 |
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+  <div class="font-bold text-cyan-700 dark:text-cyan-400 text-sm mb-1">1. Performance</div>
+  Mengukur kecepatan memuat aset, responsivitas klik, dan kestabilan tampilan visual halaman.
+</div>
+
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+  <div class="font-bold text-emerald-700 dark:text-emerald-400 text-sm mb-1">2. Accessibility</div>
+  Mengukur kemudahan akses halaman bagi seluruh pengguna, termasuk penyandang disabilitas (*screen reader*).
+</div>
+
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+  <div class="font-bold text-amber-700 dark:text-amber-400 text-sm mb-1">3. Best Practices</div>
+  Menguji kepatuhan terhadap standar keamanan web modern (protokol HTTPS, sintaks kode aman).
+</div>
+
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+  <div class="font-bold text-purple-700 dark:text-purple-400 text-sm mb-1">4. SEO</div>
+  Menguji kelengkapan metadata agar halaman mudah ditemukan dan diindeks oleh mesin pencari Google.
+</div>
 
 </div>
 
@@ -61,28 +74,25 @@ layout: default
 layout: default
 ---
 
-# 3. Memahami Metrik Kunci: Core Web Vitals
+# 3. Kategori 1: Performance & Core Web Vitals
 
-Tiga metrik utama yang digunakan untuk menilai kualitas kecepatan halaman web:
+Mengukur kecepatan pemuatan halaman dan responsivitas interaksi browser:
 
 ```mermaid {scale: 0.65}
 graph TD
     subgraph CoreWebVitals [Tiga Pilar Utama Core Web Vitals]
         A["1. LCP (Largest Contentful Paint)<br>Kecepatan Muat Konten Terbesar<br>Target: < 2.5 Detik"]
-        B["2. INP / FID (Interactivity)<br>Kecepatan Respon Input & Tombol<br>Target: < 200 Milidetik"]
+        B["2. INP (Interaction to Next Paint)<br>Kecepatan Respon Input & Klik<br>Target: < 200 Milidetik"]
         C["3. CLS (Cumulative Layout Shift)<br>Kestabilan Posisi Elemen Layar<br>Target: < 0.1"]
     end
 ```
 
-<div class="grid grid-cols-3 gap-3 mt-2 text-xs">
+<div class="grid grid-cols-2 gap-3 mt-2 text-xs">
   <div class="p-2 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-    <b>LCP:</b> Waktu hingga gambar/teks utama selesai ditampilkan di layar.
+    • <b>FCP (First Contentful Paint):</b> Waktu hingga teks/gambar pertama muncul (Target: &lt; 1,8s).
   </div>
   <div class="p-2 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-    <b>INP:</b> Durasi jeda saat tombol ditekan hingga browser memproses logika.
-  </div>
-  <div class="p-2 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-    <b>CLS:</b> Menghindari elemen melompat/bergeser tiba-tiba saat loading.
+    • <b>TBT (Total Blocking Time):</b> Durasi thread utama terblokir oleh script (Target: &lt; 200ms).
   </div>
 </div>
 
@@ -90,28 +100,120 @@ graph TD
 layout: default
 ---
 
-# 4. Langkah Menjalankan Audit Lighthouse
+# 4. Kategori 2: Accessibility (Aksesibilitas)
+
+Memastikan website ramah bagi seluruh pengguna, termasuk penyandang disabilitas:
+
+<div class="space-y-3 mt-4 text-xs">
+
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+  <div class="font-bold text-emerald-700 dark:text-emerald-400 text-sm mb-1">1. Kontras Warna Teks (Color Contrast)</div>
+  Rasio perbedaan warna teks terhadap warna latar belakang minimal <b>4.5:1</b> agar mudah dibaca oleh pengguna dengan keterbatasan penglihatan.
+</div>
+
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+  <div class="font-bold text-emerald-700 dark:text-emerald-400 text-sm mb-1">2. Atribut Teks Alternatif Gambar (<code>alt="..."</code>)</div>
+  Setiap tag <code>&lt;img&gt;</code> wajib menyertakan deskripsi alternatif agar dapat dibacakan oleh aplikasi <i>screen reader</i> tunanetra.
+</div>
+
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+  <div class="font-bold text-emerald-700 dark:text-emerald-400 text-sm mb-1">3. Label Input Form & Hierarki Heading</div>
+  Setiap <code>&lt;input&gt;</code> wajib terhubung dengan <code>&lt;label for="..."&gt;</code>, serta urutan heading bertingkat teratur (<code>&lt;h1&gt;</code> ke <code>&lt;h2&gt;</code>).
+</div>
+
+</div>
+
+---
+layout: default
+---
+
+# 5. Kategori 3: Best Practices & Kategori 4: SEO
+
+<div class="grid grid-cols-2 gap-4 mt-4 text-xs">
+
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+  <div class="font-bold text-amber-700 dark:text-amber-400 text-sm mb-2">Best Practices (Standar Keamanan)</div>
+  <ul class="space-y-1.5 opacity-90 leading-relaxed">
+    <li>• <b>HTTPS Penuh:</b> Bebas dari <i>Mixed Content</i> (tanpa HTTP biasa).</li>
+    <li>• <b>Bebas Error di Console:</b> Tab Console bersih tanpa pesan merah.</li>
+    <li>• <b>Library Aman:</b> Tidak memakai pustaka usang dengan celah keamanan.</li>
+    <li>• <b>Aspek Rasio Gambar:</b> Gambar ditampilkan proporsional tanpa distorsi.</li>
+  </ul>
+</div>
+
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+  <div class="font-bold text-purple-700 dark:text-purple-400 text-sm mb-2">SEO (Optimasi Mesin Pencari)</div>
+  <ul class="space-y-1.5 opacity-90 leading-relaxed">
+    <li>• <b>Tag Judul (<code>&lt;title&gt;</code>):</b> Memiliki judul halaman deskriptif.</li>
+    <li>• <b>Meta Description:</b> Ringkasan halaman untuk cuplikan pencarian.</li>
+    <li>• <b>Mobile Viewport:</b> Tag meta responsif layar smartphone.</li>
+    <li>• <b>Descriptive Link:</b> Teks link bermakna jelas (bukan "klik di sini").</li>
+  </ul>
+</div>
+
+</div>
+
+---
+layout: default
+---
+
+# 6. Membaca & Menginterpretasikan Skor Audit
+
+Lighthouse menyajikan skor setiap kategori dalam rentang angka 0 hingga 100:
+
+<div class="grid grid-cols-3 gap-4 mt-4 text-center text-xs">
+
+<div class="p-4 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-300 dark:border-emerald-800 text-emerald-950 dark:text-emerald-100">
+  <div class="text-2xl font-bold text-emerald-600 dark:text-emerald-400 mb-1">90 – 100</div>
+  <div class="font-bold mb-1">Sangat Baik (Hijau)</div>
+  Website memenuhi standar performa dan kualitas optimal industri.
+</div>
+
+<div class="p-4 rounded-lg bg-amber-50 dark:bg-amber-950/40 border border-amber-300 dark:border-amber-800 text-amber-950 dark:text-amber-100">
+  <div class="text-2xl font-bold text-amber-600 dark:text-amber-400 mb-1">50 – 89</div>
+  <div class="font-bold mb-1">Cukup Baik (Oranye)</div>
+  Berfungsi normal, namun masih ada aspek yang dapat dioptimalkan.
+</div>
+
+<div class="p-4 rounded-lg bg-red-50 dark:bg-red-950/40 border border-red-300 dark:border-red-800 text-red-950 dark:text-red-100">
+  <div class="text-2xl font-bold text-red-600 dark:text-red-400 mb-1">0 – 49</div>
+  <div class="font-bold mb-1">Perlu Perbaikan (Merah)</div>
+  Terdapat kendala signifikan yang mempengaruhi kenyamanan pengguna.
+</div>
+
+</div>
+
+<div class="mt-4 p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs">
+  • <b>Opportunities:</b> Rekomendasi tindakan spesifik untuk memangkas waktu pemuatan berkas.<br>
+  • <b>Diagnostics:</b> Laporan teknis mendalam mengenai ukuran berkas dan efisiensi script.
+</div>
+
+---
+layout: default
+---
+
+# 7. Langkah Menjalankan Audit Lighthouse
 
 <ol class="space-y-2 text-xs mt-2">
   <li class="p-2 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
     <span class="font-bold text-cyan-700 dark:text-cyan-400">1. Buka Chrome Incognito Window:</span>
-    Tekan <kbd>Ctrl + Shift + N</kbd> (Windows) atau <kbd>Cmd + Shift + N</kbd> (Mac) agar pengujian bebas dari pengaruh ekstensi browser.
+    Tekan <kbd>Ctrl + Shift + N</kbd> (Windows) atau <kbd>Cmd + Shift + N</kbd> (Mac) agar bebas dari ekstensi browser.
   </li>
   <li class="p-2 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-    <span class="font-bold text-cyan-700 dark:text-cyan-400">2. Masukkan URL Website Netlify:</span>
-    Buka URL live website statis Anda (contoh: <code>https://nama-aplikasi.netlify.app</code>).
+    <span class="font-bold text-cyan-700 dark:text-cyan-400">2. Buka URL Netlify Website Anda:</span>
+    Ketikkan alamat live situs (contoh: <code>https://kalkulator-diskon-budi.netlify.app</code>).
   </li>
   <li class="p-2 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
     <span class="font-bold text-cyan-700 dark:text-cyan-400">3. Buka Developer Tools (F12):</span>
-    Tekan <kbd>F12</kbd> ➔ Pilih tab <b>Lighthouse</b> pada panel atas.
+    Tekan <kbd>F12</kbd> ➔ Pilih tab <b>Lighthouse</b> pada bilah atas panel.
   </li>
   <li class="p-2 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
     <span class="font-bold text-cyan-700 dark:text-cyan-400">4. Atur Konfigurasi Audit:</span>
-    Pilih Device: <b>Mobile</b> atau <b>Desktop</b>, dan centang seluruh kategori yang ingin dinilai.
+    Pilih Device: <b>Mobile</b> atau <b>Desktop</b>, dan centang keempat kategori audit.
   </li>
   <li class="p-2 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-    <span class="font-bold text-emerald-700 dark:text-emerald-400">5. Jalankan Audit:</span>
-    Klik tombol <b>Analyze page load</b> dan tunggu sekitar 15–30 detik hingga laporan skor muncul.
+    <span class="font-bold text-emerald-700 dark:text-emerald-400">5. Jalankan Proses Audit:</span>
+    Klik tombol <b>Analyze page load</b> dan tunggu sekitar 15–30 detik hingga laporan skor lengkap muncul.
   </li>
 </ol>
 
@@ -119,53 +221,18 @@ layout: default
 layout: default
 ---
 
-# 5. Membaca & Menginterpretasikan Skor
-
-Lighthouse memberikan skor angka 0 hingga 100 dengan indikator warna:
-
-<div class="grid grid-cols-3 gap-4 mt-4 text-center text-xs">
-
-<div class="p-4 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-300 dark:border-emerald-800 text-emerald-950 dark:text-emerald-100">
-  <div class="text-2xl font-bold text-emerald-600 dark:text-emerald-400 mb-1">90 – 100</div>
-  <div class="font-bold mb-1">Sangat Baik (Hijau)</div>
-  Website telah memenuhi standar performa dan kualitas optimal.
-</div>
-
-<div class="p-4 rounded-lg bg-amber-50 dark:bg-amber-950/40 border border-amber-300 dark:border-amber-800 text-amber-950 dark:text-amber-100">
-  <div class="text-2xl font-bold text-amber-600 dark:text-amber-400 mb-1">50 – 89</div>
-  <div class="font-bold mb-1">Cukup Baik (Oranye)</div>
-  Berfungsi normal, namun masih ada potensi penghematan waktu muat.
-</div>
-
-<div class="p-4 rounded-lg bg-red-50 dark:bg-red-950/40 border border-red-300 dark:border-red-800 text-red-950 dark:text-red-100">
-  <div class="text-2xl font-bold text-red-600 dark:text-red-400 mb-1">0 – 49</div>
-  <div class="font-bold mb-1">Perlu Perbaikan (Merah)</div>
-  Pemuatan terlalu lambat atau ada kendala performa mendesak.
-</div>
-
-</div>
-
-<div class="mt-4 p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs">
-  • <b>Opportunities:</b> Rekomendasi tindakan spesifik untuk memangkas waktu muat.<br>
-  • <b>Diagnostics:</b> Analisis detail struktur aset dan efisiensi eksekusi script.
-</div>
-
----
-layout: default
----
-
-# 6. Tips Optimasi Performa Website Statis
+# 8. Tips Optimasi Performa Website Statis
 
 <div class="space-y-3 mt-4 text-xs">
 
 <div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
   <div class="font-bold text-cyan-700 dark:text-cyan-400 text-sm mb-1">1. Optimasi Berkas Gambar</div>
-  Gunakan format modern seperti <b>WebP</b> atau <b>SVG</b>. Cantumkan atribut <code>width</code> dan <code>height</code> pada tag <code>&lt;img&gt;</code> untuk mencegah lonjakan pergeseran layout (CLS).
+  Gunakan format modern seperti <b>WebP</b> atau <b>SVG</b>. Cantumkan atribut <code>width</code> dan <code>height</code> pada tag <code>&lt;img&gt;</code> untuk mencegah pergeseran layout (CLS).
 </div>
 
 <div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
   <div class="font-bold text-emerald-700 dark:text-emerald-400 text-sm mb-1">2. Minifikasi CSS dan JavaScript</div>
-  Bersihkan spasi kosong dan baris komentar yang tidak diperlukan pada berkas <code>style.css</code> dan <code>script.js</code> agar ukuran berkas yang diunduh browser lebih kecil.
+  Bersihkan spasi kosong dan komentar yang tidak diperlukan pada berkas <code>style.css</code> dan <code>script.js</code> agar ukuran unduhan berkas semakin kecil.
 </div>
 
 <div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
@@ -185,12 +252,7 @@ layout: default
 
 <div class="flex items-center space-x-2">
   <carbon:checkmark-filled class="text-emerald-600 dark:text-emerald-400" />
-  <span><b>Tujuan Benchmark:</b> Memastikan website yang dirilis memiliki performa terukur, stabil, dan cepat.</span>
-</div>
-
-<div class="flex items-center space-x-2">
-  <carbon:checkmark-filled class="text-emerald-600 dark:text-emerald-400" />
-  <span><b>4 Kategori Lighthouse:</b> Performance, Accessibility, Best Practices, dan SEO.</span>
+  <span><b>4 Kategori Audit:</b> Performance (kecepatan), Accessibility (ramah disabilitas), Best Practices (keamanan), dan SEO (mesin pencari).</span>
 </div>
 
 <div class="flex items-center space-x-2">
@@ -200,7 +262,12 @@ layout: default
 
 <div class="flex items-center space-x-2">
   <carbon:checkmark-filled class="text-emerald-600 dark:text-emerald-400" />
-  <span><b>Praktik Terbaik:</b> Jalankan audit di Incognito Window untuk hasil skor yang murni dan akurat.</span>
+  <span><b>Interpretasi Skor:</b> Hijau (90–100 Baik), Oranye (50–89 Cukup), Merah (0–49 Buruk).</span>
+</div>
+
+<div class="flex items-center space-x-2">
+  <carbon:checkmark-filled class="text-emerald-600 dark:text-emerald-400" />
+  <span><b>Pengujian Akurat:</b> Jalankan selalu pada Jendela Penyamaran (Incognito Window) Google Chrome.</span>
 </div>
 
 </div>

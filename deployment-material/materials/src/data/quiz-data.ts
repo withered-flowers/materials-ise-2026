@@ -80,56 +80,56 @@ export const quizQuestions: QuizQuestion[] = [
     id: 3,
     module: "Modul 1: Konsep Dasar Deployment",
     moduleCategory: "Modul 1",
-    question: "Mengapa platform deployment modern seperti Netlify menggunakan arsitektur *Content Delivery Network* (CDN)?",
+    question: "Apa salah satu tantangan atau kelemahan utama dari *Traditional Deployment* langsung ke Virtual Private Server (VPS) jika dibandingkan dengan *Modern Serverless Hosting*?",
     options: [
       {
         id: "A",
-        text: "Agar berkas website disalin ke berbagai server di seluruh dunia, sehingga pengunjung dapat mengakses website dari server terdekat dengan sangat cepat."
+        text: "Traditional VPS mengharuskan developer mengelola sistem operasi, pembaruan keamanan, konfigurasi web server manual, serta rentan downtime jika server kehabisan kapasitas."
       },
       {
         id: "B",
-        text: "Agar sistem operasi komputer developer dapat terhubung langsung ke komputer pengunjung tanpa perantara."
+        text: "Traditional VPS tidak dapat digunakan untuk menjalankan file HTML dan CSS sama sekali."
       },
       {
         id: "C",
-        text: "Untuk membatasi pengunjung website hanya bagi orang yang memiliki kata sandi khusus."
+        text: "Traditional VPS hanya bisa diakses oleh komputer yang memiliki sistem operasi Windows XP."
       },
       {
         id: "D",
-        text: "Untuk menghapus berkas CSS dan JavaScript secara berkala dari server cloud."
+        text: "Traditional VPS mewajibkan semua website dirilis menggunakan jaringan satelit luar angkasa."
       }
     ],
     correctAnswer: "A",
-    correctFeedback: "Tepat sekali. CDN menduplikasi berkas website statis ke jaringan server global Netlify sehingga pengunjung dapat memuat halaman dari lokasi geografis terdekat dengan cepat.",
-    incorrectFeedback: "Kurang tepat. CDN berfungsi mendistribusikan salinan berkas website ke banyak server di berbagai belahan dunia agar waktu pemuatan halaman menjadi sangat cepat bagi seluruh pengguna.",
+    correctFeedback: "Tepat sekali. Pada traditional VPS, pengembang bertanggung jawab penuh atas instalasi OS, patch keamanan, web server (Nginx/Apache), dan penanganan beban server secara manual.",
+    incorrectFeedback: "Kurang tepat. Kelemahan utama traditional VPS adalah beban pengelolaan server manual (OS, firewall, Nginx, SSL) dan risiko server crash saat lonjakan pengunjung, berbeda dengan serverless managed cloud.",
     reference: "Modul 1: Konsep Dasar Deployment"
   },
   {
     id: 4,
     module: "Modul 1: Konsep Dasar Deployment",
     moduleCategory: "Modul 1",
-    question: "Mengapa rincian pesan kesalahan (*error stack trace*) sengaja disembunyikan pada lingkungan *Production*, berbeda dengan lingkungan lokal (*localhost*)?",
+    question: "Mengapa platform deployment modern seperti Netlify memanfaatkan jaringan *Content Delivery Network* (CDN)?",
     options: [
       {
         id: "A",
-        text: "Karena server cloud tidak memiliki memori yang cukup untuk mencetak teks pesan error."
+        text: "Untuk menghapus seluruh berkas CSS dan JavaScript yang berukuran lebih dari 1 MB secara otomatis."
       },
       {
         id: "B",
-        text: "Demi alasan keamanan, agar struktur internal sistem dan celah keamanan tidak terekspos ke publik (mencegah Information Disclosure)."
+        text: "Agar berkas website disalin ke berbagai server edge di seluruh dunia, sehingga pengunjung dapat mengunduh halaman dari server terdekat dengan sangat cepat."
       },
       {
         id: "C",
-        text: "Agar tampilan antarmuka website terlihat tetap rapi meskipun aplikasi mengalami kerusakan total."
+        text: "Untuk memaksa pengunjung memasukkan password khusus setiap kali membuka website."
       },
       {
         id: "D",
-        text: "Karena browser di perangkat ponsel tidak mendukung tampilan pesan kesalahan berbasis teks."
+        text: "Untuk mengubah alamat IP komputer pengunjung menjadi domain unik Netlify."
       }
     ],
     correctAnswer: "B",
-    correctFeedback: "Tepat sekali. Menyembunyikan detail stack trace pada Production bertujuan mencegah pembocoran informasi internal sistem yang dapat dimanfaatkan oleh pihak tidak bertanggung jawab.",
-    incorrectFeedback: "Kurang tepat. Pada lingkungan produksi, detail error disembunyikan demi alasan keamanan untuk mencegah pihak luar mengetahui struktur internal sistem (Information Disclosure).",
+    correctFeedback: "Tepat sekali. CDN menduplikasi berkas website statis ke jaringan server global Netlify sehingga pengunjung dapat memuat halaman dari lokasi geografis terdekat dengan cepat.",
+    incorrectFeedback: "Kurang tepat. CDN berfungsi mendistribusikan salinan berkas website ke banyak server di berbagai belahan dunia agar waktu pemuatan halaman menjadi sangat cepat bagi seluruh pengguna.",
     reference: "Modul 1: Konsep Dasar Deployment"
   },
   {
@@ -276,56 +276,56 @@ export const quizQuestions: QuizQuestion[] = [
     id: 10,
     module: "Modul 3: Deploy Website Statis",
     moduleCategory: "Modul 3",
-    question: "Perintah Netlify CLI mana yang digunakan untuk merilis website secara langsung ke lingkungan *Production (Live URL)*?",
+    question: "Saat menggunakan Netlify Dashboard (Web UI) tanpa command line, langkah apa yang dilakukan untuk menghubungkan proyek website Anda?",
     options: [
       {
         id: "A",
-        text: "npx netlify-cli dev"
+        text: "Membuka menu Add new site > Import an existing project, lalu memilih provider GitHub dan menentukan repositori proyek."
       },
       {
         id: "B",
-        text: "npx netlify-cli status"
+        text: "Menyalin seluruh kode HTML ke dalam kolom komentar di forum Netlify Community."
       },
       {
         id: "C",
-        text: "npx netlify-cli deploy"
+        text: "Mengirimkan flashdisk berisi kode ke kantor perwakilan Netlify melalui pos."
       },
       {
         id: "D",
-        text: "npx netlify-cli deploy --prod"
+        text: "Mengetikkan perintah npx netlify-cli di browser Google Chrome."
       }
     ],
-    correctAnswer: "D",
-    correctFeedback: "Tepat sekali. Menambahkan flag `--prod` pada perintah `deploy` memastikan hasil rilis diterapkan langsung pada URL produksi resmi website Anda.",
-    incorrectFeedback: "Kurang tepat. Perintah `deploy` tanpa flag `--prod` hanya menghasilkan draft preview. Untuk rilis produksi, gunakan `npx netlify-cli deploy --prod`.",
+    correctAnswer: "A",
+    correctFeedback: "Tepat sekali. Pada Netlify Dashboard, proses import proyek dilakukan secara visual dengan mengeklik 'Add new site' > 'Import an existing project' lalu memilih akun GitHub.",
+    incorrectFeedback: "Kurang tepat. Cara menghubungkan proyek di Netlify Dashboard adalah melalui tombol 'Add new site' > 'Import an existing project' dan memilih repositori GitHub yang sesuai.",
     reference: "Modul 3: Deploy Website Statis ke Netlify"
   },
   {
     id: 11,
     module: "Modul 3: Deploy Website Statis",
     moduleCategory: "Modul 3",
-    question: "Saat mengembangkan website di komputer lokal, perintah Netlify CLI mana yang digunakan untuk menjalankan server simulasi lokal di port 8888?",
+    question: "Setelah repositori GitHub terhubung dengan Netlify, apa yang terjadi secara otomatis saat developer menjalankan perintah `git push` pembaruan kode?",
     options: [
       {
         id: "A",
-        text: "npx netlify-cli dev"
+        text: "Website akan otomatis terhapus dari server cloud Netlify."
       },
       {
         id: "B",
-        text: "npx netlify-cli run"
+        text: "Netlify menerima sinyal Webhook dari GitHub, lalu secara otomatis merilis versi terbaru website tanpa perlu tindakan manual di Netlify Dashboard."
       },
       {
         id: "C",
-        text: "npx netlify-cli serve"
+        text: "Developer wajib login ke server Linux Netlify via SSH untuk merestart komputer server."
       },
       {
         id: "D",
-        text: "npx netlify-cli test"
+        text: "Netlify akan mematikan koneksi internet developer selama 24 jam."
       }
     ],
-    correctAnswer: "A",
-    correctFeedback: "Tepat sekali. Perintah `npx netlify-cli dev` menjalankan server pengujian lokal di `http://localhost:8888` untuk meninjau website sebelum di-deploy.",
-    incorrectFeedback: "Kurang tepat. Perintah yang tepat untuk memutar server lokal Netlify adalah `npx netlify-cli dev`.",
+    correctAnswer: "B",
+    correctFeedback: "Tepat sekali. Inilah esensi Continuous Deployment (CI/CD): setiap push baru di branch main otomatis memicu proses deployment di Netlify tanpa intervensi manual.",
+    incorrectFeedback: "Kurang tepat. Berkat integrasi CI/CD Netlify, setiap kali ada commit baru yang di-push ke GitHub, Netlify secara otomatis mendeteksi dan memperbarui website live.",
     reference: "Modul 3: Deploy Website Statis ke Netlify"
   },
   {
@@ -336,7 +336,7 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         id: "A",
-        text: "Berkas HTML utama tidak bernama index.html atau lokasi publish directory salah dikonfigurasi."
+        text: "Berkas HTML utama tidak bernama index.html atau berada di dalam subfolder yang tidak terdaftar di akar repositori."
       },
       {
         id: "B",
@@ -352,36 +352,36 @@ export const quizQuestions: QuizQuestion[] = [
       }
     ],
     correctAnswer: "A",
-    correctFeedback: "Tepat sekali. Server web Netlify secara default mencari berkas `index.html` pada direktori publish. Jika berkas bernama lain atau direktori publish keliru, akan muncul error 404.",
-    incorrectFeedback: "Kurang tepat. Error 404 Page Not Found umumnya terjadi karena berkas utama tidak bernama `index.html` atau lokasi folder publish tidak mengarah ke lokasi berkas tersebut.",
+    correctFeedback: "Tepat sekali. Server web Netlify secara default mencari berkas `index.html` pada akar repositori. Jika berkas bernama lain atau disimpan di dalam subfolder, akan muncul error 404.",
+    incorrectFeedback: "Kurang tepat. Error 404 Page Not Found umumnya terjadi karena berkas utama tidak bernama `index.html` atau tersimpan di dalam subfolder sehingga tidak ditemukan di akar proyek.",
     reference: "Modul 3: Deploy Website Statis ke Netlify"
   },
   {
     id: 13,
     module: "Modul 3: Deploy Website Statis",
     moduleCategory: "Modul 3",
-    question: "Pada berkas konfigurasi `netlify.toml` untuk website statis tanpa bundler, apakah arti dari pengaturan `publish = '.'`?",
+    question: "Saat mengonfigurasi Build Settings di Netlify Dashboard untuk website statis murni (Vanilla HTML/CSS/JS), mengapa kolom *Build command* sebaiknya dikosongkan?",
     options: [
       {
         id: "A",
-        text: "Menandakan bahwa website tidak boleh diakses oleh publik di internet."
+        text: "Karena website statis murni tidak membutuhkan proses kompilasi kode sehingga berkas siap langsung disajikan ke CDN."
       },
       {
         id: "B",
-        text: "Memberitahu Netlify bahwa berkas website utama (index.html) berada langsung di akar folder proyek."
+        text: "Karena Netlify melarang pengisian teks pada kolom Build command untuk semua jenis website."
       },
       {
         id: "C",
-        text: "Menginstruksikan Netlify untuk menghapus berkas setiap 24 jam sekali."
+        text: "Agar sistem operasi Netlify dapat mengunduh database MySQL secara otomatis."
       },
       {
         id: "D",
-        text: "Menjadikan website hanya dapat dibuka satu kali oleh setiap pengunjung."
+        text: "Karena kolom Build command hanya boleh diisi oleh pengguna berbayar."
       }
     ],
-    correctAnswer: "B",
-    correctFeedback: "Tepat sekali. Simbol titik (`.`) merepresentasikan direktori kerja saat ini (akar folder proyek), tempat berkas `index.html`, `style.css`, dan `script.js` berada.",
-    incorrectFeedback: "Kurang tepat. Pada `netlify.toml`, atribut `publish = '.'` berarti direktori publikasi adalah akar folder proyek saat ini tempat berkas utama berada.",
+    correctAnswer: "A",
+    correctFeedback: "Tepat sekali. Berkas Vanilla HTML, CSS, dan JavaScript tidak memerlukan proses build/kompilasi seperti framework React/Vite, sehingga Build command cukup dikosongkan.",
+    incorrectFeedback: "Kurang tepat. Website statis murni tidak membutuhkan proses build/kompilasi. Jika Build command diisi tanpa adanya file package.json/script, proses rilis justru akan gagal.",
     reference: "Modul 3: Deploy Website Statis ke Netlify"
   },
   {
@@ -416,35 +416,7 @@ export const quizQuestions: QuizQuestion[] = [
     id: 15,
     module: "Modul 4: Benchmark Performa Lighthouse",
     moduleCategory: "Modul 4",
-    question: "Apa tujuan utama dilakukannya audit dan *benchmark performa* menggunakan Google Lighthouse pada website yang telah di-deploy?",
-    options: [
-      {
-        id: "A",
-        text: "Untuk menguji kecepatan pemuatan, kestabilan tampilan, aksesibilitas, dan kualitas keseluruhan halaman web secara terukur."
-      },
-      {
-        id: "B",
-        text: "Untuk mengubah bahasa pemrograman JavaScript menjadi bahasa Python secara otomatis."
-      },
-      {
-        id: "C",
-        text: "Untuk mendaftarkan hak cipta kode program ke organisasi internet dunia."
-      },
-      {
-        id: "D",
-        text: "Untuk memblokir pengguna yang menggunakan browser selain Google Chrome."
-      }
-    ],
-    correctAnswer: "A",
-    correctFeedback: "Tepat sekali. Google Lighthouse digunakan untuk mengukur dan mengevaluasi performa, aksesibilitas, best practices, dan SEO agar website optimal bagi pengguna.",
-    incorrectFeedback: "Kurang tepat. Tujuan audit Lighthouse adalah mengukur dan menganalisis kualitas halaman website dalam aspek performa kecepatan, aksesibilitas, best practices, dan SEO.",
-    reference: "Modul 4: Benchmark Performa dengan Google Lighthouse"
-  },
-  {
-    id: 16,
-    module: "Modul 4: Benchmark Performa Lighthouse",
-    moduleCategory: "Modul 4",
-    question: "Empat kategori utama apa sajakah yang dievaluasi dalam laporan audit Google Lighthouse?",
+    question: "Empat kategori utama apa sajakah yang dinilai dalam laporan audit Google Lighthouse?",
     options: [
       {
         id: "A",
@@ -464,71 +436,99 @@ export const quizQuestions: QuizQuestion[] = [
       }
     ],
     correctAnswer: "B",
-    correctFeedback: "Tepat sekali. Empat pilar penilaian Google Lighthouse adalah Performance (kecepatan), Accessibility (ramah disabilitas), Best Practices (standar keamanan), dan SEO (optimasi mesin pencari).",
-    incorrectFeedback: "Kurang tepat. Empat kategori utama yang dinilai oleh Lighthouse adalah Performance, Accessibility, Best Practices, dan SEO.",
+    correctFeedback: "Tepat sekali. Empat pilar penilaian Google Lighthouse adalah Performance (kecepatan), Accessibility (kemudahan akses/disabilitas), Best Practices (standar keamanan), dan SEO (optimasi mesin pencari).",
+    incorrectFeedback: "Kurang tepat. Empat kategori utama yang dinilai oleh Google Lighthouse adalah Performance, Accessibility, Best Practices, dan SEO.",
+    reference: "Modul 4: Benchmark Performa dengan Google Lighthouse"
+  },
+  {
+    id: 16,
+    module: "Modul 4: Benchmark Performa Lighthouse",
+    moduleCategory: "Modul 4",
+    question: "Pada evaluasi Google Lighthouse, apa fokus utama dari kategori *Accessibility* (Aksesibilitas)?",
+    options: [
+      {
+        id: "A",
+        text: "Memastikan website dapat diakses dan digunakan dengan baik oleh semua orang, termasuk pengguna dengan disabilitas (kontras teks, atribut alt gambar, label form)."
+      },
+      {
+        id: "B",
+        text: "Memastikan kecepatan server cloud dalam menampung jutaan data transaksi per detik."
+      },
+      {
+        id: "C",
+        text: "Menilai seberapa mahal harga sewa domain yang dibeli oleh pemilik website."
+      },
+      {
+        id: "D",
+        text: "Memeriksa apakah website memiliki integrasi pembayaran perbankan internasional."
+      }
+    ],
+    correctAnswer: "A",
+    correctFeedback: "Tepat sekali. Accessibility menilai keramahan website bagi pengguna dengan kebutuhan khusus, seperti kecukupan kontras warna, atribut alt gambar, dan keteraturan label input.",
+    incorrectFeedback: "Kurang tepat. Kategori Accessibility berfokus pada kemudahan akses bagi pengguna difabel, memastikan elemen web memiliki kontras warna baik, teks alt gambar, dan navigasi ramah screen reader.",
     reference: "Modul 4: Benchmark Performa dengan Google Lighthouse"
   },
   {
     id: 17,
     module: "Modul 4: Benchmark Performa Lighthouse",
     moduleCategory: "Modul 4",
-    question: "Dalam indikator Core Web Vitals, apa yang diukur oleh metrik *Largest Contentful Paint* (LCP)?",
+    question: "Apa saja poin penting yang dievaluasi pada kategori *Best Practices* dan *SEO* di Google Lighthouse?",
     options: [
       {
         id: "A",
-        text: "Jumlah total baris kode CSS yang ditulis di dalam proyek."
+        text: "Koneksi aman HTTPS penuh, bebas pesan error di console, serta keberadaan tag title, meta description, dan viewport responsif."
       },
       {
         id: "B",
-        text: "Waktu yang dibutuhkan browser untuk menampilkan elemen visual konten terbesar di layar pengguna (target ideal < 2,5 detik)."
+        text: "Jumlah total baris kode HTML minimal harus mencapai 10.000 baris."
       },
       {
         id: "C",
-        text: "Waktu yang dibutuhkan server Netlify untuk mencetak sertifikat SSL."
+        text: "Keberadaan fitur animasi 3D dan pemutar video otomatis di latar belakang."
       },
       {
         id: "D",
-        text: "Kapasitas maksimal memori RAM yang digunakan oleh teks editor saat mengetik kode."
+        text: "Apakah website dibuat menggunakan komputer berspesifikasi gaming tinggi."
       }
     ],
-    correctAnswer: "B",
-    correctFeedback: "Tepat sekali. LCP mengukur waktu hingga konten visual terbesar di layar selesai dirender oleh browser, dengan target ideal di bawah 2,5 detik.",
-    incorrectFeedback: "Kurang tepat. LCP (Largest Contentful Paint) mengukur waktu yang diperlukan browser untuk merender elemen konten terbesar pada viewport layar pengunjung.",
+    correctAnswer: "A",
+    correctFeedback: "Tepat sekali. Best Practices menguji standar keamanan modern (HTTPS, bebas error console), sedangkan SEO menguji metadata dasar (tag title, meta description, viewport mobile).",
+    incorrectFeedback: "Kurang tepat. Best Practices menguji kepatuhan standar web modern (HTTPS, konsistensi kode), sementara SEO menguji kesiapan dokumen HTML untuk dirayapi mesin pencari (title, description, viewport).",
     reference: "Modul 4: Benchmark Performa dengan Google Lighthouse"
   },
   {
     id: 18,
     module: "Modul 4: Benchmark Performa Lighthouse",
     moduleCategory: "Modul 4",
-    question: "Apa yang diukur oleh metrik *Cumulative Layout Shift* (CLS) pada Google Lighthouse?",
+    question: "Dalam kategori *Performance*, metrik Core Web Vitals *Largest Contentful Paint* (LCP) mengukur apa dan berapa target nilai idealnya?",
     options: [
       {
         id: "A",
-        text: "Tingkat pergeseran tata letak elemen visual yang tidak terduga saat halaman sedang dimuat (target ideal < 0,1)."
+        text: "Mengukur waktu render elemen visual konten terbesar di layar pengguna, dengan target ideal di bawah 2,5 detik."
       },
       {
         id: "B",
-        text: "Kecepatan koneksi internet pengguna yang diukur dalam satuan Mbps."
+        text: "Mengukur kapasitas penyimpanan harddisk server, dengan target ideal di atas 1 Terabyte."
       },
       {
         id: "C",
-        text: "Berapa kali pengguna melakukan klik pada tombol navigasi halaman."
+        text: "Mengukur jumlah klik mouse pengunjung, dengan target minimal 100 klik."
       },
       {
         id: "D",
-        text: "Jumlah repository GitHub publik yang dimiliki oleh seorang developer."
+        text: "Mengukur kecepatan mengetik developer di Visual Studio Code."
       }
     ],
     correctAnswer: "A",
-    correctFeedback: "Tepat sekali. CLS mengukur kestabilan visual halaman agar elemen tampilan tidak meloncat atau bergeser secara tiba-tiba saat konten baru dimuat.",
-    incorrectFeedback: "Kurang tepat. CLS (Cumulative Layout Shift) mengukur kestabilan visual antarmuka halaman untuk memastikan elemen tidak bergeser secara tidak terduga saat memuat aset.",
+    correctFeedback: "Tepat sekali. LCP mengukur waktu yang dibutuhkan hingga konten visual utama selesai dimuat, dengan batas ideal di bawah 2,5 detik.",
+    incorrectFeedback: "Kurang tepat. LCP (Largest Contentful Paint) mengukur waktu pemuatan elemen konten terbesar pada viewport layar dengan target ideal kurang dari 2,5 detik.",
     reference: "Modul 4: Benchmark Performa dengan Google Lighthouse"
   },
   {
     id: 19,
     module: "Modul 4: Benchmark Performa Lighthouse",
     moduleCategory: "Modul 4",
-    question: "Mengapa menjalankan pengujian Google Lighthouse disarankan dilakukan pada *Jendela Penyamaran* (Incognito Window) browser?",
+    question: "Mengapa menjalankan pengujian Google Lighthouse sangat disarankan dilakukan pada *Jendela Penyamaran* (Incognito Window) Google Chrome?",
     options: [
       {
         id: "A",
@@ -536,11 +536,11 @@ export const quizQuestions: QuizQuestion[] = [
       },
       {
         id: "B",
-        text: "Agar hasil skor audit murni dan tidak terpengaruh oleh ekstensi browser pihak ketiga yang terpasang."
+        text: "Agar hasil skor audit murni dan tidak terpengaruh oleh ekstensi browser pihak ketiga yang dapat memperlambat proses halaman."
       },
       {
         id: "C",
-        text: "Karena fitur tab Lighthouse hanya dapat dibuka pada jendela penyamaran saja."
+        text: "Karena fitur tab Lighthouse hanya dapat diaktifkan pada jendela penyamaran saja."
       },
       {
         id: "D",
@@ -548,7 +548,7 @@ export const quizQuestions: QuizQuestion[] = [
       }
     ],
     correctAnswer: "B",
-    correctFeedback: "Tepat sekali. Ekstensi browser (seperti adblocker atau translator) dapat menyisipkan script tambahan yang memperlambat waktu muat, sehingga Incognito Window menghasilkan pengujian yang bersih dan akurat.",
+    correctFeedback: "Tepat sekali. Ekstensi browser (seperti adblocker atau plugin lain) dapat menyisipkan script tambahan yang memperlambat waktu muat, sehingga Incognito Window menghasilkan pengujian yang bersih dan objektif.",
     incorrectFeedback: "Kurang tepat. Jendela penyamaran digunakan agar ekstensi browser yang terpasang tidak ikut berjalan dan tidak mendistorsi pengukuran performa halaman web.",
     reference: "Modul 4: Benchmark Performa dengan Google Lighthouse"
   },
