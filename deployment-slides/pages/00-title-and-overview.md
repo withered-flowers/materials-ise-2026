@@ -33,8 +33,8 @@ Materi ini disusun secara bertahap bagi pemula (SMA/SMK dan mahasiswa tingkat aw
 </div>
 
 <div class="p-4 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/50 text-emerald-900 dark:text-emerald-100">
-  <div class="font-bold text-emerald-700 dark:text-emerald-400 text-base mb-1">Modul 2: Git dan GitHub</div>
-  <div class="text-xs opacity-90 leading-relaxed">Pengenalan <i>version control</i>, 3 area kerja Git, perintah dasar (<code>init</code>, <code>add</code>, <code>commit</code>), serta menghubungkan ke repositori <b>GitHub</b>.</div>
+  <div class="font-bold text-emerald-700 dark:text-emerald-400 text-base mb-1">Modul 2: Pengelolaan Kode GitHub Web</div>
+  <div class="text-xs opacity-90 leading-relaxed">Pengenalan <i>version control</i> via browser: unduh starter code (<b>Download ZIP</b>), buat repositori baru, serta unggah berkas langsung (<b>Upload Files</b>) dengan <b>Commit message</b> tanpa CLI.</div>
 </div>
 
 <div class="p-4 rounded-lg bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/50 text-amber-900 dark:text-amber-100">

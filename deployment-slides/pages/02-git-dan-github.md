@@ -3,82 +3,76 @@ layout: section
 ---
 
 # Modul 2
-## Penggunaan Git dan GitHub
+## Pengelolaan Kode dengan GitHub Web (Tanpa CLI)
 
-Panduan praktis version control menggunakan Git dan GitHub untuk pemula sebelum melakukan deployment.
-
----
-layout: default
----
-
-# 1. Mengenal Version Control System (VCS)
-
-**Version Control System (VCS)** adalah sistem yang mencatat setiap riwayat perubahan pada berkas kode dari waktu ke waktu.
-
-### Mengapa Kita Membutuhkan Git?
-
-Tanpa sistem kontrol versi, pemula sering kali menduplikasi folder secara manual:
-- `website-final/`
-- `website-final-beneran/`
-- `website-final-fix-banget/`
-
-Cara tersebut membingungkan dan memakan ruang penyimpanan. Git memecahkan masalah ini dengan mencatat riwayat perubahan (*commit*) secara rapi di dalam satu proyek.
-
-<div class="mt-4 p-3 rounded-lg bg-blue-50 dark:bg-blue-950/40 border-l-4 border-blue-500 text-blue-950 dark:text-blue-100 text-xs leading-relaxed">
-  <b>Analogi Sederhana:</b> Git bekerja seperti kamera yang mengambil foto (<i>snapshot</i>) riwayat proyek Anda setiap kali ada perubahan. GitHub adalah album foto daring (<i>cloud storage</i>) tempat Anda menyimpan foto-foto tersebut agar aman dan dapat diakses dari mana saja.
-</div>
+Panduan praktis mengelola kode proyek menggunakan antarmuka web browser GitHub: Download ZIP dan Upload Files langsung dengan pesan commit.
 
 ---
 layout: default
 ---
 
-# 1. Perbedaan Git dan GitHub
+# 1. Mengenal GitHub & Penyimpanan Berbasis Cloud
 
-<div class="text-xs mt-2">
+<b>Version Control System (VCS)</b> adalah sistem yang mencatat riwayat versi berkas kode dari waktu ke waktu.
 
-| Aspek | Git | GitHub |
-| :--- | :--- | :--- |
-| **Kategori** | Perangkat lunak / aplikasi (*tool*) | Layanan berbasis web (*cloud hosting*) |
-| **Instalasi** | Dipasang di komputer lokal Anda | Diakses melalui browser di `github.com` |
-| **Fungsi Utama** | Mencatat riwayat perubahan kode | Menyimpan salinan repository Git secara online |
-| **Akses Jaringan** | Bekerja secara *offline* di laptop/PC | Membutuhkan koneksi internet |
-| **Kolaborasi** | Berfokus pada pengelolaan lokal | Memudahkan berbagi kode dan kerja tim |
+<div class="grid grid-cols-2 gap-4 mt-4 text-xs">
+
+<div class="p-4 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+  <div class="font-bold text-cyan-700 dark:text-cyan-400 text-sm mb-2">Mengapa GitHub?</div>
+  Platform berbasis cloud terbesar di dunia untuk menyimpan, mengamankan, dan membagikan repositori kode. Repositori GitHub dapat langsung dihubungkan ke penyedia hosting seperti <b>Netlify</b>.
+</div>
+
+<div class="p-4 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+  <div class="font-bold text-emerald-700 dark:text-emerald-400 text-sm mb-2">Keuntungan Alur Web (Tanpa CLI)</div>
+  <ul class="space-y-1.5 list-disc list-inside">
+    <li><b>Tanpa Instalasi:</b> Tidak perlu memasang Git CLI atau Git Bash.</li>
+    <li><b>100% Visual:</b> Cukup klik tombol dan <i>drag and drop</i> berkas.</li>
+    <li><b>Ramah Pemula:</b> Menghindari kesalahan sintaks baris perintah di terminal.</li>
+  </ul>
+</div>
 
 </div>
 
-<div class="mt-6 p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs">
-  <b>Hubungan dengan Deployment:</b> Platform hosting modern seperti Netlify membaca langsung berkas kode dari repositori <b>GitHub</b> Anda untuk menjalankan otomatisasi rilis.
+<div class="mt-4 p-3 rounded-lg bg-blue-50 dark:bg-blue-950/40 border-l-4 border-blue-500 text-blue-950 dark:text-blue-100 text-xs">
+  <b>Analogi:</b> Repositori GitHub diibaratkan seperti Google Drive khusus kode program, di mana setiap unggahan berkas dicatat tanggal dan pesan keterangannya secara rapi.
 </div>
 
 ---
 layout: default
 ---
 
-# 2. Tiga Area Kerja dalam Git
+# 2. Mengunduh Starter Code (Download as ZIP)
 
-Sebelum menjalankan perintah, pahami alur perpindahan berkas di dalam Git:
+Mengambil berkas kode awal (*template*) dari pengajar tanpa perlu perintah terminal:
 
-```mermaid {scale: 0.65}
-graph LR
-    subgraph LocalMachine [Alur Kerja Lokal Git]
-        A["Working Directory<br>Berkas Sedang Diedit"] -- "git add" --> B["Staging Area<br>Persiapan Snapshot"]
-        B -- "git commit" --> C["Local Repository<br>Riwayat Permanen"]
-    end
-    C -- "git push" --> D["GitHub Remote<br>Server Cloud"]
-```
+<div class="space-y-3 mt-4 text-xs">
 
-<div class="grid grid-cols-3 gap-3 mt-4 text-xs">
-
-<div class="p-2 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-  <b>1. Working Directory:</b> Folder proyek tempat Anda mengedit kode HTML, CSS, dan JS.
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-start space-x-3">
+  <div class="font-bold text-emerald-600 dark:text-emerald-400 text-base">1</div>
+  <div>
+    <b>Buka Repositori Materi di Browser:</b> Buka link GitHub yang dibagikan oleh instruktur pelatihan.
+  </div>
 </div>
 
-<div class="p-2 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-  <b>2. Staging Area:</b> Ruang persiapan untuk memilih berkas yang siap disimpan (<code>git add</code>).
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-start space-x-3">
+  <div class="font-bold text-emerald-600 dark:text-emerald-400 text-base">2</div>
+  <div>
+    <b>Klik Tombol Hijau "&lt;&gt; Code":</b> Terletak di bagian kanan atas daftar berkas proyek.
+  </div>
 </div>
 
-<div class="p-2 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-  <b>3. Local Repository:</b> Tempat penyimpanan riwayat permanen di folder <code>.git</code> lokal.
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-start space-x-3">
+  <div class="font-bold text-emerald-600 dark:text-emerald-400 text-base">3</div>
+  <div>
+    <b>Pilih "Download ZIP":</b> Browser akan mengunduh seluruh berkas proyek dalam satu paket arsip <code>.zip</code>.
+  </div>
+</div>
+
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-start space-x-3">
+  <div class="font-bold text-emerald-600 dark:text-emerald-400 text-base">4</div>
+  <div>
+    <b>Ekstrak Berkas di Komputer Lokal:</b> Klik kanan berkas zip ➔ <b>Extract All</b>. Anda kini memiliki <code>index.html</code>, <code>style.css</code>, dan <code>script.js</code>.
+  </div>
 </div>
 
 </div>
@@ -87,22 +81,26 @@ graph LR
 layout: default
 ---
 
-# 3. Konfigurasi Awal & Inisialisasi Proyek
+# 3. Membuat Repositori Baru di GitHub Web
 
-<div class="space-y-4 mt-4 text-xs">
+Membuat ruang penyimpanan cloud baru di akun GitHub pribadi:
+
+<div class="space-y-3 mt-4 text-xs">
 
 <div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-  <div class="font-bold text-cyan-700 dark:text-cyan-400 text-sm mb-1">A. Menentukan Identitas Developer (Satu Kali Setup)</div>
-  <pre class="bg-slate-200 dark:bg-slate-900 p-2 rounded text-cyan-800 dark:text-cyan-300 font-mono">git config --global user.name "Nama Lengkap Anda"
-git config --global user.email "email.anda@contoh.com"
-git config --list</pre>
+  <span class="font-bold text-cyan-700 dark:text-cyan-400 text-sm">Langkah 1: Buka Menu Pembuatan Repositori</span><br>
+  Login ke <a href="https://github.com" target="_blank" class="underline text-cyan-600">github.com</a> ➔ Klik ikon <b>"+"</b> di pojok kanan atas ➔ Pilih <b>"New repository"</b> (atau klik tombol hijau <b>"New"</b>).
 </div>
 
 <div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-  <div class="font-bold text-emerald-700 dark:text-emerald-400 text-sm mb-1">B. Menginisialisasi Proyek Baru (<code>git init</code>)</div>
-  Jalankan perintah ini di dalam folder proyek website Anda:
-  <pre class="bg-slate-200 dark:bg-slate-900 p-2 rounded text-emerald-800 dark:text-emerald-300 font-mono mt-1">git init</pre>
-  <span class="opacity-75">Perintah ini membuat folder tersembunyi <code>.git</code> agar proyek mulai dipantau.</span>
+  <span class="font-bold text-cyan-700 dark:text-cyan-400 text-sm">Langkah 2: Isi Nama & Visibilitas</span><br>
+  • <b>Repository name:</b> Beri nama dengan huruf kecil dan tanda minus (contoh: <code>kalkulator-diskon-web</code>).<br>
+  • <b>Visibility:</b> Pilih opsi <b>Public</b> (wajib agar dapat diimpor gratis ke Netlify Dashboard).
+</div>
+
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+  <span class="font-bold text-cyan-700 dark:text-cyan-400 text-sm">Langkah 3: Klik "Create repository"</span><br>
+  Biarkan opsi inisialisasi kosong, lalu klik tombol hijau <b>"Create repository"</b> di bagian bawah.
 </div>
 
 </div>
@@ -111,26 +109,29 @@ git config --list</pre>
 layout: default
 ---
 
-# 4. Alur Perintah Dasar: Add & Commit
+# 4. Mengunggah Berkas Proyek (Upload Files)
 
-<div class="space-y-3 mt-3 text-xs">
+Memasukkan berkas website dari komputer ke repositori GitHub:
 
-<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-  <span class="font-bold text-cyan-700 dark:text-cyan-400">1. Memeriksa Status Berkas (<code>git status</code>)</span>
-  <pre class="bg-slate-200 dark:bg-slate-900 p-2 rounded text-cyan-800 dark:text-cyan-300 font-mono mt-1">git status</pre>
-  <span class="opacity-75">Menampilkan berkas baru (untracked), berkas yang dimodifikasi, atau berkas di staging.</span>
+<div class="grid grid-cols-2 gap-4 mt-4 text-xs">
+
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 space-y-2">
+  <div class="font-bold text-cyan-700 dark:text-cyan-400 text-sm">A. Akses Menu Unggah</div>
+  <p>Pada halaman repositori baru, klik tautan bertuliskan:</p>
+  <div class="p-2 rounded bg-slate-200 dark:bg-slate-900 font-mono text-cyan-800 dark:text-cyan-300">
+    "...or uploading an existing file"
+  </div>
+  <p class="opacity-75">Atau melalui menu tombol: <b>Add file</b> ➔ <b>Upload files</b>.</p>
 </div>
 
-<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-  <span class="font-bold text-cyan-700 dark:text-cyan-400">2. Memasukkan Berkas ke Staging Area (<code>git add</code>)</span>
-  <pre class="bg-slate-200 dark:bg-slate-900 p-2 rounded text-cyan-800 dark:text-cyan-300 font-mono mt-1">git add .</pre>
-  <span class="opacity-75">Tanda titik (<code>.</code>) berarti menambahkan seluruh berkas di folder saat ini ke staging area.</span>
-</div>
-
-<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-  <span class="font-bold text-cyan-700 dark:text-cyan-400">3. Menyimpan Snapshot Riwayat (<code>git commit</code>)</span>
-  <pre class="bg-slate-200 dark:bg-slate-900 p-2 rounded text-cyan-800 dark:text-cyan-300 font-mono mt-1">git commit -m "feat: inisialisasi struktur web statis"</pre>
-  <span class="opacity-75">Flag <code>-m</code> menyertakan pesan penjelasan perubahan secara ringkas dan jelas.</span>
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 space-y-2">
+  <div class="font-bold text-emerald-700 dark:text-emerald-400 text-sm">B. Drag & Drop Berkas</div>
+  <p>Tarik berkas dari File Explorer / Finder komputer Anda langsung ke kotak browser:</p>
+  <div class="p-2 rounded bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-200">
+    ✓ <code>index.html</code><br>
+    ✓ <code>style.css</code><br>
+    ✓ <code>script.js</code>
+  </div>
 </div>
 
 </div>
@@ -139,25 +140,65 @@ layout: default
 layout: default
 ---
 
-# 5. Menghubungkan Proyek Lokal ke GitHub
+# 5. Menuliskan Pesan Commit & "Commit Changes"
 
-<ol class="space-y-2 text-xs mt-2">
-  <li class="p-2 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-    <span class="font-bold text-cyan-700 dark:text-cyan-400">1. Buat Repository di GitHub:</span> Buka <a href="https://github.com" target="_blank" class="underline text-cyan-600">github.com</a> ➔ Klik <b>New</b> ➔ Beri nama repo (contoh: <code>kalkulator-diskon</code>) ➔ Public ➔ Klik <b>Create repository</b>.
-  </li>
-  <li class="p-2 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-    <span class="font-bold text-cyan-700 dark:text-cyan-400">2. Namai Branch Utama:</span>
-    <pre class="bg-slate-200 dark:bg-slate-900 p-1.5 rounded text-cyan-800 dark:text-cyan-300 font-mono mt-1">git branch -M main</pre>
-  </li>
-  <li class="p-2 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-    <span class="font-bold text-cyan-700 dark:text-cyan-400">3. Tambahkan Alamat Remote:</span>
-    <pre class="bg-slate-200 dark:bg-slate-900 p-1.5 rounded text-cyan-800 dark:text-cyan-300 font-mono mt-1">git remote add origin https://github.com/username-anda/kalkulator-diskon.git</pre>
-  </li>
-  <li class="p-2 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-    <span class="font-bold text-emerald-700 dark:text-emerald-400">4. Unggah Kode ke GitHub (Push):</span>
-    <pre class="bg-slate-200 dark:bg-slate-900 p-1.5 rounded text-emerald-800 dark:text-emerald-300 font-mono mt-1">git push -u origin main</pre>
-  </li>
-</ol>
+Mencatat versi berkas secara resmi ke dalam sistem Version Control GitHub:
+
+<div class="space-y-3 mt-4 text-xs">
+
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+  <div class="font-bold text-cyan-700 dark:text-cyan-400 text-sm mb-1">1. Tulis Pesan Commit (Commit Message)</div>
+  Pada form <b>Commit changes</b> di bawah daftar berkas, tulis pesan ringkas dan deskriptif:<br>
+  <span class="font-mono bg-slate-200 dark:bg-slate-900 px-2 py-1 rounded text-cyan-800 dark:text-cyan-300 mt-1 inline-block">
+    feat: upload berkas kalkulator diskon awal
+  </span>
+</div>
+
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+  <div class="font-bold text-cyan-700 dark:text-cyan-400 text-sm mb-1">2. Pilih Target Branch</div>
+  Pastikan opsi radio button tercentang pada: <b>Commit directly to the <code>main</code> branch</b>.
+</div>
+
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+  <div class="font-bold text-emerald-700 dark:text-emerald-400 text-sm mb-1">3. Klik Tombol Hijau "Commit changes"</div>
+  Klik tombol hijau di bawah. Berkas Anda kini tersimpan aman di cloud dan tercatat di riwayat branch <code>main</code>!
+</div>
+
+</div>
+
+---
+layout: default
+---
+
+# 6. Memperbarui Berkas Kode di GitHub Web
+
+Dua cara mudah memperbarui kode website kapan saja langsung melalui browser:
+
+<div class="grid grid-cols-2 gap-4 mt-4 text-xs">
+
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 space-y-2">
+  <div class="font-bold text-cyan-700 dark:text-cyan-400 text-sm">Metode 1: Edit Langsung di Web</div>
+  <ul class="space-y-1.5 list-disc list-inside opacity-90">
+    <li>Klik nama berkas (contoh: <code>index.html</code>).</li>
+    <li>Klik ikon pensil <b>"Edit this file"</b>.</li>
+    <li>Ubah baris kode di editor teks browser.</li>
+    <li>Tulis pesan commit ➔ Klik <b>Commit changes</b>.</li>
+  </ul>
+  <span class="text-emerald-600 dark:text-emerald-400 font-semibold">Sangat cepat untuk perbaikan typo atau teks.</span>
+</div>
+
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 space-y-2">
+  <div class="font-bold text-amber-700 dark:text-amber-400 text-sm">Metode 2: Unggah Ulang Berkas Baru</div>
+  <ul class="space-y-1.5 list-disc list-inside opacity-90">
+    <li>Edit berkas di komputer (VS Code / Notepad).</li>
+    <li>Di repositori GitHub, klik <b>Add file</b> ➔ <b>Upload files</b>.</li>
+    <li>Tarik berkas baru (nama harus sama persis).</li>
+    <li>Tulis pesan commit ➔ Klik <b>Commit changes</b>.</li>
+  </ul>
+  <span class="text-emerald-600 dark:text-emerald-400 font-semibold">GitHub akan otomatis menimpa versi lama.</span>
+</div>
+
+</div>
 
 ---
 layout: default
@@ -169,26 +210,26 @@ layout: default
 
 <div class="flex items-center space-x-2">
   <carbon:checkmark-filled class="text-emerald-600 dark:text-emerald-400" />
-  <span><b>Version Control:</b> Git mencatat riwayat perubahan kode sehingga mudah ditinjau dan dikembalikan jika ada error.</span>
+  <span><b>Tanpa CLI:</b> Pengelolaan kode GitHub 100% menggunakan browser web tanpa kerumitan terminal.</span>
 </div>
 
 <div class="flex items-center space-x-2">
   <carbon:checkmark-filled class="text-emerald-600 dark:text-emerald-400" />
-  <span><b>Git vs GitHub:</b> Git adalah alat lokal; GitHub adalah platform cloud hosting untuk repositori Git.</span>
+  <span><b>Download ZIP:</b> Mengunduh template starter code melalui tombol <b>Code ➔ Download ZIP</b>.</span>
 </div>
 
 <div class="flex items-center space-x-2">
   <carbon:checkmark-filled class="text-emerald-600 dark:text-emerald-400" />
-  <span><b>3 Area Kerja:</b> <i>Working Directory</i> ➔ <code>git add</code> (Staging) ➔ <code>git commit</code> (Local Repo).</span>
+  <span><b>Upload Files:</b> Memasukkan berkas ke repositori dengan fitur <i>drag and drop</i> pada menu browser.</span>
 </div>
 
 <div class="flex items-center space-x-2">
   <carbon:checkmark-filled class="text-emerald-600 dark:text-emerald-400" />
-  <span><b>Siklus Harian:</b> <code>git add .</code> ➔ <code>git commit -m "pesan"</code> ➔ <code>git push</code>.</span>
+  <span><b>Commit Changes:</b> Menyimpan riwayat perubahan resmi dengan menuliskan pesan commit yang jelas.</span>
 </div>
 
 </div>
 
 <div class="mt-8 text-center text-sm text-cyan-700 dark:text-cyan-400 font-bold">
-  Selanjutnya di Modul 3 ➔ Praktik Deploy Website Statis ke Netlify!
+  Selanjutnya di Modul 3 ➔ Menghubungkan Repositori GitHub ke Netlify Dashboard!
 </div>

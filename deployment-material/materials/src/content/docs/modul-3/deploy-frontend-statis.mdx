@@ -83,7 +83,7 @@ sequenceDiagram
     participant Netlify as Netlify Web Dashboard
     actor User as Pengunjung Internet
 
-    Dev->>GH: git push origin main
+    Dev->>GH: Unggah Berkas / Edit Kode (Commit changes)
     GH-->>Netlify: Notifikasi Webhook Otomatis
     Netlify->>Netlify: Salin Berkas index.html, style.css, script.js
     Netlify-->>User: Website Live Dapat Diakses di Seluruh Dunia!
@@ -110,16 +110,15 @@ Nama domain bawaan yang diberikan Netlify sering kali berupa kombinasi kata acak
 Keunggulan terbesar dari menghubungkan GitHub ke Netlify adalah alur pembaruan otomatis tanpa perlu menyentuh Netlify Dashboard lagi:
 
 <Steps>
-1. Buka proyek Anda di teks editor (Visual Studio Code).
-2. Lakukan perubahan kecil, misalnya mengubah teks judul di `index.html` atau mengganti warna tombol di `style.css`.
-3. Buka terminal di komputer Anda, lalu jalankan alur Git standar:
-   ```bash
-   git add .
-   git commit -m "style: perbarui warna tombol kalkulator"
-   git push
-   ```
-4. Buka kembali browser pada tab **Deploys** di Netlify Dashboard Anda.
-5. Anda akan melihat bahwa Netlify langsung mendeteksi adanya commit baru secara otomatis, melakukan proses rilis baru, dan memperbarui website live Anda dalam hitungan detik tanpa perlu melakukan apa pun di Netlify!
+1. Buka repositori GitHub Anda di browser ([github.com](https://github.com)).
+2. Pilih berkas yang ingin diubah, misalnya klik berkas `style.css` atau `index.html`.
+3. Klik ikon pensil (**"Edit this file"**) untuk mengedit kode langsung di browser (misalnya mengubah warna tampilan atau teks judul).
+   - *(Atau, Anda juga dapat mengunggah berkas versi baru yang sudah diedit di komputer melalui menu **"Add file"** > **"Upload files"**)*.
+4. Gulir ke bagian bawah ke formulir **Commit changes**, tuliskan pesan commit ringkas seperti:  
+   `style: perbarui warna tombol kalkulator`
+5. Pastikan pilihan pada **Commit directly to the `main` branch**, lalu klik tombol hijau **"Commit changes"**.
+6. Buka kembali tab **Deploys** di Netlify Dashboard Anda.
+7. Anda akan melihat bahwa Netlify langsung mendeteksi adanya commit baru secara otomatis melalui Webhook GitHub, melakukan proses rilis baru, dan memperbarui website live Anda dalam hitungan detik tanpa perlu melakukan tindakan manual apa pun di Netlify!
 </Steps>
 
 ---
@@ -163,6 +162,6 @@ Pada Modul 3 ini, Anda telah berhasil:
 - Memahami struktur berkas dan keunggulan website statis tanpa ketergantungan server yang rumit.
 - Mempublikasikan website langsung dari repositori GitHub ke Netlify Dashboard tanpa command line dan tanpa berkas konfigurasi tambahan.
 - Mengatur nama subdomain resmi di Netlify agar mudah dibagikan kepada orang lain.
-- Membuktikan alur otomatisasi rilis berkelanjutan (*Continuous Deployment*) setiap kali Anda melakukan `git push`.
+- Membuktikan alur otomatisasi rilis berkelanjutan (*Continuous Deployment*) setiap kali Anda melakukan *Commit changes* pembaruan berkas di GitHub Web.
 
 Pada **Modul 4**, kita akan mengukur dan menguji kualitas website yang telah kita rilis menggunakan **Google Lighthouse** untuk melakukan benchmark performa!

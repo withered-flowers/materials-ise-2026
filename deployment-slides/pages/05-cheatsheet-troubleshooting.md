@@ -5,27 +5,24 @@ layout: section
 # Referensi
 ## Cheatsheet & Troubleshooting
 
-Referensi cepat kumpulan perintah Git, alur navigasi Netlify Dashboard, metrik Google Lighthouse, serta panduan pemecahan masalah untuk pemula.
+Referensi cepat alur GitHub Web tanpa CLI, navigasi Netlify Dashboard, metrik Google Lighthouse, serta panduan pemecahan masalah untuk pemula.
 
 ---
 layout: default
 ---
 
-# 1. Cheatsheet Perintah Git & GitHub
+# 1. Alur Cepat GitHub Web (Tanpa CLI)
 
 <div class="text-xs">
 
-| Perintah | Deskripsi Fungsi |
+| Tindakan di Browser | Tombol & Langkah di GitHub |
 | :--- | :--- |
-| `git init` | Menginisialisasi repositori Git baru pada folder lokal saat ini. |
-| `git status` | Memeriksa status berkas (berkas baru, dimodifikasi, atau di staging). |
-| `git add .` | Menambahkan seluruh perubahan berkas ke ruang persiapan (*staging area*). |
-| `git commit -m "pesan"` | Menyimpan rekaman riwayat perubahan (*snapshot*) dengan keterangan jelas. |
-| `git branch -M main` | Menamai branch utama proyek menjadi `main`. |
-| `git remote add origin <URL>` | Menghubungkan repositori lokal dengan repositori remote di GitHub. |
-| `git push -u origin main` | Mengunggah commit lokal ke branch `main` di GitHub untuk pertama kali. |
-| `git push` | Mengunggah commit terbaru ke GitHub setelah remote origin terhubung. |
-| `git pull` | Mengambil dan menggabungkan pembaruan kode terbaru dari GitHub. |
+| **Unduh Starter Code** | Tombol hijau **`<> Code`** ➔ Pilih **Download ZIP** ➔ Ekstrak di PC/laptop. |
+| **Buat Repositori Baru** | Ikon **`+`** di kanan atas ➔ **New repository** ➔ Nama repo ➔ **Public** ➔ **Create repository**. |
+| **Unggah Berkas Awal** | Tautan **uploading an existing file** ➔ Drag & drop `index.html`, `style.css`, `script.js`. |
+| **Simpan Versi (Commit)** | Form **Commit changes** ➔ Isi pesan ringkas ➔ Pilih `main` ➔ **Commit changes**. |
+| **Unggah Berkas Tambahan** | Menu **Add file** ➔ **Upload files** ➔ Drag & drop berkas baru ➔ **Commit changes**. |
+| **Edit Langsung di Web** | Klik nama berkas ➔ Ikon pensil (**Edit this file**) ➔ Ubah kode ➔ **Commit changes**. |
 
 </div>
 

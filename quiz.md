@@ -83,7 +83,7 @@ Soal 05
 Manakah pernyataan yang paling tepat mengenai perbedaan antara Git dan GitHub?
 
 - A. Git adalah bahasa pemrograman web, sedangkan GitHub adalah aplikasi editor teks seperti Visual Studio Code.
-- B. Git adalah perangkat lunak lokal untuk mencatat riwayat perubahan kode, sedangkan GitHub adalah layanan cloud untuk menyimpan repository Git secara online.
+- B. Git adalah sistem Version Control untuk mencatat riwayat perubahan kode, sedangkan GitHub adalah platform cloud untuk menyimpan dan mengelola repositori secara online via browser.
 - C. Git hanya dapat digunakan pada sistem operasi Linux, sedangkan GitHub hanya dapat diakses melalui Windows.
 - D. Git dan GitHub adalah aplikasi yang sama persis tanpa perbedaan fungsi maupun cara penggunaan.
 
@@ -91,90 +91,90 @@ Jawaban:
 - B
 
 Highlight Jika Jawaban Benar:
-- Tepat sekali. Git adalah tool Version Control System yang terpasang di komputer lokal, sedangkan GitHub adalah platform web hosting untuk menyimpan dan membagikan repository Git di internet.
+- Tepat sekali. Git adalah konsep Version Control System, sedangkan GitHub adalah platform web hosting cloud untuk menyimpan dan mengelola repositori secara visual di internet.
 
 Highlight Jika Jawaban Salah:
-- Kurang tepat. Git adalah software kontrol versi di komputer lokal Anda, sementara GitHub adalah layanan hosting cloud untuk menyimpan salinan repository Git secara online.
+- Kurang tepat. Git adalah sistem kontrol versi, sementara GitHub adalah platform cloud berbasis web untuk menyimpan dan membagikan repositori proyek secara online.
 
 ---
 
 Soal 06
 
-Perintah Git apa yang digunakan pertama kali untuk menginisialisasi sebuah folder proyek agar mulai dipantau oleh Git?
+Bagaimana cara termudah mengunduh seluruh berkas proyek starter code dari repositori GitHub ke komputer lokal tanpa menggunakan terminal?
 
-- A. git start
-- B. git create
-- C. git init
-- D. git setup
+- A. Menyalin teks kode satu per satu dari browser ke dalam dokumen Microsoft Word.
+- B. Menekan kombinasi tombol Ctrl + Alt + Delete pada keyboard.
+- C. Mengklik tombol hijau '<> Code' pada repositori GitHub lalu memilih opsi 'Download ZIP'.
+- D. Mengirimkan email permohonan berkas secara manual ke kantor pusat GitHub.
 
 Jawaban: 
 - C
 
 Highlight Jika Jawaban Benar:
-- Tepat sekali. Perintah `git init` membuat folder tersembunyi `.git` yang mengaktifkan pelacakan Version Control pada folder proyek tersebut.
+- Tepat sekali. Fitur 'Download ZIP' pada tombol '<> Code' memungkinkan Anda mengunduh seluruh isi proyek dalam satu berkas arsip zip yang siap diekstrak di komputer lokal.
 
 Highlight Jika Jawaban Salah:
-- Kurang tepat. Perintah yang benar untuk menginisialisasi repository Git baru di folder lokal adalah `git init`.
+- Kurang tepat. Cara resmi dan praktis untuk mengunduh kode starter dari GitHub via browser adalah mengeklik tombol '<> Code' lalu memilih opsi 'Download ZIP'.
 
 ---
 
 Soal 07
 
-Dalam konsep 3 area kerja Git, apakah fungsi dari *Staging Area* yang diakses melalui perintah `git add`?
+Saat membuat repositori baru di situs web GitHub untuk proyek website statis yang akan dideploy ke Netlify, pengaturan visibilitas apa yang wajib dipilih?
 
-- A. Menghapus berkas kode yang memiliki bug secara otomatis sebelum disimpan ke harddisk.
-- B. Sebagai ruang persiapan untuk memilih dan mengumpulkan berkas yang akan disimpan ke dalam riwayat commit berikutnya.
-- C. Mengunggah berkas secara langsung ke server cloud Netlify tanpa melalui repository GitHub.
-- D. Mengompresi seluruh folder proyek menjadi satu berkas arsip zip berukuran kecil.
+- A. Secret
+- B. Public
+- C. Archived
+- D. Internal Enterprise
 
 Jawaban: 
 - B
 
 Highlight Jika Jawaban Benar:
-- Tepat sekali. Staging Area adalah ruang persiapan di mana Anda mengumpulkan berkas-berkas yang perubahannya siap dicatat dalam jepretan riwayat (commit).
+- Tepat sekali. Memilih opsi 'Public' memastikan repositori dapat diakses dan diimpor secara gratis dan lancar oleh Netlify Dashboard.
 
 Highlight Jika Jawaban Salah:
-- Kurang tepat. Staging area berfungsi sebagai tempat persiapan sebelum commit, di mana pengembang mengelompokkan berkas-berkas yang ingin disertakan dalam riwayat perubahan.
+- Kurang tepat. Pengaturan visibilitas yang tepat untuk proyek latihan yang akan dideploy secara gratis di Netlify adalah 'Public'.
 
 ---
 
 Soal 08
 
-Saat menjalankan perintah `git commit -m 'feat: tambah formulir kalkulator'`, apakah fungsi dari opsi flag `-m`?
+Setelah membuat repositori baru di web GitHub, fitur apa yang digunakan untuk memasukkan berkas index.html, style.css, dan script.js langsung via browser?
 
-- A. Menentukan nama branch tujuan pengiriman berkas.
-- B. Menyertakan pesan ringkas dan deskriptif mengenai perubahan apa yang baru saja disimpan.
-- C. Memaksa penyimpanan file meskipun terdapat error sintaks pada kode HTML.
-- D. Mengaktifkan mode penyamaran agar identitas pembuat commit tidak terlihat di GitHub.
+- A. Mengirimkan berkas melalui fitur direct message obrolan ke akun teman.
+- B. Memanfaatkan menu 'Add file' > 'Upload files' (atau tautan 'uploading an existing file') dengan metode tarik dan lepas (drag and drop).
+- C. Menempelkan seluruh berkas ke dalam kolom kotak pencarian (search bar) GitHub.
+- D. Mengunggah berkas ke Google Drive lalu menempel tautannya di kolom komentar GitHub.
 
 Jawaban: 
 - B
 
 Highlight Jika Jawaban Benar:
-- Tepat sekali. Flag `-m` (singkatan dari message) digunakan untuk menuliskan pesan keterangan riwayat commit secara langsung di terminal.
+- Tepat sekali. Fitur 'Upload files' (atau tautan 'uploading an existing file') memungkinkan pengembang mengunggah berkas proyek langsung ke repositori GitHub via browser tanpa command line.
 
 Highlight Jika Jawaban Salah:
-- Kurang tepat. Flag `-m` pada perintah `git commit` berfungsi untuk menyertakan pesan commit yang mendeskripsikan perubahan yang dilakukan.
+- Kurang tepat. Di GitHub Web, Anda dapat mengunggah berkas secara visual melalui menu 'Add file' > 'Upload files' dan menarik berkas ke browser.
 
 ---
 
 Soal 09
 
-Perintah apa yang digunakan untuk menghubungkan repository lokal Anda ke repositori baru yang telah dibuat di GitHub?
+Pada formulir *Commit changes* saat mengunggah atau mengedit berkas di web GitHub, mengapa menuliskan *Commit message* (pesan commit) yang jelas sangat penting?
 
-- A. git connect github <URL>
-- B. git remote add origin <URL>
-- C. git link repository <URL>
-- D. git attach origin <URL>
+- A. Agar ukuran berkas HTML dan CSS otomatis mengecil menjadi nol kilobyte.
+- B. Untuk mendokumentasikan riwayat perubahan proyek secara rapi sehingga tujuan dan isi perubahan mudah dipahami di masa depan.
+- C. Karena GitHub akan menolak penyimpanan jika pesan commit tidak berima seperti bait puisi.
+- D. Untuk menyembunyikan identitas akun pemilik repositori dari publik.
 
 Jawaban: 
 - B
 
 Highlight Jika Jawaban Benar:
-- Tepat sekali. Perintah `git remote add origin <URL>` mendaftarkan alamat repositori GitHub remote dengan nama panggilan standar `origin`.
+- Tepat sekali. Pesan commit mendokumentasikan ringkasan tindakan yang Anda lakukan, sehingga riwayat perubahan proyek tercatat rapi dan mudah dilacak.
 
 Highlight Jika Jawaban Salah:
-- Kurang tepat. Perintah resmi Git untuk menambahkan alamat server remote adalah `git remote add origin <URL>`.
+- Kurang tepat. Menuliskan pesan commit yang deskriptif bertujuan agar developer memahami maksud perubahan kode yang disimpan pada versi tersebut.
 
 ---
 
@@ -200,10 +200,10 @@ Highlight Jika Jawaban Salah:
 
 Soal 11
 
-Setelah repositori GitHub terhubung dengan Netlify, apa yang terjadi secara otomatis saat developer menjalankan perintah `git push` pembaruan kode?
+Setelah repositori GitHub terhubung ke Netlify, apa yang terjadi secara otomatis saat kita memperbarui berkas kode dan mengeklik tombol 'Commit changes' di web GitHub?
 
 - A. Website akan otomatis terhapus dari server cloud Netlify.
-- B. Netlify menerima sinyal Webhook dari GitHub, lalu secara otomatis merilis versi terbaru website tanpa perlu tindakan manual di Netlify Dashboard.
+- B. Netlify menerima notifikasi Webhook dari GitHub, lalu secara otomatis merilis versi terbaru website tanpa perlu tindakan manual di Netlify Dashboard.
 - C. Developer wajib login ke server Linux Netlify via SSH untuk merestart komputer server.
 - D. Netlify akan mematikan koneksi internet developer selama 24 jam.
 
@@ -211,10 +211,10 @@ Jawaban:
 - B
 
 Highlight Jika Jawaban Benar:
-- Tepat sekali. Inilah esensi Continuous Deployment (CI/CD): setiap push baru di branch main otomatis memicu proses deployment di Netlify tanpa intervensi manual.
+- Tepat sekali. Inilah keunggulan Continuous Deployment (CI/CD): setiap commit baru di branch main otomatis memicu proses rilis pembaruan di Netlify.
 
 Highlight Jika Jawaban Salah:
-- Kurang tepat. Berkat integrasi CI/CD Netlify, setiap kali ada commit baru yang di-push ke GitHub, Netlify secara otomatis mendeteksi dan memperbarui website live.
+- Kurang tepat. Berkat integrasi CI/CD Netlify, setiap kali ada commit perubahan baru yang disimpan di GitHub, Netlify secara otomatis mendeteksi dan memperbarui website live.
 
 ---
 
@@ -380,18 +380,18 @@ Highlight Jika Jawaban Salah:
 
 Soal 20
 
-Perintah Git mana yang paling tepat digunakan untuk memeriksa apakah ada berkas yang baru diubah, belum dipantau (untracked), atau sudah masuk ke staging area?
+Jika Anda menemukan kesalahan penulisan kecil (typo) pada teks berkas index.html yang sudah tersimpan di repositori GitHub, bagaimana cara tercepat memperbaikinya langsung via browser?
 
-- A. git status
-- B. git check
-- C. git view
-- D. git list
+- A. Klik nama berkas index.html di repositori GitHub, klik ikon pensil ('Edit this file'), ubah teksnya, lalu klik 'Commit changes'.
+- B. Menghapus seluruh akun GitHub dan mendaftar akun baru dari awal.
+- C. Menginstal ulang sistem operasi komputer dan memasang browser baru.
+- D. Menghubungi customer service Netlify agar mereka yang mengedit kode HTML kita.
 
 Jawaban: 
 - A
 
 Highlight Jika Jawaban Benar:
-- Tepat sekali. Perintah `git status` menampilkan rangkuman lengkap mengenai kondisi direktori kerja, staging area, dan berkas yang belum tercatat.
+- Tepat sekali. Fitur editor bawaan web GitHub via ikon pensil ('Edit this file') memungkinkan Anda memperbaiki kesalahan kecil secara instan dan langsung menyimpannya via 'Commit changes'.
 
 Highlight Jika Jawaban Salah:
-- Kurang tepat. Perintah standar Git untuk melihat status perubahan berkas secara rinci adalah `git status`.
+- Kurang tepat. Cara tercepat adalah membuka berkas di repositori GitHub, mengeklik ikon pensil ('Edit this file'), mengedit teks langsung, lalu mengeklik 'Commit changes'.

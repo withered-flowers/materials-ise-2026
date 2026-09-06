@@ -134,7 +134,7 @@ export const quizQuestions: QuizQuestion[] = [
   },
   {
     id: 5,
-    module: "Modul 2: Git dan GitHub",
+    module: "Modul 2: Pengelolaan Kode dengan GitHub Web",
     moduleCategory: "Modul 2",
     question: "Manakah pernyataan yang paling tepat mengenai perbedaan antara Git dan GitHub?",
     options: [
@@ -144,7 +144,7 @@ export const quizQuestions: QuizQuestion[] = [
       },
       {
         id: "B",
-        text: "Git adalah perangkat lunak lokal untuk mencatat riwayat perubahan kode, sedangkan GitHub adalah layanan cloud untuk menyimpan repository Git secara online."
+        text: "Git adalah sistem Version Control untuk mencatat riwayat perubahan kode, sedangkan GitHub adalah platform cloud untuk menyimpan dan mengelola repositori secara online via browser."
       },
       {
         id: "C",
@@ -156,121 +156,121 @@ export const quizQuestions: QuizQuestion[] = [
       }
     ],
     correctAnswer: "B",
-    correctFeedback: "Tepat sekali. Git adalah tool Version Control System yang terpasang di komputer lokal, sedangkan GitHub adalah platform web hosting untuk menyimpan dan membagikan repository Git di internet.",
-    incorrectFeedback: "Kurang tepat. Git adalah software kontrol versi di komputer lokal Anda, sementara GitHub adalah layanan hosting cloud untuk menyimpan salinan repository Git secara online.",
-    reference: "Modul 2: Penggunaan Git dan GitHub"
+    correctFeedback: "Tepat sekali. Git adalah konsep Version Control System, sedangkan GitHub adalah platform web hosting cloud untuk menyimpan dan mengelola repositori secara visual di internet.",
+    incorrectFeedback: "Kurang tepat. Git adalah sistem kontrol versi, sementara GitHub adalah platform cloud berbasis web untuk menyimpan dan membagikan repositori proyek secara online.",
+    reference: "Modul 2: Pengelolaan Kode dengan GitHub Web"
   },
   {
     id: 6,
-    module: "Modul 2: Git dan GitHub",
+    module: "Modul 2: Pengelolaan Kode dengan GitHub Web",
     moduleCategory: "Modul 2",
-    question: "Perintah Git apa yang digunakan pertama kali untuk menginisialisasi sebuah folder proyek agar mulai dipantau oleh Git?",
+    question: "Bagaimana cara termudah mengunduh seluruh berkas proyek starter code dari repositori GitHub ke komputer lokal tanpa menggunakan terminal?",
     options: [
       {
         id: "A",
-        text: "git start"
+        text: "Menyalin teks kode satu per satu dari browser ke dalam dokumen Microsoft Word."
       },
       {
         id: "B",
-        text: "git create"
+        text: "Menekan kombinasi tombol Ctrl + Alt + Delete pada keyboard."
       },
       {
         id: "C",
-        text: "git init"
+        text: "Mengklik tombol hijau '<> Code' pada repositori GitHub lalu memilih opsi 'Download ZIP'."
       },
       {
         id: "D",
-        text: "git setup"
+        text: "Mengirimkan email permohonan berkas secara manual ke kantor pusat GitHub."
       }
     ],
     correctAnswer: "C",
-    correctFeedback: "Tepat sekali. Perintah `git init` membuat folder tersembunyi `.git` yang mengaktifkan pelacakan Version Control pada folder proyek tersebut.",
-    incorrectFeedback: "Kurang tepat. Perintah yang benar untuk menginisialisasi repository Git baru di folder lokal adalah `git init`.",
-    reference: "Modul 2: Penggunaan Git dan GitHub"
+    correctFeedback: "Tepat sekali. Fitur 'Download ZIP' pada tombol '<> Code' memungkinkan Anda mengunduh seluruh isi proyek dalam satu berkas arsip zip yang siap diekstrak di komputer lokal.",
+    incorrectFeedback: "Kurang tepat. Cara resmi dan praktis untuk mengunduh kode starter dari GitHub via browser adalah mengeklik tombol '<> Code' lalu memilih opsi 'Download ZIP'.",
+    reference: "Modul 2: Pengelolaan Kode dengan GitHub Web"
   },
   {
     id: 7,
-    module: "Modul 2: Git dan GitHub",
+    module: "Modul 2: Pengelolaan Kode dengan GitHub Web",
     moduleCategory: "Modul 2",
-    question: "Dalam konsep 3 area kerja Git, apakah fungsi dari *Staging Area* yang diakses melalui perintah `git add`?",
+    question: "Saat membuat repositori baru di situs web GitHub untuk proyek website statis yang akan dideploy ke Netlify, pengaturan visibilitas apa yang wajib dipilih?",
     options: [
       {
         id: "A",
-        text: "Menghapus berkas kode yang memiliki bug secara otomatis sebelum disimpan ke harddisk."
+        text: "Secret"
       },
       {
         id: "B",
-        text: "Sebagai ruang persiapan untuk memilih dan mengumpulkan berkas yang akan disimpan ke dalam riwayat commit berikutnya."
+        text: "Public"
       },
       {
         id: "C",
-        text: "Mengunggah berkas secara langsung ke server cloud Netlify tanpa melalui repository GitHub."
+        text: "Archived"
       },
       {
         id: "D",
-        text: "Mengompresi seluruh folder proyek menjadi satu berkas arsip zip berukuran kecil."
+        text: "Internal Enterprise"
       }
     ],
     correctAnswer: "B",
-    correctFeedback: "Tepat sekali. Staging Area adalah ruang persiapan di mana Anda mengumpulkan berkas-berkas yang perubahannya siap dicatat dalam jepretan riwayat (commit).",
-    incorrectFeedback: "Kurang tepat. Staging area berfungsi sebagai tempat persiapan sebelum commit, di mana pengembang mengelompokkan berkas-berkas yang ingin disertakan dalam riwayat perubahan.",
-    reference: "Modul 2: Penggunaan Git dan GitHub"
+    correctFeedback: "Tepat sekali. Memilih opsi 'Public' memastikan repositori dapat diakses dan diimpor secara gratis dan lancar oleh Netlify Dashboard.",
+    incorrectFeedback: "Kurang tepat. Pengaturan visibilitas yang tepat untuk proyek latihan yang akan dideploy secara gratis di Netlify adalah 'Public'.",
+    reference: "Modul 2: Pengelolaan Kode dengan GitHub Web"
   },
   {
     id: 8,
-    module: "Modul 2: Git dan GitHub",
+    module: "Modul 2: Pengelolaan Kode dengan GitHub Web",
     moduleCategory: "Modul 2",
-    question: "Saat menjalankan perintah `git commit -m 'feat: tambah formulir kalkulator'`, apakah fungsi dari opsi flag `-m`?",
+    question: "Setelah membuat repositori baru di web GitHub, fitur apa yang digunakan untuk memasukkan berkas index.html, style.css, dan script.js langsung via browser?",
     options: [
       {
         id: "A",
-        text: "Menentukan nama branch tujuan pengiriman berkas."
+        text: "Mengirimkan berkas melalui fitur direct message obrolan ke akun teman."
       },
       {
         id: "B",
-        text: "Menyertakan pesan ringkas dan deskriptif mengenai perubahan apa yang baru saja disimpan."
+        text: "Memanfaatkan menu 'Add file' > 'Upload files' (atau tautan 'uploading an existing file') dengan metode tarik dan lepas (drag and drop)."
       },
       {
         id: "C",
-        text: "Memaksa penyimpanan file meskipun terdapat error sintaks pada kode HTML."
+        text: "Menempelkan seluruh berkas ke dalam kolom kotak pencarian (search bar) GitHub."
       },
       {
         id: "D",
-        text: "Mengaktifkan mode penyamaran agar identitas pembuat commit tidak terlihat di GitHub."
+        text: "Mengunggah berkas ke Google Drive lalu menempel tautannya di kolom komentar GitHub."
       }
     ],
     correctAnswer: "B",
-    correctFeedback: "Tepat sekali. Flag `-m` (singkatan dari message) digunakan untuk menuliskan pesan keterangan riwayat commit secara langsung di terminal.",
-    incorrectFeedback: "Kurang tepat. Flag `-m` pada perintah `git commit` berfungsi untuk menyertakan pesan commit yang mendeskripsikan perubahan yang dilakukan.",
-    reference: "Modul 2: Penggunaan Git dan GitHub"
+    correctFeedback: "Tepat sekali. Fitur 'Upload files' (atau tautan 'uploading an existing file') memungkinkan pengembang mengunggah berkas proyek langsung ke repositori GitHub via browser tanpa command line.",
+    incorrectFeedback: "Kurang tepat. Di GitHub Web, Anda dapat mengunggah berkas secara visual melalui menu 'Add file' > 'Upload files' dan menarik berkas ke browser.",
+    reference: "Modul 2: Pengelolaan Kode dengan GitHub Web"
   },
   {
     id: 9,
-    module: "Modul 2: Git dan GitHub",
+    module: "Modul 2: Pengelolaan Kode dengan GitHub Web",
     moduleCategory: "Modul 2",
-    question: "Perintah apa yang digunakan untuk menghubungkan repository lokal Anda ke repositori baru yang telah dibuat di GitHub?",
+    question: "Pada formulir *Commit changes* saat mengunggah atau mengedit berkas di web GitHub, mengapa menuliskan *Commit message* (pesan commit) yang jelas sangat penting?",
     options: [
       {
         id: "A",
-        text: "git connect github <URL>"
+        text: "Agar ukuran berkas HTML dan CSS otomatis mengecil menjadi nol kilobyte."
       },
       {
         id: "B",
-        text: "git remote add origin <URL>"
+        text: "Untuk mendokumentasikan riwayat perubahan proyek secara rapi sehingga tujuan dan isi perubahan mudah dipahami di masa depan."
       },
       {
         id: "C",
-        text: "git link repository <URL>"
+        text: "Karena GitHub akan menolak penyimpanan jika pesan commit tidak berima seperti bait puisi."
       },
       {
         id: "D",
-        text: "git attach origin <URL>"
+        text: "Untuk menyembunyikan identitas akun pemilik repositori dari publik."
       }
     ],
     correctAnswer: "B",
-    correctFeedback: "Tepat sekali. Perintah `git remote add origin <URL>` mendaftarkan alamat repositori GitHub remote dengan nama panggilan standar `origin`.",
-    incorrectFeedback: "Kurang tepat. Perintah resmi Git untuk menambahkan alamat server remote adalah `git remote add origin <URL>`.",
-    reference: "Modul 2: Penggunaan Git dan GitHub"
+    correctFeedback: "Tepat sekali. Pesan commit mendokumentasikan ringkasan tindakan yang Anda lakukan, sehingga riwayat perubahan proyek tercatat rapi dan mudah dilacak.",
+    incorrectFeedback: "Kurang tepat. Menuliskan pesan commit yang deskriptif bertujuan agar developer memahami maksud perubahan kode yang disimpan pada versi tersebut.",
+    reference: "Modul 2: Pengelolaan Kode dengan GitHub Web"
   },
   {
     id: 10,
@@ -304,7 +304,7 @@ export const quizQuestions: QuizQuestion[] = [
     id: 11,
     module: "Modul 3: Deploy Website Statis",
     moduleCategory: "Modul 3",
-    question: "Setelah repositori GitHub terhubung dengan Netlify, apa yang terjadi secara otomatis saat developer menjalankan perintah `git push` pembaruan kode?",
+    question: "Setelah repositori GitHub terhubung ke Netlify, apa yang terjadi secara otomatis saat kita memperbarui berkas kode dan mengeklik tombol 'Commit changes' di web GitHub?",
     options: [
       {
         id: "A",
@@ -312,7 +312,7 @@ export const quizQuestions: QuizQuestion[] = [
       },
       {
         id: "B",
-        text: "Netlify menerima sinyal Webhook dari GitHub, lalu secara otomatis merilis versi terbaru website tanpa perlu tindakan manual di Netlify Dashboard."
+        text: "Netlify menerima notifikasi Webhook dari GitHub, lalu secara otomatis merilis versi terbaru website tanpa perlu tindakan manual di Netlify Dashboard."
       },
       {
         id: "C",
@@ -324,8 +324,8 @@ export const quizQuestions: QuizQuestion[] = [
       }
     ],
     correctAnswer: "B",
-    correctFeedback: "Tepat sekali. Inilah esensi Continuous Deployment (CI/CD): setiap push baru di branch main otomatis memicu proses deployment di Netlify tanpa intervensi manual.",
-    incorrectFeedback: "Kurang tepat. Berkat integrasi CI/CD Netlify, setiap kali ada commit baru yang di-push ke GitHub, Netlify secara otomatis mendeteksi dan memperbarui website live.",
+    correctFeedback: "Tepat sekali. Inilah keunggulan Continuous Deployment (CI/CD): setiap commit baru di branch main otomatis memicu proses rilis pembaruan di Netlify.",
+    incorrectFeedback: "Kurang tepat. Berkat integrasi CI/CD Netlify, setiap kali ada commit perubahan baru yang disimpan di GitHub, Netlify secara otomatis mendeteksi dan memperbarui website live.",
     reference: "Modul 3: Deploy Website Statis ke Netlify"
   },
   {
@@ -556,28 +556,28 @@ export const quizQuestions: QuizQuestion[] = [
     id: 20,
     module: "Referensi: Cheatsheet & Troubleshooting",
     moduleCategory: "Referensi",
-    question: "Perintah Git mana yang paling tepat digunakan untuk memeriksa apakah ada berkas yang baru diubah, belum dipantau (untracked), atau sudah masuk ke staging area?",
+    question: "Jika Anda menemukan kesalahan penulisan kecil (typo) pada teks berkas index.html yang sudah tersimpan di repositori GitHub, bagaimana cara tercepat memperbaikinya langsung via browser?",
     options: [
       {
         id: "A",
-        text: "git status"
+        text: "Klik nama berkas index.html di repositori GitHub, klik ikon pensil ('Edit this file'), ubah teksnya, lalu klik 'Commit changes'."
       },
       {
         id: "B",
-        text: "git check"
+        text: "Menghapus seluruh akun GitHub dan mendaftar akun baru dari awal."
       },
       {
         id: "C",
-        text: "git view"
+        text: "Menginstal ulang sistem operasi komputer dan memasang browser baru."
       },
       {
         id: "D",
-        text: "git list"
+        text: "Menghubungi customer service Netlify agar mereka yang mengedit kode HTML kita."
       }
     ],
     correctAnswer: "A",
-    correctFeedback: "Tepat sekali. Perintah `git status` menampilkan rangkuman lengkap mengenai kondisi direktori kerja, staging area, dan berkas yang belum tercatat.",
-    incorrectFeedback: "Kurang tepat. Perintah standar Git untuk melihat status perubahan berkas secara rinci adalah `git status`.",
+    correctFeedback: "Tepat sekali. Fitur editor bawaan web GitHub via ikon pensil ('Edit this file') memungkinkan Anda memperbaiki kesalahan kecil secara instan dan langsung menyimpannya via 'Commit changes'.",
+    incorrectFeedback: "Kurang tepat. Cara tercepat adalah membuka berkas di repositori GitHub, mengeklik ikon pensil ('Edit this file'), mengedit teks langsung, lalu mengeklik 'Commit changes'.",
     reference: "Referensi & Troubleshooting"
   }
 ];

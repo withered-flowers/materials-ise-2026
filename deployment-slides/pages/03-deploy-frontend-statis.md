@@ -105,7 +105,7 @@ sequenceDiagram
     participant Netlify as Netlify Web Dashboard
     actor User as Pengunjung Website
 
-    Dev->>GH: git push origin main
+    Dev->>GH: Edit Kode / Unggah Berkas (Commit changes)
     GH-->>Netlify: Notifikasi Webhook Otomatis
     Netlify->>Netlify: Salin Berkas index.html, style.css, script.js
     Netlify-->>User: Akses Website Versi Terbaru (Live Global)!
@@ -145,16 +145,16 @@ layout: default
 
 # 6. Membuktikan Otomatisasi CI/CD
 
-Uji alur otomatisasi pembaruan kode secara langsung:
+Uji alur otomatisasi pembaruan kode langsung via browser:
 
 <ol class="space-y-3 mt-4 text-xs">
   <li class="p-3 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-    <span class="font-bold text-cyan-700 dark:text-cyan-400">1. Ubah Kode di VS Code:</span>
-    Edit teks judul di <code>index.html</code> atau warna tombol di <code>style.css</code>.
+    <span class="font-bold text-cyan-700 dark:text-cyan-400">1. Buka Repositori di GitHub:</span>
+    Buka berkas <code>style.css</code> atau <code>index.html</code> ➔ Klik ikon pensil (<b>"Edit this file"</b>) atau unggah berkas baru via <b>Upload files</b>.
   </li>
   <li class="p-3 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-    <span class="font-bold text-cyan-700 dark:text-cyan-400">2. Jalankan Perintah Git di Terminal:</span>
-    <pre class="bg-slate-200 dark:bg-slate-900 p-1.5 rounded text-cyan-800 dark:text-cyan-300 font-mono mt-1">git add . && git commit -m "style: ubah warna tombol" && git push</pre>
+    <span class="font-bold text-cyan-700 dark:text-cyan-400">2. Simpan Versi Baru (Commit changes):</span>
+    Tulis pesan commit (contoh: <code>style: ubah warna tombol</code>) ➔ Klik tombol hijau <b>Commit changes</b>.
   </li>
   <li class="p-3 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
     <span class="font-bold text-emerald-700 dark:text-emerald-400">3. Pantau Tab Deploys di Browser Netlify:</span>
@@ -206,7 +206,7 @@ layout: default
 
 <div class="flex items-center space-x-2">
   <carbon:checkmark-filled class="text-emerald-600 dark:text-emerald-400" />
-  <span><b>Otomatisasi CI/CD:</b> Cukup <code>git push</code>, website langsung terperbarui otomatis secara instan.</span>
+  <span><b>Otomatisasi CI/CD:</b> Cukup <i>Commit changes</i> di GitHub Web, website langsung terperbarui otomatis secara instan.</span>
 </div>
 
 <div class="flex items-center space-x-2">
