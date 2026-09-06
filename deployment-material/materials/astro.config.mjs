@@ -78,9 +78,9 @@ export default defineConfig({
           label: "Modul Pembelajaran",
           items: [
             { label: "Modul 1: Konsep Dasar Deployment", slug: "modul-1/konsep-deployment" },
-            { label: "Modul 2: Deploy Frontend Statis", slug: "modul-2/deploy-frontend" },
-            { label: "Modul 3: Deploy Backend TypeScript", slug: "modul-3/deploy-backend" },
-            { label: "Modul 4: Deploy Fullstack App", slug: "modul-4/deploy-fullstack" },
+            { label: "Modul 2: Git dan GitHub", slug: "modul-2/git-dan-github" },
+            { label: "Modul 3: Deploy Website Statis", slug: "modul-3/deploy-frontend-statis" },
+            { label: "Modul 4: Benchmark Performa Lighthouse", slug: "modul-4/benchmark-lighthouse" },
           ],
         },
         {

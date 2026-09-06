@@ -4,7 +4,7 @@ theme: default
 title: Belajar Deployment Aplikasi Web di Netlify
 info: |
   ## Panduan Deployment Netlify
-  Slide presentasi pembelajaran deployment frontend, backend serverless TypeScript, dan fullstack app di Netlify.
+  Slide presentasi pembelajaran deployment website statis, penggunaan Git & GitHub, serta benchmark performa dengan Google Lighthouse di Netlify.
 fonts:
   sans: Inter
   serif: Inter
@@ -19,15 +19,15 @@ src: ./pages/01-konsep-deployment.md
 ---
 
 ---
-src: ./pages/02-deploy-frontend.md
+src: ./pages/02-git-dan-github.md
 ---
 
 ---
-src: ./pages/03-deploy-backend.md
+src: ./pages/03-deploy-frontend-statis.md
 ---
 
 ---
-src: ./pages/04-deploy-fullstack.md
+src: ./pages/04-benchmark-lighthouse.md
 ---
 
 ---

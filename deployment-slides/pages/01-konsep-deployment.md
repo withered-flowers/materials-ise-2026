@@ -5,25 +5,25 @@ layout: section
 # Modul 1
 ## Konsep Dasar Deployment
 
-Memahami apa itu deployment, perbedaan antara lingkungan Local vs Production, serta arsitektur cloud modern untuk developer junior.
+Memahami konsep dasar deployment, perbedaan lingkungan Local vs Production, serta infrastruktur cloud modern untuk pemula.
 
 ---
 layout: default
 ---
 
-# 1. Apa Itu Deployment?
+# 1. Pengertian Deployment
 
-**Deployment** (Penggelaran / Penyebaran) adalah proses memindahkan aplikasi web yang telah selesai dibuat di komputer lokal (*Local Environment*) ke server cloud publik (*Production Environment*) sehingga dapat diakses melalui internet.
+**Deployment** adalah proses memindahkan atau merilis aplikasi web dari komputer lokal (*Local Environment*) ke server cloud publik (*Production Environment*) sehingga dapat diakses oleh siapa saja melalui internet.
 
-### Mengapa Kita Membutuhkan Deployment?
+### Mengapa Deployment Diperlukan?
 
-Ketika Anda menjalankan aplikasi di komputer sendiri (`localhost:3000` atau `localhost:8888`), aplikasi tersebut **hanya bisa diakses oleh komputer Anda sendiri**. Pengguna internet lain tidak memiliki akses ke harddisk atau jaringan komputer lokal Anda.
+Ketika Anda menjalankan website di komputer sendiri (`localhost:3000` atau `localhost:8888`), website tersebut **hanya bisa dibuka oleh komputer Anda sendiri**. Pengguna internet di luar tidak memiliki izin atau akses ke penyimpanan komputer pribadi Anda.
 
 <div class="mt-6 p-4 rounded-lg bg-blue-50 dark:bg-blue-950/40 border-l-4 border-blue-500 text-blue-950 dark:text-blue-100">
-  <div class="font-bold text-blue-700 dark:text-blue-400">💡 Analogi Sederhana</div>
-  <div class="text-sm mt-1 leading-relaxed">
-    Menulis kode di komputer lokal diibaratkan seperti <b>mengarang buku di buku catatan pribadi Anda</b>. 
-    Deployment adalah proses <b>mencetak buku tersebut dan meletakkannya di rak toko buku publik</b> agar siapa saja dapat membacanya.
+  <div class="font-bold text-blue-700 dark:text-blue-400">Analogi Sederhana</div>
+  <div class="text-xs mt-1 leading-relaxed">
+    Menulis kode di komputer lokal diibaratkan seperti <b>menulis catatan pada buku harian pribadi</b>. 
+    Deployment adalah proses <b>mencetak tulisan tersebut dan menaruhnya di rak perpustakaan publik</b> agar dapat dibaca oleh masyarakat umum.
   </div>
 </div>
 
@@ -33,86 +33,79 @@ layout: default
 
 # 2. Perbedaan Lingkungan: Local vs Production
 
-Dalam dunia pengembangan perangkat lunak (*software development*), terdapat pemisahan lingkungan (*environment*) kerja:
+Dalam dunia pengembangan perangkat lunak, lingkungan kerja dipisahkan secara tegas:
 
 ```mermaid {scale: 0.65}
 graph LR
-    subgraph Local ["💻 Lingkungan Lokal (Local Host)"]
-        L1[Komputer Developer] --> L2[RAM & Server Lokal]
+    subgraph Local ["Lingkungan Lokal (Localhost)"]
+        L1[Komputer Anda] --> L2[Penyimpanan Lokal]
         L2 --> L3["localhost:8888 (Privat)"]
     end
     
-    subgraph Cloud ["☁️ Netlify Cloud (Production)"]
-        P1[Global CDN / AWS] --> P2[HTTPS / SSL Auto]
-        P2 --> P3["https://myapp.netlify.app (Publik)"]
+    subgraph Cloud ["Netlify Cloud (Production)"]
+        P1[Server Global CDN] --> P2[Enkripsi HTTPS / SSL]
+        P2 --> P3["https://situs-anda.netlify.app (Publik)"]
     end
 
-    Local -- "Git Push / Netlify CLI Deploy" --> Cloud
+    Local -- "Git Push ke GitHub -> Netlify" --> Cloud
 ```
 
-<div class="mt-2 text-xs opacity-75 text-center"> Alur perpindahan kode dari komputer pengembang menuju platform hosting cloud publik</div>
+<div class="mt-2 text-xs opacity-75 text-center">Alur perpindahan kode dari komputer lokal menuju platform hosting cloud publik</div>
 
 ---
 layout: default
 ---
 
-# 2. Perbedaan Local vs Production (Tabel)
+# 2. Tabel Perbandingan Local vs Production
 
 <div class="text-xs">
 
-| Fitur / Karakteristik | Lingkungan Lokal (*Local Environment*) | Lingkungan Produksi (*Production Environment*) |
+| Karakteristik | Lingkungan Lokal (*Local Environment*) | Lingkungan Produksi (*Production Environment*) |
 | :--- | :--- | :--- |
-| **Alamat URL** | `http://localhost:3000` atau `127.0.0.1` | `https://aplikasiku.netlify.app` / custom domain |
-| **Aksesibilitas** | Hanya komputer Anda sendiri | Publik (Siapa saja yang terkoneksi internet) |
-| **Keamanan (SSL)** | `http://` tanpa enkripsi | `https://` dengan sertifikat SSL aktif |
-| **Database & API** | Database tiruan/lokal (`localhost:5432`) | Database cloud terenkripsi & skala besar |
-| **Variabel Rahasia** | File `.env` lokal | Netlify Dashboard Environment Variables |
-| **Toleransi Error** | Error ditampilkan lengkap di layar browser | Error disembunyikan untuk keamanan pengguna |
+| **Alamat URL** | `http://localhost:3000` atau `http://127.0.0.1` | `https://situs-anda.netlify.app` atau domain sendiri |
+| **Aksesibilitas** | Hanya komputer Anda sendiri | Publik (seluruh pengguna internet) |
+| **Keamanan (Protokol)** | `http://` tanpa enkripsi | `https://` dengan sertifikat SSL aktif |
+| **Konektivitas** | Berjalan secara *offline* atau jaringan lokal | Wajib terkoneksi ke jaringan internet |
+| **Penanganan Error** | Pesan kesalahan ditampilkan detail untuk perbaikan | Pesan kesalahan internal disembunyikan demi keamanan |
 
+</div>
+
+<div class="mt-4 p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs">
+  <b>Keamanan:</b> Di lingkungan produksi, detail <i>stack trace</i> error sengaja disembunyikan agar pihak luar tidak mengetahui celah atau struktur internal sistem (mencegah <i>Information Disclosure</i>).
 </div>
 
 ---
 layout: default
 ---
 
-# 3. Komponen Utama Aplikasi Web di Cloud
+# 3. Komponen Utama Infrastruktur Web Cloud
 
 <div class="grid grid-cols-2 gap-4 mt-4">
 
 <div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
-  <div class="font-bold text-cyan-700 dark:text-cyan-400 text-base mb-1">A. Web Hosting / Server Cloud</div>
+  <div class="font-bold text-cyan-700 dark:text-cyan-400 text-sm mb-1">A. Web Hosting & CDN</div>
   <div class="text-xs opacity-90 leading-relaxed">
-    Tempat penyimpanan file HTML, CSS, JS, dan kode backend agar dapat dieksekusi 24/7. Netlify menggunakan <b>CDN (Content Delivery Network)</b> global untuk menduplikasi file ke puluhan server di seluruh dunia.
+    • <b>Hosting:</b> Server yang terus menyala 24/7 menyimpan berkas web.<br>
+    • <b>CDN (Content Delivery Network):</b> Jaringan server global yang menduplikasi berkas website ke puluhan lokasi agar pemuatan halaman sangat cepat.
   </div>
 </div>
 
 <div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
-  <div class="font-bold text-emerald-700 dark:text-emerald-400 text-base mb-1">B. Nama Domain & DNS</div>
+  <div class="font-bold text-emerald-700 dark:text-emerald-400 text-sm mb-1">B. Nama Domain & DNS</div>
   <div class="text-xs opacity-90 leading-relaxed">
-    • <b>IP Address</b>: Alamat numerik server (contoh: <code>75.2.60.5</code>).<br>
-    • <b>Domain Name</b>: Nama mudah diingat (<code>google.com</code> atau <code>my-app.netlify.app</code>).<br>
-    • <b>DNS</b>: Buku telepon internet yang menerjemahkan Domain ke IP Address.
+    • <b>IP Address:</b> Alamat numerik server (contoh: <code>75.2.60.5</code>).<br>
+    • <b>Domain:</b> Nama alamat web yang mudah diingat manusia.<br>
+    • <b>DNS:</b> Sistem penerjemah nama domain menjadi IP address.
   </div>
 </div>
 
-<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
-  <div class="font-bold text-amber-700 dark:text-amber-400 text-base mb-1">C. SSL / HTTPS Certificate</div>
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 col-span-2">
+  <div class="font-bold text-amber-700 dark:text-amber-400 text-sm mb-1">C. Protokol HTTPS & Sertifikat SSL</div>
   <div class="text-xs opacity-90 leading-relaxed">
-    Enkripsi keamanan berikon gembok di browser. Memastikan data pengguna (password, data sensitif) tidak diintip pihak ketiga. Netlify memberikan <b>SSL Gratis (Let's Encrypt)</b> otomatis!
+    Protokol transfer data terenkripsi berikon gembok di browser. Menjamin data pengunjung tidak disadap di jaringan. Netlify memberikan <b>Sertifikat SSL Gratis (Let's Encrypt)</b> secara otomatis pada setiap website yang di-deploy!
   </div>
 </div>
 
-<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
-  <div class="font-bold text-purple-700 dark:text-purple-400 text-base mb-1">D. Environment Variables</div>
-  <div class="text-xs opacity-90 leading-relaxed">
-    Tempat menyimpan kunci rahasia (<i>API Key</i>, <i>Database URL</i>, <i>Secret Key</i>) agar tidak ditulis langsung di dalam source code (<i>hardcoded</i>).
-  </div>
-</div>
-
-</div>
-
-<div class="mt-4 p-3 rounded-lg bg-red-50 dark:bg-red-950/40 border-l-4 border-red-500 text-xs text-red-950 dark:text-red-100">
-  <span class="font-bold text-red-700 dark:text-red-400">⚠️ Penting untuk Keamanan:</span> Jangan pernah mengunggah file <code>.env</code> atau <i>Secret API Key</i> ke repository GitHub publik! Selalu gunakan menu <i>Environment Variables</i> di platform hosting.
 </div>
 
 ---
@@ -123,15 +116,15 @@ layout: default
 
 Netlify mendukung alur kerja modern **Continuous Integration & Continuous Deployment (CI/CD)**:
 
-<div class="grid grid-cols-2 gap-4 mt-2 items-center">
+<div class="grid grid-cols-2 gap-4 mt-4 items-center">
 
 <div>
   <ol class="space-y-2 text-xs">
-    <li><span class="font-bold text-cyan-700 dark:text-cyan-400">Developer Menulis Kode</span> di VS Code lokal.</li>
-    <li><span class="font-bold text-cyan-700 dark:text-cyan-400">Commit & Push</span> kode ke GitHub repository.</li>
-    <li><span class="font-bold text-cyan-700 dark:text-cyan-400">Netlify Mendeteksi</span> perubahan otomatis via Webhook.</li>
-    <li><span class="font-bold text-cyan-700 dark:text-cyan-400">Process Build</span> dijalankan di cloud Netlify.</li>
-    <li><span class="font-bold text-cyan-700 dark:text-cyan-400">Aplikasi Ter-update</span> secara otomatis tanpa downtime!</li>
+    <li><span class="font-bold text-cyan-700 dark:text-cyan-400">1. Menulis Kode:</span> Mengembangkan website di VS Code komputer lokal.</li>
+    <li><span class="font-bold text-cyan-700 dark:text-cyan-400">2. Commit & Push:</span> Mengunggah pembaruan kode ke repositori GitHub.</li>
+    <li><span class="font-bold text-cyan-700 dark:text-cyan-400">3. Notifikasi Webhook:</span> GitHub memberi tahu Netlify saat ada perubahan kode baru.</li>
+    <li><span class="font-bold text-cyan-700 dark:text-cyan-400">4. Publikasi Global:</span> Netlify mendistribusikan berkas ke jaringan CDN.</li>
+    <li><span class="font-bold text-cyan-700 dark:text-cyan-400">5. Website Ter-update:</span> Live otomatis tanpa jeda (*zero downtime*).</li>
   </ol>
 </div>
 
@@ -139,9 +132,9 @@ Netlify mendukung alur kerja modern **Continuous Integration & Continuous Deploy
 
 ```mermaid {scale: 0.6}
 graph TD
-    A["💻 Kode Lokal (VS Code)"] -- "git push" --> B["🐙 GitHub Repository"]
-    B -- "Webhook" --> C["☁️ Netlify Build Engine"]
-    C -- "Auto Deploy" --> D["🚀 Live Website (CDN)"]
+    A["Kode Komputer Lokal"] -- "git push" --> B["GitHub Repository"]
+    B -- "Webhook Otomatis" --> C["Netlify Build Engine"]
+    C -- "Auto Deploy" --> D["Website Live (CDN Global)"]
 ```
 
 </div>
@@ -152,32 +145,32 @@ graph TD
 layout: default
 ---
 
-# 💡 Ringkasan Modul 1
+# Ringkasan Modul 1
 
 <div class="p-4 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 space-y-3 mt-4 text-xs">
 
 <div class="flex items-center space-x-2">
   <carbon:checkmark-filled class="text-emerald-600 dark:text-emerald-400" />
-  <span><b>Pengertian Deployment:</b> Memindahkan aplikasi dari komputer lokal ke server cloud publik.</span>
+  <span><b>Pengertian Deployment:</b> Proses merilis berkas website dari komputer lokal ke server internet publik.</span>
 </div>
 
 <div class="flex items-center space-x-2">
   <carbon:checkmark-filled class="text-emerald-600 dark:text-emerald-400" />
-  <span><b>Local vs Production:</b> Privasi <code>localhost</code> vs Keamanan & Aksesibilitas Publik Cloud.</span>
+  <span><b>Local vs Production:</b> Privasi <code>localhost</code> vs aksesibilitas dan keamanan publik cloud.</span>
 </div>
 
 <div class="flex items-center space-x-2">
   <carbon:checkmark-filled class="text-emerald-600 dark:text-emerald-400" />
-  <span><b>Komponen Cloud:</b> CDN Hosting, Domain/DNS, SSL HTTPS Gratis, dan Environment Variables.</span>
+  <span><b>Infrastruktur Cloud:</b> CDN untuk kecepatan akses, DNS untuk penerjemah domain, dan SSL untuk enkripsi HTTPS.</span>
 </div>
 
 <div class="flex items-center space-x-2">
   <carbon:checkmark-filled class="text-emerald-600 dark:text-emerald-400" />
-  <span><b>Otomatisasi CI/CD:</b> Perubahan di GitHub langsung ter-deploy otomatis ke Netlify CDN.</span>
+  <span><b>Alur CI/CD:</b> Perubahan kode di GitHub secara otomatis memicu pembaruan website di Netlify.</span>
 </div>
 
 </div>
 
 <div class="mt-8 text-center text-sm text-cyan-700 dark:text-cyan-400 font-bold">
-  Selanjutnya di Modul 2 ➔ Deploy Frontend Statis (Vanilla HTML/CSS/JS) ke Netlify!
+  Selanjutnya di Modul 2 ➔ Penggunaan Git dan GitHub untuk Pengembang Pemula!
 </div>

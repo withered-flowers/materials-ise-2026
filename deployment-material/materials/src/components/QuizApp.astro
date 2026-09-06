@@ -206,10 +206,10 @@ import Leaderboard from './Leaderboard.astro';
     <!-- MODULE FILTER TABS -->
     <div class="quiz-filter-tabs">
       <button type="button" class="filter-tab active" data-filter="all">Semua ({quizQuestions.length})</button>
-      <button type="button" class="filter-tab" data-filter="Modul 1">Modul 1 (5)</button>
-      <button type="button" class="filter-tab" data-filter="Modul 2">Modul 2 (8)</button>
-      <button type="button" class="filter-tab" data-filter="Modul 3">Modul 3 (3)</button>
-      <button type="button" class="filter-tab" data-filter="Modul 4">Modul 4 (3)</button>
+      <button type="button" class="filter-tab" data-filter="Modul 1">Modul 1 (4)</button>
+      <button type="button" class="filter-tab" data-filter="Modul 2">Modul 2 (5)</button>
+      <button type="button" class="filter-tab" data-filter="Modul 3">Modul 3 (5)</button>
+      <button type="button" class="filter-tab" data-filter="Modul 4">Modul 4 (5)</button>
       <button type="button" class="filter-tab" data-filter="Referensi">Referensi (1)</button>
     </div>
 
@@ -596,11 +596,11 @@ import Leaderboard from './Leaderboard.astro';
     let unansweredCount = 0;
 
     const moduleStats = {
-      'Modul 1': { total: 0, correct: 0, title: 'Modul 1: Konsep Deployment' },
-      'Modul 2': { total: 0, correct: 0, title: 'Modul 2: Deploy Frontend Statis' },
-      'Modul 3': { total: 0, correct: 0, title: 'Modul 3: Deploy Backend TypeScript' },
-      'Modul 4': { total: 0, correct: 0, title: 'Modul 4: Deploy Fullstack App' },
-      'Referensi': { total: 0, correct: 0, title: 'Referensi & Cheatsheet' }
+      'Modul 1': { total: 0, correct: 0, title: 'Modul 1: Konsep Dasar Deployment' },
+      'Modul 2': { total: 0, correct: 0, title: 'Modul 2: Git dan GitHub' },
+      'Modul 3': { total: 0, correct: 0, title: 'Modul 3: Deploy Website Statis' },
+      'Modul 4': { total: 0, correct: 0, title: 'Modul 4: Benchmark Performa Lighthouse' },
+      'Referensi': { total: 0, correct: 0, title: 'Referensi & Troubleshooting' }
     };
 
     quizData.forEach((q) => {

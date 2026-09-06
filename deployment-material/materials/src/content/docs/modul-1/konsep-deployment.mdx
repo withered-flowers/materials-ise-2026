@@ -1,109 +1,107 @@
 ---
 title: "Modul 1: Konsep Dasar Deployment"
-description: Memahami apa itu deployment, perbedaan antara lingkungan Local vs Production, serta arsitektur cloud modern untuk developer junior.
+description: Memahami konsep dasar deployment, perbedaan lingkungan Local vs Production, serta infrastruktur cloud modern untuk pemula.
 ---
 
 import { Steps } from '@astrojs/starlight/components';
 
-Selamat datang di **Modul 1**! Sebagai seorang *developer*, tahap pertama dalam membuat aplikasi adalah menulis kode di komputer lokal Anda. Namun, agar aplikasi tersebut dapat diakses oleh pengguna dari seluruh dunia melalui browser, kode tersebut harus melalui proses yang disebut **Deployment**.
+Saat Anda mulai belajar pemrograman web, langkah pertama biasanya adalah menulis kode di komputer pribadi dan membukanya melalui browser di alamat seperti `localhost` atau membuka file HTML secara langsung. Namun, website tersebut belum dapat dilihat oleh orang lain di internet.
+
+Agar website yang telah Anda buat dapat diakses oleh siapa saja dari mana saja, berkas-berkas kode tersebut harus melalui tahapan yang disebut **deployment**.
 
 ---
 
-## 1. Apa Itu Deployment?
+## 1. Pengertian Deployment
 
-**Deployment** (Penggelaran/Penyebaran) adalah proses memindahkan aplikasi web yang telah selesai dibuat di komputer lokal (*Local Environment*) ke server cloud publik (*Production Environment*) sehingga dapat diakses melalui internet menggunakan nama domain (seperti `https://nama-aplikasi.netlify.app`).
+**Deployment** adalah proses memindahkan atau merilis aplikasi web dari komputer lokal (*Local Environment*) ke server yang terhubung dengan internet publik (*Production Environment*), sehingga website memiliki alamat resmi (seperti `https://nama-aplikasi.netlify.app`) dan dapat dikunjungi oleh pengguna secara online.
 
-### Mengapa Kita Membutuhkan Deployment?
+### Mengapa Deployment Diperlukan?
 
-Ketika Anda menjalankan aplikasi di komputer sendiri (`localhost:3000` atau `localhost:8888`), aplikasi tersebut hanya bisa diakses oleh komputer Anda sendiri. Pengguna internet lain tidak memiliki akses ke harddisk atau jaringan komputer lokal Anda.
+Ketika Anda membuat website di komputer sendiri, berkas HTML, CSS, dan JavaScript berada di penyimpanan lokal (harddisk/SSD komputer Anda). Pengguna internet di luar jaringan Anda tidak memiliki izin maupun jalur untuk mengakses komputer pribadi Anda.
 
 :::note[Analogi Sederhana]
-Menulis kode di komputer lokal diibaratkan seperti mengarang buku di buku catatan pribadi Anda. Deployment adalah proses mencetak buku tersebut dan meletakkannya di rak toko buku publik agar siapa saja dapat membacanya.
+Menulis kode di komputer lokal diibaratkan seperti menulis catatan pada buku harian pribadi. Orang lain belum bisa membacanya. Deployment adalah proses mencetak tulisan tersebut dan memajangnya di perpustakaan atau toko buku publik agar dapat dibaca oleh masyarakat umum.
 :::
 
 ---
 
 ## 2. Perbedaan Lingkungan: Local vs Production
 
-Dalam dunia pengembangan perangkat lunak (*software development*), terdapat pemisahan lingkungan (*environment*) kerja. Berikut adalah perbandingan antara **Local Environment** dan **Production Environment**:
+Dalam dunia pengembangan perangkat lunak, lingkungan kerja dipisahkan menjadi dua bagian utama:
 
 ```mermaid
 graph LR
-    subgraph Local ["💻 Lingkungan Lokal (Local Host)"]
-        L1[Komputer Developer] --> L2[RAM & Server Lokal]
+    subgraph Local ["Lingkungan Lokal (Localhost)"]
+        L1[Komputer Anda] --> L2[Penyimpanan Lokal]
         L2 --> L3["localhost:8888 (Privat)"]
     end
     
-    subgraph Cloud ["☁️ Netlify Cloud (Production)"]
-        P1[Global CDN / AWS] --> P2[HTTPS / SSL Auto]
-        P2 --> P3["https://myapp.netlify.app (Publik)"]
+    subgraph Cloud ["Netlify Cloud (Production)"]
+        P1[Server Global CDN] --> P2[Enkripsi HTTPS / SSL]
+        P2 --> P3["https://situs-anda.netlify.app (Publik)"]
     end
 
-    Local -- "Git Push / Netlify CLI Deploy" --> Cloud
+    Local -- "Git Push ke GitHub -> Netlify" --> Cloud
 ```
 
-| Fitur / Karakteristik | Lingkungan Lokal (*Local Environment*) | Lingkungan Produksi (*Production Environment*) |
+Berikut adalah tabel perbandingan antara lingkungan lokal dan lingkungan produksi:
+
+| Karakteristik | Lingkungan Lokal (*Local Environment*) | Lingkungan Produksi (*Production Environment*) |
 | :--- | :--- | :--- |
-| **Alamat URL** | `http://localhost:3000` atau `http://127.0.0.1` | `https://aplikasiku.netlify.app` atau `https://mycompany.com` |
-| **Aksesibilitas** | Hanya komputer Anda sendiri | Publik (Siapa saja yang memiliki koneksi internet) |
-| **Keamanan (SSL/HTTPS)** | `http://` tanpa enkripsi | `https://` dengan sertifikat SSL aktif |
-| **Database & API** | Database tiruan/lokal (`localhost:5432`) | Database cloud terenkripsi & skala besar |
-| **Variabel Rahasia** | File `.env` lokal | Netlify Dashboard Environment Variables |
-| **Toleransi Error** | Error ditampilkan lengkap di layar browser | Error disembunyikan untuk keamanan pengguna |
+| **Alamat URL** | `http://localhost:3000` atau `http://127.0.0.1` | `https://nama-website.netlify.app` atau domain sendiri |
+| **Aksesibilitas** | Hanya komputer Anda sendiri | Publik (seluruh pengguna internet) |
+| **Keamanan (Protokol)** | `http://` tanpa enkripsi | `https://` dengan sertifikat SSL aktif |
+| **Konektivitas** | Berjalan secara *offline* atau jaringan lokal | Wajib terkoneksi ke jaringan internet |
+| **Penanganan Error** | Pesan kesalahan ditampilkan detail untuk proses perbaikan | Pesan kesalahan internal disembunyikan demi keamanan |
 
 ---
 
-## 3. Komponen Utama Aplikasi Web di Cloud
+## 3. Komponen Utama Infrastruktur Web Cloud
 
-Sebelum kita mulai me-deploy ke Netlify, penting untuk memahami 4 komponen dasar arsitektur web:
+Sebelum mempraktikkan proses deployment, penting bagi pemula untuk memahami istilah dasar dalam infrastruktur web:
 
-### A. Web Hosting / Server Cloud
-Tempat penyimpanan file HTML, CSS, JavaScript, dan kode backend agar dapat dieksekusi 24/7. Netlify menggunakan arsitektur **CDN (Content Delivery Network)** global, artinya file web Anda akan diduplikasi ke puluhan server di berbagai belahan dunia agar pemuatan halaman terasa sangat cepat.
+### A. Web Hosting dan Content Delivery Network (CDN)
+- **Web Hosting**: Komputer server yang terus menyala 24 jam sehari untuk menyimpan berkas website Anda agar dapat diakses kapan saja.
+- **Content Delivery Network (CDN)**: Jaringan server yang tersebar di berbagai wilayah di dunia. Netlify menyalin berkas website Anda ke puluhan server CDN tersebut, sehingga saat pengunjung membuka website dari Indonesia, berkas akan dikirim dari server terdekat agar halaman termuat sangat cepat.
 
-### B. Nama Domain & DNS
-- **IP Address**: Alamat numerik server (contoh: `75.2.60.5`).
-- **Domain Name**: Nama yang mudah diingat manusia (contoh: `google.com` atau `my-app.netlify.app`).
-- **DNS (Domain Name System)**: Buku telepon internet yang menerjemahkan nama domain menjadi IP Address server.
+### B. Nama Domain dan DNS
+- **IP Address**: Alamat numerik unik server (misalnya: `75.2.60.5`).
+- **Domain Name**: Nama alamat website yang mudah dibaca dan diingat oleh manusia (misalnya: `google.com` atau `kalkulator-diskon.netlify.app`).
+- **DNS (Domain Name System)**: Sistem yang bekerja seperti buku kontak telepon internet. DNS menerjemahkan nama domain yang Anda ketik di browser menjadi alamat IP server tujuan.
 
-### C. SSL / HTTPS Certificate
-Enkripsi keamanan yang ditandai dengan ikon gembok di browser. SSL memastikan data yang dikirim pengguna (seperti kata sandi atau data pembayaran) tidak dapat diintip oleh pihak ketiga di jaringan. Netlify memberikan **SSL Gratis (Let's Encrypt)** secara otomatis pada setiap aplikasi yang di-deploy!
-
-### D. Environment Variables (Variabel Lingkungan)
-Tempat menyimpan kunci rahasia (*API Key*, *Database URL*, *Secret Key*) agar tidak ditulis langsung di dalam source code (*hardcoded*).
-
-:::danger[Penting untuk Keamanan!]
-Jangan pernah mengunggah file `.env` atau *Secret API Key* ke repository GitHub publik! Selalu gunakan menu *Environment Variables* di platform hosting seperti Netlify.
-:::
+### C. Protokol HTTPS dan Sertifikat SSL
+- **HTTPS (Hypertext Transfer Protocol Secure)**: Protokol komunikasi data terenkripsi yang ditandai dengan ikon gembok di *address bar* browser.
+- Protokol ini memastikan bahwa data yang dikirimkan antara browser pengunjung dan server tidak dapat disadap oleh pihak ketiga. Netlify menyediakan sertifikat SSL gratis (*Let's Encrypt*) secara otomatis untuk setiap website yang di-deploy.
 
 ---
 
-## 4. Alur Kerja Otomatisasi (CI/CD)
+## 4. Alur Kerja Otomatisasi Deployment (CI/CD)
 
-Netlify mendukung alur kerja modern yang disebut **Continuous Integration & Continuous Deployment (CI/CD)**.
+Pada era modern, developer tidak lagi mengunggah berkas website secara manual satu per satu menggunakan aplikasi transfer file lama. Standar industri saat ini menggunakan alur **Continuous Integration & Continuous Deployment (CI/CD)**:
 
 <Steps>
-1. **Developer menulis kode** di komputer lokal (VS Code).
-2. **Commit & Push** kode ke GitHub/GitLab repository.
-3. **Netlify mendeteksi perubahan** secara otomatis via Webhook.
-4. **Netlify menjalankan proses Build** di cloud.
-5. **Aplikasi ter-update secara otomatis** dalam hitungan detik tanpa downtime!
+1. **Menulis Kode**: Anda membuat atau memperbarui website di komputer lokal menggunakan teks editor (misalnya Visual Studio Code).
+2. **Menyimpan Versi**: Anda mencatat perubahan kode dan mengirimkannya (*push*) ke layanan **GitHub**.
+3. **Pemicu Otomatis (Webhook)**: GitHub memberi tahu Netlify bahwa terdapat versi kode terbaru.
+4. **Proses Rilis Cloud**: Netlify menyalin berkas website ke jaringan CDN global secara otomatis.
+5. **Website Terperbarui**: Dalam hitungan detik, pengguna di seluruh dunia sudah dapat melihat versi terbaru tanpa ada jeda (*downtime*).
 </Steps>
 
 ```mermaid
 graph TD
-    A["💻 Kode Lokal (VS Code)"] -- "git push" --> B["🐙 GitHub Repository"]
-    B -- "Webhook" --> C["☁️ Netlify Build Engine"]
-    C -- "Auto Deploy" --> D["🚀 Live Website (CDN)"]
+    A["Kode di Komputer Lokal"] -- "git push" --> B["GitHub Repository"]
+    B -- "Webhook Otomatis" --> C["Netlify Build & Deploy Engine"]
+    C -- "Publikasi Global" --> D["Website Live di CDN Netlify"]
 ```
 
 ---
 
-## 5. Ringkasan & Langkah Selanjutnya
+## 5. Ringkasan Pembelajaran
 
-Di modul ini Anda telah mempelajari:
-- Apa itu deployment dan mengapa aplikasi lokal harus di-deploy.
-- Perbedaan mendasar antara `localhost` (lokal) dan `Production` (cloud).
-- Konsep CDN, SSL, DNS, dan Environment Variables.
-- Cara kerja CI/CD otomatis pada Netlify.
+Pada Modul 1 ini, Anda telah memahami konsep penting:
+- Pengertian deployment sebagai proses membawa aplikasi dari lingkungan lokal ke server publik internet.
+- Perbedaan utama antara `localhost` (khusus komputer pribadi) dan lingkungan produksi (dapat diakses masyarakat umum).
+- Peran CDN dalam mempercepat loading web, fungsi DNS sebagai penerjemah nama domain, serta pentingnya HTTPS/SSL untuk keamanan.
+- Gambaran umum alur kerja otomatisasi rilis menggunakan Git, GitHub, dan platform hosting Netlify.
 
-Pada **Modul 2**, kita akan langsung mempraktikkan deployment pertama kita: **Menyebarkan Website Statis (Vanilla HTML/CSS/JS)** ke Netlify!
+Pada **Modul 2**, kita akan mempelajari dasar-dasar **Git dan GitHub** sebagai jembatan utama untuk mengelola kode sebelum melakukan deployment.

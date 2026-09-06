@@ -22,569 +22,562 @@ export interface QuizQuestion {
 export const quizQuestions: QuizQuestion[] = [
   {
     id: 1,
-    module: "Modul 1: Konsep Deployment",
+    module: "Modul 1: Konsep Dasar Deployment",
     moduleCategory: "Modul 1",
     question: "Apa yang dimaksud dengan proses *Deployment* dalam pengembangan aplikasi web?",
     options: [
       {
         id: "A",
-        text: "Proses menginstal dependensi serta perangkat lunak pendukung di komputer lokal developer agar aplikasi dapat dijalankan dalam mode pengembangan (development)."
+        text: "Proses menginstal editor Visual Studio Code dan ekstensi pendukung di komputer lokal."
       },
       {
         id: "B",
-        text: "Proses memindahkan aplikasi web dari lingkungan lokal (Local Environment) ke server cloud publik (Production Environment) agar dapat diakses oleh pengguna via internet."
+        text: "Proses memindahkan aplikasi web dari lingkungan lokal (Local Environment) ke server cloud publik (Production Environment) agar dapat diakses oleh publik via internet."
       },
       {
         id: "C",
-        text: "Proses mengubah struktur kode JavaScript menjadi kode Python atau bahasa tingkat rendah secara otomatis agar eksekusi aplikasi berjalan lebih cepat di browser."
+        text: "Proses mengubah desain gambar grafis menjadi baris kode HTML secara manual di komputer."
       },
       {
         id: "D",
-        text: "Proses menghapus seluruh riwayat repository Git dan file database lokal untuk menghemat ruang penyimpanan harddisk komputer sebelum dipublikasikan."
+        text: "Proses menghapus riwayat penjelajahan browser dan berkas cache penyimpanan di laptop."
       }
     ],
     correctAnswer: "B",
-    correctFeedback: "Tepat sekali! Deployment adalah proses mengunggah/memindahkan kode aplikasi dari lingkungan lokal (komputer developer) ke server cloud (Production Environment) agar dapat diakses oleh publik via internet.",
-    incorrectFeedback: "Jawaban kurang tepat. Deployment merujuk pada proses memindahkan aplikasi dari komputer lokal (Local Environment) ke server cloud publik (Production Environment) agar aplikasi bisa diakses online via internet oleh pengguna.",
-    reference: "Modul 1: Konsep Deployment"
+    correctFeedback: "Tepat sekali. Deployment adalah proses merilis berkas kode aplikasi dari komputer lokal ke server cloud publik agar dapat diakses melalui internet menggunakan nama domain.",
+    incorrectFeedback: "Kurang tepat. Deployment adalah proses memindahkan kode aplikasi dari komputer lokal (komputer developer) ke server cloud publik (Production Environment) agar dapat diakses oleh pengguna melalui internet.",
+    reference: "Modul 1: Konsep Dasar Deployment"
   },
   {
     id: 2,
-    module: "Modul 1: Konsep Deployment",
+    module: "Modul 1: Konsep Dasar Deployment",
     moduleCategory: "Modul 1",
-    question: "Dalam arsitektur web cloud, apa fungsi utama dari DNS (*Domain Name System*)?",
+    question: "Dalam arsitektur web cloud, apa fungsi utama dari *Domain Name System* (DNS)?",
     options: [
       {
         id: "A",
-        text: "Mengenkripsi seluruh lalu lintas data dan kata sandi pengguna secara otomatis sebelum dikirimkan dari browser menuju server cloud production."
+        text: "Mengenkripsi seluruh data formulir pengunjung agar tidak dapat dibaca oleh pihak lain."
       },
       {
         id: "B",
-        text: "Menerjemahkan nama domain yang mudah diingat oleh manusia (seperti aplikasiku.netlify.app) menjadi alamat IP numerik lokasi server tempat aplikasi berada."
+        text: "Menerjemahkan nama domain yang mudah diingat (seperti aplikasiku.netlify.app) menjadi alamat IP numerik server tujuan."
       },
       {
         id: "C",
-        text: "Mengompilasi file sumber TypeScript menjadi file JavaScript siap pakai secara otomatis saat developer melakukan push kode ke repository GitHub."
+        text: "Mengompresi ukuran berkas gambar secara otomatis saat halaman web dimuat."
       },
       {
         id: "D",
-        text: "Menyimpan variabel lingkungan dan kunci rahasia (API Key) di tingkat DNS agar tidak dapat dibaca atau diakses langsung oleh pengguna internet."
+        text: "Menyimpan seluruh riwayat perubahan kode sumber yang dikirimkan oleh developer."
       }
     ],
     correctAnswer: "B",
-    correctFeedback: "Tepat sekali! DNS (Domain Name System) bertindak seperti \"buku telepon internet\" yang menerjemahkan nama domain (seperti aplikasiku.netlify.app) menjadi alamat IP numerik server tempat aplikasi di-host.",
-    incorrectFeedback: "Jawaban kurang tepat. DNS (Domain Name System) berfungsi menerjemahkan nama domain yang mudah diingat manusia menjadi alamat IP numerik server tempat aplikasi berada.",
-    reference: "Modul 1: Konsep Deployment"
+    correctFeedback: "Tepat sekali. DNS berfungsi seperti buku kontak telepon internet yang menerjemahkan nama domain yang mudah dibaca menjadi alamat IP numerik server tempat berkas website berada.",
+    incorrectFeedback: "Kurang tepat. Fungsi utama DNS adalah menerjemahkan nama domain (seperti aplikasiku.netlify.app) menjadi alamat IP server komputer yang dituju.",
+    reference: "Modul 1: Konsep Dasar Deployment"
   },
   {
     id: 3,
-    module: "Modul 1 & Modul 3: Keamanan & Environment Variables",
-    moduleCategory: "Modul 3",
-    question: "Mengapa *Environment Variables* (Variabel Lingkungan) sangat penting dan di mana variabel ini seharusnya dikelola saat aplikasi di-deploy ke Netlify?",
+    module: "Modul 1: Konsep Dasar Deployment",
+    moduleCategory: "Modul 1",
+    question: "Mengapa platform deployment modern seperti Netlify menggunakan arsitektur *Content Delivery Network* (CDN)?",
     options: [
       {
         id: "A",
-        text: "Karena seluruh variabel konfigurasi aplikasi wajib disimpan dalam file .env pada proyek lokal dan di-push langsung ke repository GitHub publik agar sistem integrasi otomatis Netlify dapat membaca nilai variabel tersebut saat proses kompilasi kode berlangsung."
+        text: "Agar berkas website disalin ke berbagai server di seluruh dunia, sehingga pengunjung dapat mengakses website dari server terdekat dengan sangat cepat."
       },
       {
         id: "B",
-        text: "Karena berfungsi mempercepat waktu muat halaman dengan cara menyimpan seluruh aset media statis seperti gambar dan CSS langsung ke jaringan CDN publik Netlify."
+        text: "Agar sistem operasi komputer developer dapat terhubung langsung ke komputer pengunjung tanpa perantara."
       },
       {
         id: "C",
-        text: "Karena digunakan untuk mengamankan kunci rahasia (API Key) agar tidak ditulis langsung di kode sumber, serta dikelola melalui Netlify Dashboard atau Netlify CLI."
+        text: "Untuk membatasi pengunjung website hanya bagi orang yang memiliki kata sandi khusus."
       },
       {
         id: "D",
-        text: "Karena digunakan sebagai pengganti file HTML dan JavaScript dalam mengatur seluruh tampilan UI dinamis di browser pengguna."
+        text: "Untuk menghapus berkas CSS dan JavaScript secara berkala dari server cloud."
       }
     ],
-    correctAnswer: "C",
-    correctFeedback: "Tepat sekali! Environment Variables digunakan untuk mengamankan data sensitif seperti API Key/Secret Key agar tidak hardcoded di kode sumber atau terekspos di repository publik.",
-    incorrectFeedback: "Jawaban kurang tepat. Environment Variables digunakan untuk menyimpan rahasia seperti API Key agar tidak ditulis langsung di kode (hardcoded) atau ter-commit ke Git. Di Netlify, variabel ini dikelola melalui Dashboard atau CLI.",
-    reference: "Modul 3: Deploy Backend TypeScript"
+    correctAnswer: "A",
+    correctFeedback: "Tepat sekali. CDN menduplikasi berkas website statis ke jaringan server global Netlify sehingga pengunjung dapat memuat halaman dari lokasi geografis terdekat dengan cepat.",
+    incorrectFeedback: "Kurang tepat. CDN berfungsi mendistribusikan salinan berkas website ke banyak server di berbagai belahan dunia agar waktu pemuatan halaman menjadi sangat cepat bagi seluruh pengguna.",
+    reference: "Modul 1: Konsep Dasar Deployment"
   },
   {
     id: 4,
-    module: "Modul 2: Deploy Frontend Statis",
-    moduleCategory: "Modul 2",
-    question: "Perintah Netlify CLI mana yang digunakan untuk me-deploy aplikasi web secara langsung ke lingkungan *Production (Live)*?",
+    module: "Modul 1: Konsep Dasar Deployment",
+    moduleCategory: "Modul 1",
+    question: "Mengapa rincian pesan kesalahan (*error stack trace*) sengaja disembunyikan pada lingkungan *Production*, berbeda dengan lingkungan lokal (*localhost*)?",
     options: [
       {
         id: "A",
-        text: "npx netlify-cli dev (Jalankan server lokal)"
+        text: "Karena server cloud tidak memiliki memori yang cukup untuk mencetak teks pesan error."
       },
       {
         id: "B",
-        text: "npx netlify-cli status (Memeriksa informasi status akun dan situs terhubung)"
+        text: "Demi alasan keamanan, agar struktur internal sistem dan celah keamanan tidak terekspos ke publik (mencegah Information Disclosure)."
       },
       {
         id: "C",
-        text: "npx netlify-cli deploy (Deploy ke lingkungan draft preview untuk pengujian sementara)"
+        text: "Agar tampilan antarmuka website terlihat tetap rapi meskipun aplikasi mengalami kerusakan total."
       },
       {
         id: "D",
-        text: "npx netlify-cli deploy --prod (Deploy langsung ke lingkungan production live)"
+        text: "Karena browser di perangkat ponsel tidak mendukung tampilan pesan kesalahan berbasis teks."
       }
     ],
-    correctAnswer: "D",
-    correctFeedback: "Tepat sekali! Perintah `npx netlify-cli deploy --prod` digunakan untuk melakukan deployment langsung ke lingkungan Production (Live). Tanpa flag `--prod`, perintah `deploy` hanya membuat Draft/Preview deployment.",
-    incorrectFeedback: "Jawaban kurang tepat. Perintah `npx netlify-cli deploy --prod` adalah perintah yang benar untuk rilis ke lingkungan Production (Live). Perintah tanpa `--prod` hanya menghasilkan draft preview.",
-    reference: "Modul 2: Deploy Frontend Statis"
+    correctAnswer: "B",
+    correctFeedback: "Tepat sekali. Menyembunyikan detail stack trace pada Production bertujuan mencegah pembocoran informasi internal sistem yang dapat dimanfaatkan oleh pihak tidak bertanggung jawab.",
+    incorrectFeedback: "Kurang tepat. Pada lingkungan produksi, detail error disembunyikan demi alasan keamanan untuk mencegah pihak luar mengetahui struktur internal sistem (Information Disclosure).",
+    reference: "Modul 1: Konsep Dasar Deployment"
   },
   {
     id: 5,
-    module: "Modul 2: Deploy Frontend Statis",
+    module: "Modul 2: Git dan GitHub",
     moduleCategory: "Modul 2",
-    question: "Setelah me-deploy web statis ke Netlify, Anda mendapatkan tampilan error \"404 Page Not Found\" saat membuka URL situs. Apa penyebab paling umum dan cara mengatasinya?",
+    question: "Manakah pernyataan yang paling tepat mengenai perbedaan antara Git dan GitHub?",
     options: [
       {
         id: "A",
-        text: "File HTML utama tidak bernama index.html atau lokasi folder publish salah; solusinya pastikan file bernama index.html dan jalur publish sesuai."
+        text: "Git adalah bahasa pemrograman web, sedangkan GitHub adalah aplikasi editor teks seperti Visual Studio Code."
       },
       {
         id: "B",
-        text: "Sertifikat keamanan SSL belum dibayar dan diaktifkan di Netlify Dashboard; solusinya lakukan pembelian sertifikat SSL secara terpisah, lalu lakukan pembaharuan record DNS domain secara manual pada penyedia domain Anda."
+        text: "Git adalah perangkat lunak lokal untuk mencatat riwayat perubahan kode, sedangkan GitHub adalah layanan cloud untuk menyimpan repository Git secara online."
       },
       {
         id: "C",
-        text: "Cache browser pengguna tidak sinkron dengan server Netlify; solusinya instruksikan pengguna untuk melakukan hard-refresh atau menghapus seluruh cookie browser."
+        text: "Git hanya dapat digunakan pada sistem operasi Linux, sedangkan GitHub hanya dapat diakses melalui Windows."
       },
       {
         id: "D",
-        text: "Repository GitHub belum terhubung dengan branch utama main; solusinya buat branch baru bernama main dan hubungkan ulang repository ke dashboard Netlify secara manual."
+        text: "Git dan GitHub adalah aplikasi yang sama persis tanpa perbedaan fungsi maupun cara penggunaan."
       }
     ],
-    correctAnswer: "A",
-    correctFeedback: "Tepat sekali! Error 404 pada web statis biasanya terjadi karena server web tidak menemukan berkas utama `index.html` pada root folder publish yang dikonfigurasi.",
-    incorrectFeedback: "Jawaban kurang tepat. Error 404 Page Not Found umumnya terjadi karena file utama tidak bernama `index.html` atau lokasi folder publish pada `netlify.toml` mengarah ke folder yang salah.",
-    reference: "Modul 2: Deploy Frontend Statis"
+    correctAnswer: "B",
+    correctFeedback: "Tepat sekali. Git adalah tool Version Control System yang terpasang di komputer lokal, sedangkan GitHub adalah platform web hosting untuk menyimpan dan membagikan repository Git di internet.",
+    incorrectFeedback: "Kurang tepat. Git adalah software kontrol versi di komputer lokal Anda, sementara GitHub adalah layanan hosting cloud untuk menyimpan salinan repository Git secara online.",
+    reference: "Modul 2: Penggunaan Git dan GitHub"
   },
   {
     id: 6,
-    module: "Modul 3: Deploy Backend TypeScript",
-    moduleCategory: "Modul 3",
-    question: "Apa salah satu keuntungan utama dari arsitektur *Serverless* (seperti Netlify Functions) dibandingkan dengan menyewa Virtual Private Server (VPS) tradisional?",
+    module: "Modul 2: Git dan GitHub",
+    moduleCategory: "Modul 2",
+    question: "Perintah Git apa yang digunakan pertama kali untuk menginisialisasi sebuah folder proyek agar mulai dipantau oleh Git?",
     options: [
       {
         id: "A",
-        text: "Serverless memerlukan pemeliharaan sistem operasi, konfigurasi firewall, serta instalasi patch keamanan bulanan secara manual oleh tim developer untuk memastikan server tetap stabil."
+        text: "git start"
       },
       {
         id: "B",
-        text: "Kode server hanya berjalan saat ada request masuk dan otomatis mati (scale to zero) saat idle, sehingga efisien biaya dan bebas manajemen server."
+        text: "git create"
       },
       {
         id: "C",
-        text: "Serverless menjamin seluruh data variabel dalam memori tersimpan secara permanen di RAM server cloud selama 24 jam sehari tanpa pernah dihapus oleh sistem."
+        text: "git init"
       },
       {
         id: "D",
-        text: "Serverless hanya mendukung eksekusi backend yang ditulis menggunakan bahasa C++ atau Assembly."
-      }
-    ],
-    correctAnswer: "B",
-    correctFeedback: "Tepat sekali! Keuntungan utama Serverless adalah arsitektur berbasis event (event-driven) yang otomatis mati (scale to zero) saat tidak ada trafik, sehingga menghemat biaya dan tidak memerlukan manajemen server fisik/OS.",
-    incorrectFeedback: "Jawaban kurang tepat. Keunggulan Serverless (seperti Netlify Functions) adalah kode hanya berjalan saat ada request masuk dan otomatis mati saat idle (scale to zero), sehingga efisien biaya tanpa perlu mengelola server VPS secara manual.",
-    reference: "Modul 3: Deploy Backend TypeScript"
-  },
-  {
-    id: 7,
-    module: "Modul 3 & Modul 4: Serverless Backend & State",
-    moduleCategory: "Modul 3",
-    question: "Saat menggunakan Netlify Functions, data yang disimpan dalam variabel memori (*in-memory storage*) dapat hilang setelah beberapa waktu sepi pemanggil (*idle*). Mengapa hal ini terjadi dan bagaimana solusinya untuk aplikasi produksi?",
-    options: [
-      {
-        id: "A",
-        text: "Terjadi karena Netlify menghapus file sumber .ts setelah dieksekusi; solusinya adalah menuliskan seluruh kode logika backend langsung di dalam tag script HTML."
-      },
-      {
-        id: "B",
-        text: "Terjadi karena instance Serverless bersifat ephemeral dan di-reset saat scale to zero; solusinya simpan data di database cloud eksternal (Supabase/MongoDB)."
-      },
-      {
-        id: "C",
-        text: "Terjadi karena berkas netlify.toml belum di-commit ke repository Git lokal; solusinya jalankan perintah git add dan git push ulang agar status fungsi serverless menjadi permanen di cloud."
-      },
-      {
-        id: "D",
-        text: "Terjadi karena kuota gratis Netlify habis; solusinya upgrade akun ke paket berbayar."
-      }
-    ],
-    correctAnswer: "B",
-    correctFeedback: "Tepat sekali! Serverless instance bersifat ephemeral (sementara) dan ter-reset saat scale to zero. Oleh karena itu, data permanen harus disimpan di database cloud eksternal seperti Supabase atau MongoDB.",
-    incorrectFeedback: "Jawaban kurang tepat. Karena Netlify Functions bersifat ephemeral (sementara), variabel di memori akan hilang ketika instance mati (scale to zero). Solusinya adalah menggunakan database cloud eksternal (misal: Supabase/MongoDB).",
-    reference: "Modul 3 & Modul 4"
-  },
-  {
-    id: 8,
-    module: "Modul 4: Deploy Fullstack App",
-    moduleCategory: "Modul 4",
-    question: "Ketika frontend dan backend berada di domain yang berbeda, browser sering kali memblokir permintaan request karena masalah CORS (*Cross-Origin Resource Sharing*). Bagaimana Netlify mengatasi masalah ini tanpa perlu mengonfigurasi header tambahan secara rumit?",
-    options: [
-      {
-        id: "A",
-        text: "Menggunakan fitur URL Rewrites (Proxy) pada netlify.toml (status = 200) yang meneruskan /api/* ke Netlify Functions secara internal sehingga seolah satu domain."
-      },
-      {
-        id: "B",
-        text: "Mengubah seluruh lalu lintas jaringan pengguna secara otomatis melalui koneksi VPN enkripsi khusus Netlify guna menembus aturan kebijakan keamanan lintas origin (CORS) yang diterapkan oleh browser."
-      },
-      {
-        id: "C",
-        text: "Menghapus perintah fetch() pada JavaScript dan menggantinya dengan pemanggilan fungsi HTML form secara langsung."
-      },
-      {
-        id: "D",
-        text: "Mengompresi seluruh berkas frontend menjadi format zip agar browser dapat mengeksekusi kode JavaScript dalam konteks lingkungan lokal yang terisolasi dan aman."
-      }
-    ],
-    correctAnswer: "A",
-    correctFeedback: "Tepat sekali! Fitur URL Rewrites (Proxy) pada Netlify (`status = 200`) meneruskan request `/api/*` secara internal ke Netlify Functions, sehingga browser menganggap frontend dan backend berada di origin/domain yang sama.",
-    incorrectFeedback: "Jawaban kurang tepat. Netlify menyediakan fitur URL Rewrites (Proxy) pada file `netlify.toml` dengan `status = 200` untuk meneruskan request dari domain frontend ke fungsi serverless backend tanpa terkena kendala CORS.",
-    reference: "Modul 4: Deploy Fullstack App"
-  },
-  {
-    id: 9,
-    module: "Modul 4: Deploy Fullstack App",
-    moduleCategory: "Modul 4",
-    question: "Pada file `netlify.toml`, apakah arti dari aturan berikut?",
-    codeSnippet: {
-      language: "toml",
-      code: `[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200`
-    },
-    options: [
-      {
-        id: "A",
-        text: "Netlify akan melakukan pengalihan halaman secara terbuka (redirect HTTP 301) dengan mengubah alamat URL di browser pengguna menuju lokasi URL fungsi serverless yang baru."
-      },
-      {
-        id: "B",
-        text: "Netlify akan menolak seluruh akses permintaan HTTP yang mengarah ke path /api/* dengan memberikan pesan error status 200 Forbidden kepada pengguna."
-      },
-      {
-        id: "C",
-        text: "Netlify melakukan Rewrite (proxy internal status 200), meneruskan request /api/* ke fungsi serverless tanpa mengubah URL di browser."
-      },
-      {
-        id: "D",
-        text: "Netlify akan menghapus semua file di folder netlify/functions saat ada request ke /api/*."
+        text: "git setup"
       }
     ],
     correctAnswer: "C",
-    correctFeedback: "Tepat sekali! Aturan `status = 200` pada Netlify config melakukan Proxy Rewrite internal, artinya URL di browser pengguna tidak berubah saat request diteruskan ke fungsi serverless.",
-    incorrectFeedback: "Jawaban kurang tepat. Angka `status = 200` menandakan aksi Rewrite (proxy internal) bukan pengalihan URL (redirect 301/302). Permintaan dari `/api/*` diteruskan secara transparan ke fungsi serverless tanpa mengubah URL browser.",
-    reference: "Modul 4: Deploy Fullstack App"
+    correctFeedback: "Tepat sekali. Perintah `git init` membuat folder tersembunyi `.git` yang mengaktifkan pelacakan Version Control pada folder proyek tersebut.",
+    incorrectFeedback: "Kurang tepat. Perintah yang benar untuk menginisialisasi repository Git baru di folder lokal adalah `git init`.",
+    reference: "Modul 2: Penggunaan Git dan GitHub"
+  },
+  {
+    id: 7,
+    module: "Modul 2: Git dan GitHub",
+    moduleCategory: "Modul 2",
+    question: "Dalam konsep 3 area kerja Git, apakah fungsi dari *Staging Area* yang diakses melalui perintah `git add`?",
+    options: [
+      {
+        id: "A",
+        text: "Menghapus berkas kode yang memiliki bug secara otomatis sebelum disimpan ke harddisk."
+      },
+      {
+        id: "B",
+        text: "Sebagai ruang persiapan untuk memilih dan mengumpulkan berkas yang akan disimpan ke dalam riwayat commit berikutnya."
+      },
+      {
+        id: "C",
+        text: "Mengunggah berkas secara langsung ke server cloud Netlify tanpa melalui repository GitHub."
+      },
+      {
+        id: "D",
+        text: "Mengompresi seluruh folder proyek menjadi satu berkas arsip zip berukuran kecil."
+      }
+    ],
+    correctAnswer: "B",
+    correctFeedback: "Tepat sekali. Staging Area adalah ruang persiapan di mana Anda mengumpulkan berkas-berkas yang perubahannya siap dicatat dalam jepretan riwayat (commit).",
+    incorrectFeedback: "Kurang tepat. Staging area berfungsi sebagai tempat persiapan sebelum commit, di mana pengembang mengelompokkan berkas-berkas yang ingin disertakan dalam riwayat perubahan.",
+    reference: "Modul 2: Penggunaan Git dan GitHub"
+  },
+  {
+    id: 8,
+    module: "Modul 2: Git dan GitHub",
+    moduleCategory: "Modul 2",
+    question: "Saat menjalankan perintah `git commit -m 'feat: tambah formulir kalkulator'`, apakah fungsi dari opsi flag `-m`?",
+    options: [
+      {
+        id: "A",
+        text: "Menentukan nama branch tujuan pengiriman berkas."
+      },
+      {
+        id: "B",
+        text: "Menyertakan pesan ringkas dan deskriptif mengenai perubahan apa yang baru saja disimpan."
+      },
+      {
+        id: "C",
+        text: "Memaksa penyimpanan file meskipun terdapat error sintaks pada kode HTML."
+      },
+      {
+        id: "D",
+        text: "Mengaktifkan mode penyamaran agar identitas pembuat commit tidak terlihat di GitHub."
+      }
+    ],
+    correctAnswer: "B",
+    correctFeedback: "Tepat sekali. Flag `-m` (singkatan dari message) digunakan untuk menuliskan pesan keterangan riwayat commit secara langsung di terminal.",
+    incorrectFeedback: "Kurang tepat. Flag `-m` pada perintah `git commit` berfungsi untuk menyertakan pesan commit yang mendeskripsikan perubahan yang dilakukan.",
+    reference: "Modul 2: Penggunaan Git dan GitHub"
+  },
+  {
+    id: 9,
+    module: "Modul 2: Git dan GitHub",
+    moduleCategory: "Modul 2",
+    question: "Perintah apa yang digunakan untuk menghubungkan repository lokal Anda ke repositori baru yang telah dibuat di GitHub?",
+    options: [
+      {
+        id: "A",
+        text: "git connect github <URL>"
+      },
+      {
+        id: "B",
+        text: "git remote add origin <URL>"
+      },
+      {
+        id: "C",
+        text: "git link repository <URL>"
+      },
+      {
+        id: "D",
+        text: "git attach origin <URL>"
+      }
+    ],
+    correctAnswer: "B",
+    correctFeedback: "Tepat sekali. Perintah `git remote add origin <URL>` mendaftarkan alamat repositori GitHub remote dengan nama panggilan standar `origin`.",
+    incorrectFeedback: "Kurang tepat. Perintah resmi Git untuk menambahkan alamat server remote adalah `git remote add origin <URL>`.",
+    reference: "Modul 2: Penggunaan Git dan GitHub"
   },
   {
     id: 10,
-    module: "Referensi & Cheatsheet",
-    moduleCategory: "Referensi",
-    question: "Jika backend Serverless Function Anda mengalami error HTTP 500 (*Internal Server Error*) di cloud production, perintah Netlify CLI mana yang paling tepat digunakan untuk melihat pesan kesalahan (*stack trace*) secara real-time dari terminal?",
+    module: "Modul 3: Deploy Website Statis",
+    moduleCategory: "Modul 3",
+    question: "Perintah Netlify CLI mana yang digunakan untuk merilis website secara langsung ke lingkungan *Production (Live URL)*?",
     options: [
       {
         id: "A",
-        text: "npx netlify-cli env:list (Menampilkan daftar seluruh variabel lingkungan yang dikonfigurasi pada proyek)"
+        text: "npx netlify-cli dev"
       },
       {
         id: "B",
-        text: "npx netlify-cli functions:logs (Melihat streaming log eksekusi fungsi secara real-time)"
+        text: "npx netlify-cli status"
       },
       {
         id: "C",
-        text: "npx netlify-cli sites:list (Menampilkan daftar situs Netlify yang terhubung dengan akun Anda)"
+        text: "npx netlify-cli deploy"
       },
       {
         id: "D",
-        text: "npx netlify-cli deploys:list (Melihat riwayat dan status seluruh proses deployment sebelumnya)"
+        text: "npx netlify-cli deploy --prod"
       }
     ],
-    correctAnswer: "B",
-    correctFeedback: "Tepat sekali! Perintah `npx netlify-cli functions:logs` digunakan untuk melihat live streaming log eksekusi dan stack trace dari Netlify Functions langsung di terminal.",
-    incorrectFeedback: "Jawaban kurang tepat. Untuk memeriksa log eksekusi dan error stack trace pada backend Serverless Function di Netlify secara real-time dari terminal, gunakan perintah `npx netlify-cli functions:logs`.",
-    reference: "Referensi & Cheatsheet"
+    correctAnswer: "D",
+    correctFeedback: "Tepat sekali. Menambahkan flag `--prod` pada perintah `deploy` memastikan hasil rilis diterapkan langsung pada URL produksi resmi website Anda.",
+    incorrectFeedback: "Kurang tepat. Perintah `deploy` tanpa flag `--prod` hanya menghasilkan draft preview. Untuk rilis produksi, gunakan `npx netlify-cli deploy --prod`.",
+    reference: "Modul 3: Deploy Website Statis ke Netlify"
   },
   {
     id: 11,
-    module: "Modul 1: Konsep Deployment",
-    moduleCategory: "Modul 1",
-    question: "Saat Anda menghubungkan repository GitHub ke Netlify, mekanisme apa yang digunakan Netlify untuk mendeteksi commit baru secara otomatis dan memicu proses build otomatis (CI/CD)?",
+    module: "Modul 3: Deploy Website Statis",
+    moduleCategory: "Modul 3",
+    question: "Saat mengembangkan website di komputer lokal, perintah Netlify CLI mana yang digunakan untuk menjalankan server simulasi lokal di port 8888?",
     options: [
       {
         id: "A",
-        text: "Netlify mengabaikan push otomatis dan mewajibkan developer menekan tombol build secara manual di dashboard setiap kali ada perubahan kode."
+        text: "npx netlify-cli dev"
       },
       {
         id: "B",
-        text: "Netlify menerima sinyal pemberitahuan otomatis via Webhook yang dikirimkan oleh GitHub saat ada commit baru di branch yang terhubung."
+        text: "npx netlify-cli run"
       },
       {
         id: "C",
-        text: "Netlify terus-menerus mengunduh ulang seluruh repositori publik setiap satu detik secara berulang tanpa jeda."
+        text: "npx netlify-cli serve"
       },
       {
         id: "D",
-        text: "Netlify mengirimkan kode otentikasi dua faktor ke email developer untuk meminta persetujuan sebelum file dipublikasikan."
+        text: "npx netlify-cli test"
       }
     ],
-    correctAnswer: "B",
-    correctFeedback: "Tepat sekali! Netlify memanfaatkan mekanisme Webhook dari provider Git (seperti GitHub/GitLab). Saat ada commit baru yang di-push, GitHub mengirimkan event Webhook ke Netlify untuk memicu proses build & auto-deploy secara otomatis.",
-    incorrectFeedback: "Jawaban kurang tepat. Netlify menggunakan fitur Webhook dari GitHub/GitLab yang secara otomatis mendeteksi ketika developer melakukan push kode baru, lalu memicu alur CI/CD untuk me-deploy versi terbaru aplikasi.",
-    reference: "Modul 1: Konsep Deployment"
+    correctAnswer: "A",
+    correctFeedback: "Tepat sekali. Perintah `npx netlify-cli dev` menjalankan server pengujian lokal di `http://localhost:8888` untuk meninjau website sebelum di-deploy.",
+    incorrectFeedback: "Kurang tepat. Perintah yang tepat untuk memutar server lokal Netlify adalah `npx netlify-cli dev`.",
+    reference: "Modul 3: Deploy Website Statis ke Netlify"
   },
   {
     id: 12,
-    module: "Modul 1: Konsep Deployment",
-    moduleCategory: "Modul 1",
-    question: "Apa peran utama dari arsitektur Content Delivery Network (CDN) yang digunakan Netlify dalam memuat situs web statis pengguna?",
+    module: "Modul 3: Deploy Website Statis",
+    moduleCategory: "Modul 3",
+    question: "Setelah melakukan deployment ke Netlify, URL website menampilkan pesan error '404 Page Not Found'. Apa penyebab paling umum dari kendala ini?",
     options: [
       {
         id: "A",
-        text: "Mengompresi seluruh file database di komputer lokal developer sebelum dikirimkan ke server utama."
+        text: "Berkas HTML utama tidak bernama index.html atau lokasi publish directory salah dikonfigurasi."
       },
       {
         id: "B",
-        text: "Mendistribusikan dan menduplikasi file web ke jaringan server cloud di berbagai belahan dunia sehingga pemuatan situs terasa sangat cepat bagi pengguna dari lokasi manapun."
+        text: "Netlify belum menerima pembayaran langganan sertifikat SSL dari developer."
       },
       {
         id: "C",
-        text: "Menghapus otomatis file CSS dan JavaScript yang berukuran lebih dari 1 Megabyte agar tidak memenuhi RAM server."
+        text: "Komputer developer dalam keadaan mati saat pengguna internet membuka website."
       },
       {
         id: "D",
-        text: "Mengubah alamat IP komputer pengguna menjadi domain unik Netlify agar tidak terdeteksi oleh peretas."
+        text: "Akun GitHub yang terhubung tidak memiliki centang verifikasi biru."
       }
     ],
-    correctAnswer: "B",
-    correctFeedback: "Tepat sekali! CDN (Content Delivery Network) menduplikasi file statis ke puluhan edge server Netlify di seluruh dunia, sehingga permintaan pengguna akan dilayani oleh server terdekat untuk kecepatan akses maksimal.",
-    incorrectFeedback: "Jawaban kurang tepat. CDN (Content Delivery Network) berfungsi menyebarkan dan menyalin file aplikasi web ke jaringan server global Netlify. Hal ini membuat situs dimuat sangat cepat karena diakses dari server terdekat dengan lokasi pengguna.",
-    reference: "Modul 1: Konsep Deployment"
+    correctAnswer: "A",
+    correctFeedback: "Tepat sekali. Server web Netlify secara default mencari berkas `index.html` pada direktori publish. Jika berkas bernama lain atau direktori publish keliru, akan muncul error 404.",
+    incorrectFeedback: "Kurang tepat. Error 404 Page Not Found umumnya terjadi karena berkas utama tidak bernama `index.html` atau lokasi folder publish tidak mengarah ke lokasi berkas tersebut.",
+    reference: "Modul 3: Deploy Website Statis ke Netlify"
   },
   {
     id: 13,
-    module: "Modul 2: Deploy Frontend Statis",
-    moduleCategory: "Modul 2",
-    question: "Saat mengembangkan web statis di komputer lokal, perintah Netlify CLI mana yang digunakan untuk mensimulasikan server lokal (local development server) di port 8888?",
+    module: "Modul 3: Deploy Website Statis",
+    moduleCategory: "Modul 3",
+    question: "Pada berkas konfigurasi `netlify.toml` untuk website statis tanpa bundler, apakah arti dari pengaturan `publish = '.'`?",
     options: [
       {
         id: "A",
-        text: "npx netlify-cli dev (Mensimulasikan server pengujian lokal di komputer developer)"
+        text: "Menandakan bahwa website tidak boleh diakses oleh publik di internet."
       },
       {
         id: "B",
-        text: "npx netlify-cli start --production-mode (Perintah rilis langsung ke server cloud global Netlify)"
+        text: "Memberitahu Netlify bahwa berkas website utama (index.html) berada langsung di akar folder proyek."
       },
       {
         id: "C",
-        text: "npx netlify-cli deploy --preview (Membuat tautan preview publik di server Netlify)"
+        text: "Menginstruksikan Netlify untuk menghapus berkas setiap 24 jam sekali."
       },
       {
         id: "D",
-        text: "npx netlify-cli init --force (Mengosongkan dan mengatur ulang seluruh berkas proyek)"
+        text: "Menjadikan website hanya dapat dibuka satu kali oleh setiap pengunjung."
       }
     ],
-    correctAnswer: "A",
-    correctFeedback: "Tepat sekali! Perintah `npx netlify-cli dev` digunakan untuk menjalankan server pengujian lokal (biasanya di `http://localhost:8888`) yang mensimulasikan lingkungan Netlify di komputer Anda sendiri.",
-    incorrectFeedback: "Jawaban kurang tepat. Perintah `npx netlify-cli dev` adalah perintah Netlify CLI yang berfungsi untuk memutar server lokal di lingkungan pengembangan (`localhost:8888`) sebelum aplikasi di-deploy ke cloud.",
-    reference: "Modul 2: Deploy Frontend Statis"
+    correctAnswer: "B",
+    correctFeedback: "Tepat sekali. Simbol titik (`.`) merepresentasikan direktori kerja saat ini (akar folder proyek), tempat berkas `index.html`, `style.css`, dan `script.js` berada.",
+    incorrectFeedback: "Kurang tepat. Pada `netlify.toml`, atribut `publish = '.'` berarti direktori publikasi adalah akar folder proyek saat ini tempat berkas utama berada.",
+    reference: "Modul 3: Deploy Website Statis ke Netlify"
   },
   {
     id: 14,
-    module: "Modul 2: Deploy Frontend Statis",
-    moduleCategory: "Modul 2",
-    question: "Pada file konfigurasi `netlify.toml` untuk web statis tanpa bundler, apakah fungsi dari pengaturan `publish = \".\"`?",
+    module: "Modul 3: Deploy Website Statis",
+    moduleCategory: "Modul 3",
+    question: "Mengapa sebuah website yang menggunakan berkas `Index.html` (huruf I kapital) dapat berjalan di Windows lokal tetapi menampilkan error 404 saat di-deploy ke Netlify?",
     options: [
       {
         id: "A",
-        text: "Menginstruksikan Netlify untuk mengunduh dependensi Node.js dari folder akar proyek."
+        text: "Karena sistem operasi Windows bersifat case-insensitive, sedangkan server Linux Netlify bersifat case-sensitive dan hanya mengenali index.html."
       },
       {
         id: "B",
-        text: "Memberi tahu Netlify bahwa berkas utama web seperti index.html berada di direktori utama (akar folder) proyek untuk dipublikasikan."
+        text: "Karena Netlify melarang penggunaan huruf kapital pada seluruh baris kode HTML."
       },
       {
         id: "C",
-        text: "Membatasi akses publik agar situs web hanya bisa dibuka dari satu alamat IP terdaftar."
+        text: "Karena berkas yang diawali huruf kapital membutuhkan kuota hosting yang lebih besar."
       },
       {
         id: "D",
-        text: "Mengubah seluruh format file HTML menjadi file data JSON secara otomatis saat build."
+        text: "Karena GitHub secara otomatis menghapus berkas yang memiliki nama dengan huruf kapital."
       }
     ],
-    correctAnswer: "B",
-    correctFeedback: "Tepat sekali! Pengaturan `publish = \".\"` pada `netlify.toml` mengarahkan Netlify untuk mengambil file publikasi (seperti `index.html`, `style.css`, dan `script.js`) langsung dari akar folder proyek.",
-    incorrectFeedback: "Jawaban kurang tepat. Pada `netlify.toml`, atribut `publish = \".\"` berfungsi memberitahu Netlify bahwa direktori publikasi adalah akar folder proyek, tempat berkas utama `index.html` disimpan.",
-    reference: "Modul 2: Deploy Frontend Statis"
+    correctAnswer: "A",
+    correctFeedback: "Tepat sekali. Sistem operasi Windows tidak membedakan huruf besar/kecil (case-insensitive), sedangkan server Linux Netlify membedakannya (case-sensitive). Netlify hanya mencari `index.html` huruf kecil.",
+    incorrectFeedback: "Kurang tepat. Server cloud Netlify menggunakan OS Linux yang bersifat *case-sensitive*, sehingga `Index.html` dianggap berkas berbeda dan tidak dikenali sebagai `index.html` default.",
+    reference: "Modul 3: Deploy Website Statis ke Netlify"
   },
   {
     id: 15,
-    module: "Modul 2: Deploy Frontend Statis",
-    moduleCategory: "Modul 2",
-    question: "Mengapa penggunaan jalur berkas absolut lokal (seperti `href=\"C:/Users/project/style.css\"`) pada `index.html` dapat menyebabkan tampilan CSS atau JS rusak saat situs di-deploy ke Netlify?",
+    module: "Modul 4: Benchmark Performa Lighthouse",
+    moduleCategory: "Modul 4",
+    question: "Apa tujuan utama dilakukannya audit dan *benchmark performa* menggunakan Google Lighthouse pada website yang telah di-deploy?",
     options: [
       {
         id: "A",
-        text: "Karena server Netlify tidak mengizinkan nama file yang menggunakan ekstensi .css atau .js."
+        text: "Untuk menguji kecepatan pemuatan, kestabilan tampilan, aksesibilitas, dan kualitas keseluruhan halaman web secara terukur."
       },
       {
         id: "B",
-        text: "Karena browser pengguna di internet tidak dapat mengakses struktur direktori atau harddisk lokal komputer developer; solusinya gunakan jalur relatif seperti `href=\"style.css\"`."
+        text: "Untuk mengubah bahasa pemrograman JavaScript menjadi bahasa Python secara otomatis."
       },
       {
         id: "C",
-        text: "Karena Netlify secara otomatis mengubah semua nama file style.css menjadi main.css saat proses deployment berlangsung."
+        text: "Untuk mendaftarkan hak cipta kode program ke organisasi internet dunia."
       },
       {
         id: "D",
-        text: "Karena file CSS harus dikompresi menjadi format base64 terlebih dahulu sebelum dimasukkan ke dalam file HTML."
+        text: "Untuk memblokir pengguna yang menggunakan browser selain Google Chrome."
       }
     ],
-    correctAnswer: "B",
-    correctFeedback: "Tepat sekali! Jalur absolut lokal mengarah ke lokasi fisik harddisk komputer Anda. Saat situs di-deploy ke cloud, browser pengguna lain tidak bisa membaca file tersebut. Gunakan jalur relatif (`href=\"style.css\"`) agar berkas dibaca dari server tempat web dipublikasikan.",
-    incorrectFeedback: "Jawaban kurang tepat. Jalur absolut lokal (seperti `C:/...`) hanya bisa diakses dari komputer Anda sendiri. Ketika situs di-deploy ke cloud, gunakan jalur relatif (`href=\"style.css\"`) agar browser pengguna dapat mengunduh berkas CSS/JS dari server cloud Netlify.",
-    reference: "Modul 2: Deploy Frontend Statis"
+    correctAnswer: "A",
+    correctFeedback: "Tepat sekali. Google Lighthouse digunakan untuk mengukur dan mengevaluasi performa, aksesibilitas, best practices, dan SEO agar website optimal bagi pengguna.",
+    incorrectFeedback: "Kurang tepat. Tujuan audit Lighthouse adalah mengukur dan menganalisis kualitas halaman website dalam aspek performa kecepatan, aksesibilitas, best practices, dan SEO.",
+    reference: "Modul 4: Benchmark Performa dengan Google Lighthouse"
   },
   {
     id: 16,
-    module: "Modul 2: Deploy Frontend Statis - Keamanan Headers",
-    moduleCategory: "Modul 2",
-    question: "Seorang developer menambahkan konfigurasi `[[headers]]` pada file `netlify.toml` berupa `X-Frame-Options = \"DENY\"` dan `X-Content-Type-Options = \"nosniff\"`. Apa dampak spesifik dan ancaman keamanan yang berhasil dicegah oleh kombinasi header tersebut?",
+    module: "Modul 4: Benchmark Performa Lighthouse",
+    moduleCategory: "Modul 4",
+    question: "Empat kategori utama apa sajakah yang dievaluasi dalam laporan audit Google Lighthouse?",
     options: [
       {
         id: "A",
-        text: "Mencegah pihak luar memasukkan web Anda ke dalam tag iframe situs lain (Clickjacking) dan mencegah browser menebak jenis MIME berkas secara ilegal (MIME-sniffing)."
+        text: "Frontend, Backend, Database, dan Server Hardware"
       },
       {
         id: "B",
-        text: "Memblokir seluruh koneksi API dari domain luar dan mematikan pengunduhan berkas media gambar di browser pengguna."
+        text: "Performance, Accessibility, Best Practices, dan SEO"
       },
       {
         id: "C",
-        text: "Mengharuskan pengguna memasukkan kata sandi autentikasi dua faktor setiap kali membuka halaman web di browser."
+        text: "HTML, CSS, JavaScript, dan TypeScript"
       },
       {
         id: "D",
-        text: "Mengubah seluruh enkripsi HTTP biasa menjadi enkripsi tingkat tinggi berbasis sertifikat SSL bayaran."
+        text: "Localhost, Staging, Production, dan Disaster Recovery"
       }
     ],
-    correctAnswer: "A",
-    correctFeedback: "Tepat sekali! Header `X-Frame-Options = \"DENY\"` melarang situs dimasukkan ke dalam `<iframe>` di situs lain untuk mencegah serangan Clickjacking, sedangkan `X-Content-Type-Options = \"nosniff\"` memaksa browser mengikuti MIME type resmi dari server untuk mencegah dieksekusi berkas berbahaya.",
-    incorrectFeedback: "Jawaban kurang tepat. Header `X-Frame-Options = \"DENY\"` berfungsi mencegah Clickjacking (menolak situs dimuat di `<iframe>` lain), sedangkan `nosniff` mencegah MIME-sniffing agar browser tidak mengeksekusi file dengan tipe yang dimodifikasi penyerang.",
-    reference: "Modul 2: Deploy Frontend Statis"
+    correctAnswer: "B",
+    correctFeedback: "Tepat sekali. Empat pilar penilaian Google Lighthouse adalah Performance (kecepatan), Accessibility (ramah disabilitas), Best Practices (standar keamanan), dan SEO (optimasi mesin pencari).",
+    incorrectFeedback: "Kurang tepat. Empat kategori utama yang dinilai oleh Lighthouse adalah Performance, Accessibility, Best Practices, dan SEO.",
+    reference: "Modul 4: Benchmark Performa dengan Google Lighthouse"
   },
   {
     id: 17,
-    module: "Modul 1: Konsep Deployment - Toleransi Error",
-    moduleCategory: "Modul 1",
-    question: "Saat menguji aplikasi di lingkungan lokal (`localhost`), jika terjadi *runtime error*, rincian kesalahan (*stack trace*) akan muncul lengkap di layar browser. Mengapa perilaku ini secara sengaja diubah pada lingkungan *Production*, dan apa risiko keamanannya jika dibiarkan muncul di publik?",
+    module: "Modul 4: Benchmark Performa Lighthouse",
+    moduleCategory: "Modul 4",
+    question: "Dalam indikator Core Web Vitals, apa yang diukur oleh metrik *Largest Contentful Paint* (LCP)?",
     options: [
       {
         id: "A",
-        text: "Diubah karena server cloud Netlify tidak memiliki kapasitas memori RAM yang cukup untuk menampilkan teks error berwarna merah."
+        text: "Jumlah total baris kode CSS yang ditulis di dalam proyek."
       },
       {
         id: "B",
-        text: "Rincian error disembunyikan di Production untuk mencegah penyerang memanfaatkan informasi struktur internal sistem (Information Disclosure) untuk meretas aplikasi."
+        text: "Waktu yang dibutuhkan browser untuk menampilkan elemen visual konten terbesar di layar pengguna (target ideal < 2,5 detik)."
       },
       {
         id: "C",
-        text: "Perilaku ini terjadi secara tidak sengaja akibat bug teknis pada sertifikat SSL Let's Encrypt yang terpasang di server Netlify."
+        text: "Waktu yang dibutuhkan server Netlify untuk mencetak sertifikat SSL."
       },
       {
         id: "D",
-        text: "Agar pengguna tidak sengaja menyalin kode error tersebut ke dalam repositori GitHub publik milik mereka sendiri."
+        text: "Kapasitas maksimal memori RAM yang digunakan oleh teks editor saat mengetik kode."
       }
     ],
     correctAnswer: "B",
-    correctFeedback: "Tepat sekali! Pada Production Environment, rincian error (stack trace) sengaja disembunyikan demi keamanan. Jika rincian internal terekspos (Information Disclosure), peretas dapat memanfaatkan info struktur file/database tersebut untuk menemukan celah keamanan.",
-    incorrectFeedback: "Jawaban kurang tepat. Menampilkan error stack trace di Production berbahaya karena membocorkan struktur internal server/aplikasi (Information Disclosure) kepada publik, yang bisa dimanfaatkan peretas untuk mengeksploitasi celah keamanan.",
-    reference: "Modul 1: Konsep Deployment"
+    correctFeedback: "Tepat sekali. LCP mengukur waktu hingga konten visual terbesar di layar selesai dirender oleh browser, dengan target ideal di bawah 2,5 detik.",
+    incorrectFeedback: "Kurang tepat. LCP (Largest Contentful Paint) mengukur waktu yang diperlukan browser untuk merender elemen konten terbesar pada viewport layar pengunjung.",
+    reference: "Modul 4: Benchmark Performa dengan Google Lighthouse"
   },
   {
     id: 18,
-    module: "Modul 2: Deploy Frontend Statis - CLI Preview vs Production",
-    moduleCategory: "Modul 2",
-    question: "Seorang developer menjalankan perintah `npx netlify-cli deploy` tanpa flag `--prod` dan berhasil mendapatkan URL `https://64a1b2c3--aplikasi-saya.netlify.app`. Mengapa perubahan kode terbaru tersebut BELUM terlihat saat membuka URL utama `https://aplikasi-saya.netlify.app`?",
+    module: "Modul 4: Benchmark Performa Lighthouse",
+    moduleCategory: "Modul 4",
+    question: "Apa yang diukur oleh metrik *Cumulative Layout Shift* (CLS) pada Google Lighthouse?",
     options: [
       {
         id: "A",
-        text: "Perintah tanpa --prod hanya membuat Draft Preview URL unik untuk pengujian; situs produksi live baru ter-update setelah menjalankan npx netlify-cli deploy --prod."
+        text: "Tingkat pergeseran tata letak elemen visual yang tidak terduga saat halaman sedang dimuat (target ideal < 0,1)."
       },
       {
         id: "B",
-        text: "Terjadi keterlambatan pada jaringan server DNS global Netlify yang memerlukan proses sinkronisasi serta propagasi domain selama 24 jam penuh sebelum situs produksi diperbarui."
+        text: "Kecepatan koneksi internet pengguna yang diukur dalam satuan Mbps."
       },
       {
         id: "C",
-        text: "Perintah npx netlify-cli deploy secara otomatis mengosongkan isi repositori GitHub sehingga domain utama mengalami kondisi pemeliharaan sistem sementara di cloud."
+        text: "Berapa kali pengguna melakukan klik pada tombol navigasi halaman."
       },
       {
         id: "D",
-        text: "Karena sertifikat SSL gratis dari Let's Encrypt menolak otentikasi perubahan kode baru yang dikirimkan dari terminal tanpa menyertakan API Key rahasia pengguna."
+        text: "Jumlah repository GitHub publik yang dimiliki oleh seorang developer."
       }
     ],
     correctAnswer: "A",
-    correctFeedback: "Tepat sekali! Perintah `npx netlify-cli deploy` hanya menghasilkan **Draft Preview URL** (yang memiliki prefix hash unik) agar developer bisa menguji perubahan tanpa mengganggu pengguna situs live. Untuk memperbarui situs utama publik, wajib menggunakan flag `--prod`.",
-    incorrectFeedback: "Jawaban kurang tepat. `npx netlify-cli deploy` (tanpa `--prod`) mempublikasikan perubahan ke lingkungan Draft Preview terisolasi. URL utama produksi (`https://site-name.netlify.app`) baru akan ter-update jika developer menjalankan `npx netlify-cli deploy --prod`.",
-    reference: "Modul 2: Deploy Frontend Statis"
+    correctFeedback: "Tepat sekali. CLS mengukur kestabilan visual halaman agar elemen tampilan tidak meloncat atau bergeser secara tiba-tiba saat konten baru dimuat.",
+    incorrectFeedback: "Kurang tepat. CLS (Cumulative Layout Shift) mengukur kestabilan visual antarmuka halaman untuk memastikan elemen tidak bergeser secara tidak terduga saat memuat aset.",
+    reference: "Modul 4: Benchmark Performa dengan Google Lighthouse"
   },
   {
     id: 19,
-    module: "Modul 2: Deploy Frontend Statis - Case Sensitivity OS",
-    moduleCategory: "Modul 2",
-    question: "Sebuah proyek web statis berjalan lancar di komputer lokal (Windows) dengan berkas utama `Index.html`. Namun, saat di-deploy ke Netlify Cloud, situs mengembalikan error `404 Page Not Found`. Mengapa hal ini terjadi padahal di komputer lokal aplikasi tidak memiliki kendala?",
+    module: "Modul 4: Benchmark Performa Lighthouse",
+    moduleCategory: "Modul 4",
+    question: "Mengapa menjalankan pengujian Google Lighthouse disarankan dilakukan pada *Jendela Penyamaran* (Incognito Window) browser?",
     options: [
       {
         id: "A",
-        text: "Karena sistem operasi Windows bersifat case-insensitive sehingga Index.html terbaca, sedangkan server Linux Netlify bersifat case-sensitive dan mewajibkan nama berkas index.html (huruf kecil)."
+        text: "Agar riwayat penelusuran developer tidak terbaca oleh server Netlify."
       },
       {
         id: "B",
-        text: "Karena sistem arsitektur keamanan server Netlify secara otomatis memblokir dan menolak seluruh berkas HTML utama yang diawali dengan huruf kapital demi menjaga standar keamanan SSL, konsistensi struktur direktori cloud, serta pencegahan bahaya kebocoran file konfigurasi rahasia."
+        text: "Agar hasil skor audit murni dan tidak terpengaruh oleh ekstensi browser pihak ketiga yang terpasang."
       },
       {
         id: "C",
-        text: "Karena berkas utama Index.html yang ditulis menggunakan huruf kapital memerlukan proses kompilasi awal menggunakan bundler eksternal seperti Webpack atau Vite terlebih dahulu agar seluruh aset statis dapat diproses oleh engine distribusi CDN global Netlify secara optimal."
+        text: "Karena fitur tab Lighthouse hanya dapat dibuka pada jendela penyamaran saja."
       },
       {
         id: "D",
-        text: "Karena struktur direktori proyek pada komputer lokal developer belum dipisahkan ke dalam folder publikasi khusus seperti dist, build, atau public secara benar sebelum seluruh kode sumber aplikasi di-push dan diintegrasikan ke repositori GitHub utama proyek."
-      }
-    ],
-    correctAnswer: "A",
-    correctFeedback: "Tepat sekali! Sistem operasi Windows/macOS umumnya bersifat *case-insensitive* (tidak membedakan `Index.html` dan `index.html`), sedangkan server Linux pada Netlify Cloud bersifat *case-sensitive*. Netlify hanya mencari `index.html` (huruf kecil semua) sebagai entry point utama.",
-    incorrectFeedback: "Jawaban kurang tepat. Server Netlify berjalan di atas OS Linux yang *case-sensitive*. Jika nama berkas adalah `Index.html` (huruf kapital I), server Linux tidak akan mengenali berkas tersebut sebagai `index.html` (entry point default), sehingga menghasilkan error 404.",
-    reference: "Modul 2: Deploy Frontend Statis"
-  },
-  {
-    id: 20,
-    module: "Modul 2: Deploy Frontend Statis - Build Settings Vanilla Web",
-    moduleCategory: "Modul 2",
-    question: "Saat mengintegrasikan repository GitHub berisi web statis murni (Vanilla HTML/CSS/JS tanpa bundler seperti Vite/React) pada Netlify Dashboard, manakah konfigurasi Build Settings yang paling tepat agar proses build tidak error?",
-    options: [
-      {
-        id: "A",
-        text: "Isi Build command dengan npm run build dan Publish directory dengan dist."
-      },
-      {
-        id: "B",
-        text: "Kosongkan Build command (atau biarkan default) dan isi Publish directory dengan titik (.) atau folder tempat index.html berada."
-      },
-      {
-        id: "C",
-        text: "Isi Build command dengan git push origin main dan Publish directory dengan /src/content."
-      },
-      {
-        id: "D",
-        text: "Wajib mengisi Build command dengan npx netlify-cli deploy --prod agar Netlify tidak membatalkan proses deployment."
+        text: "Untuk mempercepat koneksi internet pengguna secara instan hingga sepuluh kali lipat."
       }
     ],
     correctAnswer: "B",
-    correctFeedback: "Tepat sekali! Untuk web statis murni (tanpa bundler/framework), tidak ada proses kompilasi kode sehingga **Build command** harus dikosongkan. **Publish directory** diisi dengan `.` (akar proyek) tempat berkas `index.html` berada.",
-    incorrectFeedback: "Jawaban kurang tepat. Aplikasi web statis murni (Vanilla HTML/CSS/JS) tidak memerlukan langkah kompilasi, sehingga **Build command** harus dikosongkan. Jika diisi `npm run build` tanpa `package.json`, build akan gagal (error exit code 1).",
-    reference: "Modul 2: Deploy Frontend Statis"
+    correctFeedback: "Tepat sekali. Ekstensi browser (seperti adblocker atau translator) dapat menyisipkan script tambahan yang memperlambat waktu muat, sehingga Incognito Window menghasilkan pengujian yang bersih dan akurat.",
+    incorrectFeedback: "Kurang tepat. Jendela penyamaran digunakan agar ekstensi browser yang terpasang tidak ikut berjalan dan tidak mendistorsi pengukuran performa halaman web.",
+    reference: "Modul 4: Benchmark Performa dengan Google Lighthouse"
+  },
+  {
+    id: 20,
+    module: "Referensi: Cheatsheet & Troubleshooting",
+    moduleCategory: "Referensi",
+    question: "Perintah Git mana yang paling tepat digunakan untuk memeriksa apakah ada berkas yang baru diubah, belum dipantau (untracked), atau sudah masuk ke staging area?",
+    options: [
+      {
+        id: "A",
+        text: "git status"
+      },
+      {
+        id: "B",
+        text: "git check"
+      },
+      {
+        id: "C",
+        text: "git view"
+      },
+      {
+        id: "D",
+        text: "git list"
+      }
+    ],
+    correctAnswer: "A",
+    correctFeedback: "Tepat sekali. Perintah `git status` menampilkan rangkuman lengkap mengenai kondisi direktori kerja, staging area, dan berkas yang belum tercatat.",
+    incorrectFeedback: "Kurang tepat. Perintah standar Git untuk melihat status perubahan berkas secara rinci adalah `git status`.",
+    reference: "Referensi & Troubleshooting"
   }
 ];
