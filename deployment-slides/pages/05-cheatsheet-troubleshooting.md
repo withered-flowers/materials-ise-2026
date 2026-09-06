@@ -57,13 +57,13 @@ layout: default
 
 <div class="text-xs mt-2">
 
-| Indikator Metrik | Kategori Baik (Hijau) | Perlu Peningkatan (Oranye) | Kategori Buruk (Merah) |
-| :--- | :--- | :--- | :--- |
-| **LCP (Largest Contentful Paint)** | ≤ 2,5 detik | 2,5 – 4,0 detik | > 4,0 detik |
-| **INP (Interaction to Next Paint)** | ≤ 200 ms | 200 – 500 ms | > 500 ms |
-| **CLS (Cumulative Layout Shift)** | ≤ 0,1 | 0,1 – 0,25 | > 0,25 |
-| **FCP (First Contentful Paint)** | ≤ 1,8 detik | 1,8 – 3,0 detik | > 3,0 detik |
-| **Skor Keseluruhan Kategori** | 90 – 100 | 50 – 89 | 0 – 49 |
+| Indikator Metrik | Bobot | Baik (Hijau) | Perlu Peningkatan (Oranye) | Buruk (Merah) |
+| :--- | :---: | :--- | :--- | :--- |
+| **First Contentful Paint (FCP)** | 10% | ≤ 1,8 detik | 1,8 – 3,0 detik | > 3,0 detik |
+| **Speed Index (SI)** | 10% | ≤ 3,4 detik | 3,4 – 5,8 detik | > 5,8 detik |
+| **Largest Contentful Paint (LCP)** | 25% | ≤ 2,5 detik | 2,5 – 4,0 detik | > 4,0 detik |
+| **Total Blocking Time (TBT)** | 30% | ≤ 200 ms | 200 – 600 ms | > 600 ms |
+| **Cumulative Layout Shift (CLS)** | 25% | ≤ 0,1 | 0,1 – 0,25 | > 0,25 |
 
 </div>
 
@@ -81,7 +81,7 @@ layout: default
 
 <div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
   <div class="font-bold text-cyan-700 dark:text-cyan-400 mb-1">1. Performance</div>
-  Kecepatan muat konten utama (LCP), responsivitas input (INP), dan kestabilan layout (CLS).
+  Kecepatan muat (FCP, SI, LCP), efisiensi eksekusi script (TBT), dan stabilitas layout (CLS).
 </div>
 
 <div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">

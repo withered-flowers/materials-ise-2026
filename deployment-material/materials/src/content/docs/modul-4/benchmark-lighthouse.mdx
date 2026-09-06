@@ -1,6 +1,6 @@
 ---
 title: "Modul 4: Benchmark Performa dengan Google Lighthouse"
-description: Panduan melakukan audit dan benchmark performa website statis menggunakan Google Lighthouse serta pemahaman mendalam mengenai 4 kategori skor audit dan Core Web Vitals.
+description: Panduan melakukan audit dan benchmark performa website statis menggunakan Google Lighthouse serta pemahaman mendalam mengenai 4 kategori skor audit dan 5 indikator metrik performa (FCP, LCP, CLS, TBT, Speed Index).
 ---
 
 import { Steps } from '@astrojs/starlight/components';
@@ -49,21 +49,36 @@ Mari kita bedah secara mendalam apa saja yang dinilai pada masing-masing kategor
 
 ### A. Kategori 1: Performance (Performa Kecepatan & Responsivitas)
 
-Kategori ini mengukur seberapa cepat website memuat seluruh konten visual, seberapa cepat browser dapat merespons klik pengguna, dan seberapa stabil tata letak antarmuka selama proses loading.
+Kategori ini mengukur seberapa cepat website memuat seluruh konten visual, seberapa efisien browser mengeksekusi script, dan seberapa stabil tata letak antarmuka selama proses loading.
 
-Google menggunakan metrik standar industri yang disebut **Core Web Vitals**:
+Pada Google Lighthouse versi terbaru, skor kategori **Performance** dihitung secara terukur berdasarkan **5 Indikator Metrik Utama** berikut beserta bobot persentasenya masing-masing:
 
-| Indikator Metrik | Keterangan & Aspek yang Diukur | Target Kategori Baik |
-| :--- | :--- | :--- |
-| **LCP (Largest Contentful Paint)** | Waktu yang dibutuhkan browser untuk menampilkan elemen visual konten terbesar di layar (biasanya berupa gambar utama, banner, atau teks judul besar). | **≤ 2,5 detik** |
-| **INP (Interaction to Next Paint)** | Kecepatan respons browser saat pengguna pertama kali berinteraksi (misalnya mengeklik tombol atau mengetik pada form). | **≤ 200 milidetik** |
-| **CLS (Cumulative Layout Shift)** | Tingkat pergeseran tata letak elemen visual yang tidak terduga saat halaman sedang dimuat (misalnya tombol bergeser tiba-tiba ke bawah karena gambar baru selesai dimuat). | **≤ 0,1** |
-| **FCP (First Contentful Paint)** | Waktu saat browser pertama kali berhasil menampilkan elemen teks atau gambar pertama di layar pengguna. | **≤ 1,8 detik** |
-| **TBT (Total Blocking Time)** | Total durasi saat thread utama browser terblokir oleh pemrosesan script JavaScript sehingga tidak dapat merespons input pengguna. | **≤ 200 milidetik** |
+```mermaid
+graph TD
+    subgraph PerfMetrics [5 Indikator Metrik Performa Google Lighthouse]
+        FCP["1. First Contentful Paint (FCP)<br>Bobot: 10% | Target: ≤ 1,8 detik"]
+        SI["2. Speed Index (SI)<br>Bobot: 10% | Target: ≤ 3,4 detik"]
+        LCP["3. Largest Contentful Paint (LCP)<br>Bobot: 25% | Target: ≤ 2,5 detik"]
+        TBT["4. Total Blocking Time (TBT)<br>Bobot: 30% | Target: ≤ 200 ms"]
+        CLS["5. Cumulative Layout Shift (CLS)<br>Bobot: 25% | Target: ≤ 0,1"]
+    end
+```
+
+| Indikator Metrik | Bobot Skor | Keterangan & Aspek yang Diukur | Target Kategori Baik (Hijau) |
+| :--- | :---: | :--- | :--- |
+| **First Contentful Paint (FCP)** | **10%** | Waktu saat browser pertama kali merender elemen konten visual apa pun (teks, gambar, atau elemen canvas) ke layar. Menandai bahwa halaman sedang aktif diproses. | **≤ 1,8 detik** |
+| **Speed Index (SI)** | **10%** | Mengukur seberapa cepat konten visual pada halaman tampak terisi secara progresif selama pemuatan halaman (*perceptual visual loading speed*). | **≤ 3,4 detik** |
+| **Largest Contentful Paint (LCP)** | **25%** | Waktu yang dibutuhkan browser untuk merender elemen konten visual terbesar yang terlihat di area pandang (*viewport*) pengguna (misalnya gambar banner hero atau blok judul utama). | **≤ 2,5 detik** |
+| **Total Blocking Time (TBT)** | **30%** | Total durasi waktu antara FCP dan interaktivitas penuh saat thread utama (*main thread*) browser terblokir oleh pemrosesan JavaScript berat (>50 ms) sehingga respon klik/input terhambat. | **≤ 200 milidetik** |
+| **Cumulative Layout Shift (CLS)** | **25%** | Mengukur kestabilan tata letak visual (*visual stability*), yaitu seberapa banyak elemen tiba-tiba bergeser posisi secara tak terduga selama proses loading (misalnya tombol terdorong ke bawah karena gambar baru selesai dimuat). | **≤ 0,1** |
+
+> [!NOTE]
+> Tiga metrik dengan bobot terbesar dalam penilaian performa Lighthouse adalah **Total Blocking Time (30%)**, **Largest Contentful Paint (25%)**, dan **Cumulative Layout Shift (25%)**. Ketiga metrik ini secara kumulatif berkontribusi sebesar 80% terhadap keseluruhan skor Performance.
 
 **Faktor yang Sering Menurunkan Skor Performance**:
-- Berkas gambar berukuran raksasa yang belum dikompresi.
-- Terlalu banyak berkas JavaScript yang menghambat proses render halaman (*render-blocking resources*).
+- Berkas gambar berukuran raksasa yang belum dikompresi (menurunkan skor LCP dan Speed Index).
+- Elemen `<img>` yang tidak menyertakan atribut `width` dan `height` (menurunkan skor CLS karena pergeseran layout mendadak).
+- Terlalu banyak berkas JavaScript yang menghambat proses render halaman (*render-blocking resources*, menurunkan skor FCP dan TBT).
 
 ---
 
@@ -196,5 +211,5 @@ Untuk menjaga agar website statis Anda senantiasa mendapatkan skor hijau (90–1
 Pada Modul 4 ini, Anda telah menguasai:
 - Pentingnya benchmark performa dalam memastikan kenyamanan pengunjung dan reputasi website di internet.
 - Pemahaman mendalam mengenai **4 Kategori Audit Google Lighthouse**: *Performance*, *Accessibility*, *Best Practices*, dan *SEO*.
-- Indikator utama **Core Web Vitals** (LCP, INP, CLS) serta target ideal masing-masing metrik.
+- 5 Indikator metrik performa Google Lighthouse: **First Contentful Paint (FCP)**, **Speed Index (SI)**, **Largest Contentful Paint (LCP)**, **Total Blocking Time (TBT)**, dan **Cumulative Layout Shift (CLS)**.
 - Cara menjalankan pengujian pada Google Chrome Incognito Window dan langkah membaca laporan skor audit secara tepat.

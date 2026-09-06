@@ -500,7 +500,7 @@ export const quizQuestions: QuizQuestion[] = [
     id: 18,
     module: "Modul 4: Benchmark Performa Lighthouse",
     moduleCategory: "Modul 4",
-    question: "Dalam kategori *Performance*, metrik Core Web Vitals *Largest Contentful Paint* (LCP) mengukur apa dan berapa target nilai idealnya?",
+    question: "Dalam kategori *Performance* Google Lighthouse, metrik *Largest Contentful Paint* (LCP) mengukur apa dan berapa target nilai idealnya?",
     options: [
       {
         id: "A",

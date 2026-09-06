@@ -44,7 +44,7 @@ Materi ini disusun secara bertahap bagi pemula (SMA/SMK dan mahasiswa tingkat aw
 
 <div class="p-4 rounded-lg bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-800/50 text-purple-900 dark:text-purple-100">
   <div class="font-bold text-purple-700 dark:text-purple-400 text-base mb-1">Modul 4: Benchmark Performa Lighthouse</div>
-  <div class="text-xs opacity-90 leading-relaxed">Audit performa dengan <b>Google Lighthouse</b>, pemahaman mendalam <b>4 Kategori Audit</b> (Performance, Accessibility, Best Practices, SEO), dan Core Web Vitals.</div>
+  <div class="text-xs opacity-90 leading-relaxed">Audit performa dengan <b>Google Lighthouse</b>, pemahaman mendalam <b>4 Kategori Audit</b> (Performance, Accessibility, Best Practices, SEO), dan 5 Indikator Metrik Performa (FCP, LCP, CLS, TBT, Speed Index).</div>
 </div>
 
 </div>

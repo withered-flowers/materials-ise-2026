@@ -340,7 +340,7 @@ Highlight Jika Jawaban Salah:
 
 Soal 18
 
-Dalam kategori *Performance*, metrik Core Web Vitals *Largest Contentful Paint* (LCP) mengukur apa dan berapa target nilai idealnya?
+Dalam kategori *Performance* Google Lighthouse, metrik *Largest Contentful Paint* (LCP) mengukur apa dan berapa target nilai idealnya?
 
 - A. Mengukur waktu render elemen visual konten terbesar di layar pengguna, dengan target ideal di bawah 2,5 detik.
 - B. Mengukur kapasitas penyimpanan harddisk server, dengan target ideal di atas 1 Terabyte.

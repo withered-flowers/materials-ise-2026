@@ -5,7 +5,7 @@ layout: section
 # Modul 4
 ## Benchmark Performa dengan Google Lighthouse
 
-Panduan melakukan audit dan benchmark performa website statis menggunakan Google Lighthouse serta pemahaman mendalam mengenai 4 kategori skor audit dan Core Web Vitals.
+Panduan melakukan audit dan benchmark performa website statis menggunakan Google Lighthouse serta pemahaman mendalam mengenai 4 kategori skor audit dan 5 indikator metrik performa (FCP, LCP, CLS, TBT, Speed Index).
 
 ---
 layout: default
@@ -74,25 +74,29 @@ layout: default
 layout: default
 ---
 
-# 3. Kategori 1: Performance & Core Web Vitals
+# 3. Kategori 1: 5 Indikator Metrik Performa Lighthouse
 
-Mengukur kecepatan pemuatan halaman dan responsivitas interaksi browser:
+Mengukur kecepatan pemuatan halaman, efisiensi eksekusi script, dan kestabilan tata letak visual:
 
 ```mermaid {scale: 0.65}
-graph TD
-    subgraph CoreWebVitals [Tiga Pilar Utama Core Web Vitals]
-        A["1. LCP (Largest Contentful Paint)<br>Kecepatan Muat Konten Terbesar<br>Target: < 2.5 Detik"]
-        B["2. INP (Interaction to Next Paint)<br>Kecepatan Respon Input & Klik<br>Target: < 200 Milidetik"]
-        C["3. CLS (Cumulative Layout Shift)<br>Kestabilan Posisi Elemen Layar<br>Target: < 0.1"]
-    end
+graph LR
+    FCP["1. FCP (10%)<br>First Contentful Paint<br>≤ 1,8s"]
+    SI["2. Speed Index (10%)<br>Perceptual Visual Fill<br>≤ 3,4s"]
+    LCP["3. LCP (25%)<br>Largest Contentful Paint<br>≤ 2,5s"]
+    TBT["4. TBT (30%)<br>Total Blocking Time<br>≤ 200ms"]
+    CLS["5. CLS (25%)<br>Cumulative Layout Shift<br>≤ 0,1"]
 ```
 
-<div class="grid grid-cols-2 gap-3 mt-2 text-xs">
+<div class="grid grid-cols-2 gap-2 mt-2 text-xs">
   <div class="p-2 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-    • <b>FCP (First Contentful Paint):</b> Waktu hingga teks/gambar pertama muncul (Target: &lt; 1,8s).
+    • <b>FCP (10%):</b> Konten visual pertama muncul di layar (&le; 1,8s).<br>
+    • <b>Speed Index (10%):</b> Kecepatan visual halaman terisi (&le; 3,4s).<br>
+    • <b>LCP (25%):</b> Elemen konten visual terbesar selesai dimuat (&le; 2,5s).
   </div>
   <div class="p-2 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-    • <b>TBT (Total Blocking Time):</b> Durasi thread utama terblokir oleh script (Target: &lt; 200ms).
+    • <b>TBT (30%):</b> Beban pemblokiran JavaScript pada main thread (&le; 200ms).<br>
+    • <b>CLS (25%):</b> Kestabilan layout tanpa pergeseran mendadak (&le; 0,1).<br>
+    <span class="text-emerald-600 dark:text-emerald-400 font-bold">TBT + LCP + CLS menyumbang 80% total skor Performance!</span>
   </div>
 </div>
 
@@ -257,7 +261,7 @@ layout: default
 
 <div class="flex items-center space-x-2">
   <carbon:checkmark-filled class="text-emerald-600 dark:text-emerald-400" />
-  <span><b>Core Web Vitals:</b> LCP (&lt; 2,5 detik), INP (&lt; 200 ms), dan CLS (&lt; 0,1).</span>
+  <span><b>5 Metrik Performa:</b> FCP (10%), Speed Index (10%), LCP (25%), TBT (30%), dan CLS (25%).</span>
 </div>
 
 <div class="flex items-center space-x-2">
