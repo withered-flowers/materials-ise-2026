@@ -28,19 +28,19 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         id: "A",
-        text: "Proses menginstal editor Visual Studio Code dan ekstensi pendukung di komputer lokal."
+        text: "Proses pengujian kode JavaScript dan styling CSS secara otomatis di browser lokal pengembang sebelum berkas disimpan ke dalam komputer."
       },
       {
         id: "B",
-        text: "Proses memindahkan aplikasi web dari lingkungan lokal (Local Environment) ke server cloud publik (Production Environment) agar dapat diakses oleh publik via internet."
+        text: "Proses memindahkan aplikasi web dari lingkungan lokal ke server cloud publik agar dapat diakses oleh pengguna melalui internet."
       },
       {
         id: "C",
-        text: "Proses mengubah desain gambar grafis menjadi baris kode HTML secara manual di komputer."
+        text: "Proses kompilasi berkas konfigurasi database dan dependensi sistem operasi di komputer lokal sebelum pengujian aplikasi dijalankan."
       },
       {
         id: "D",
-        text: "Proses menghapus riwayat penjelajahan browser dan berkas cache penyimpanan di laptop."
+        text: "Proses pencadangan (backup) seluruh repositori kode sumber ke dalam media penyimpanan eksternal guna mencegah kehilangan data lokal."
       }
     ],
     correctAnswer: "B",
@@ -56,19 +56,19 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         id: "A",
-        text: "Mengenkripsi seluruh data formulir pengunjung agar tidak dapat dibaca oleh pihak lain."
+        text: "Mengamankan seluruh transmisi data antara browser pengunjung dan server menggunakan enkripsi sertifikat kriptografi digital."
       },
       {
         id: "B",
-        text: "Menerjemahkan nama domain yang mudah diingat (seperti aplikasiku.netlify.app) menjadi alamat IP numerik server tujuan."
+        text: "Menerjemahkan nama domain yang mudah diingat menjadi alamat IP numerik server tempat berkas website berada."
       },
       {
         id: "C",
-        text: "Mengompresi ukuran berkas gambar secara otomatis saat halaman web dimuat."
+        text: "Mengompresi dan mengoptimasi seluruh aset gambar serta script secara otomatis sebelum dikirimkan ke perangkat browser pengunjung."
       },
       {
         id: "D",
-        text: "Menyimpan seluruh riwayat perubahan kode sumber yang dikirimkan oleh developer."
+        text: "Menyimpan salinan berkas HTML, CSS, dan JavaScript di berbagai titik server edge global untuk mempercepat proses loading halaman."
       }
     ],
     correctAnswer: "B",
@@ -84,19 +84,19 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         id: "A",
-        text: "Traditional VPS mengharuskan developer mengelola sistem operasi, pembaruan keamanan, konfigurasi web server manual, serta rentan downtime jika server kehabisan kapasitas."
+        text: "Developer wajib mengelola sistem operasi, konfigurasi web server manual, patch keamanan, dan risiko downtime saat lonjakan trafik."
       },
       {
         id: "B",
-        text: "Traditional VPS tidak dapat digunakan untuk menjalankan file HTML dan CSS sama sekali."
+        text: "Traditional VPS sama sekali tidak mendukung penggunaan protokol HTTPS dan sertifikat SSL gratis sehingga rentan terhadap serangan sniffing data."
       },
       {
         id: "C",
-        text: "Traditional VPS hanya bisa diakses oleh komputer yang memiliki sistem operasi Windows XP."
+        text: "Traditional VPS tidak dapat menjalankan berkas web statis murni (HTML/CSS) tanpa menginstal sistem manajemen database relasional SQL terlebih dahulu."
       },
       {
         id: "D",
-        text: "Traditional VPS mewajibkan semua website dirilis menggunakan jaringan satelit luar angkasa."
+        text: "Traditional VPS membatasi jumlah halaman web yang boleh diunggah maksimal sebanyak sepuluh berkas dalam satu direktori server publik."
       }
     ],
     correctAnswer: "A",
@@ -112,19 +112,19 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         id: "A",
-        text: "Untuk menghapus seluruh berkas CSS dan JavaScript yang berukuran lebih dari 1 MB secara otomatis."
+        text: "Untuk mengompresi dan merestrukturisasi seluruh baris kode JavaScript secara otomatis ke dalam format binary sebelum dieksekusi browser."
       },
       {
         id: "B",
-        text: "Agar berkas website disalin ke berbagai server edge di seluruh dunia, sehingga pengunjung dapat mengunduh halaman dari server terdekat dengan sangat cepat."
+        text: "Mendistribusikan salinan berkas website ke berbagai server edge global agar pengunjung dapat memuat halaman dari lokasi terdekat."
       },
       {
         id: "C",
-        text: "Untuk memaksa pengunjung memasukkan password khusus setiap kali membuka website."
+        text: "Menghubungkan database lokal pengembang secara langsung ke browser pengunjung melalui terowongan jaringan VPN terenkripsi berkecepatan tinggi."
       },
       {
         id: "D",
-        text: "Untuk mengubah alamat IP komputer pengunjung menjadi domain unik Netlify."
+        text: "Menyaring seluruh lalu lintas data masuk dengan memblokir permintaan akses dari perangkat non-desktop untuk menghemat kuota bandwidth server."
       }
     ],
     correctAnswer: "B",
@@ -140,19 +140,19 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         id: "A",
-        text: "Git adalah bahasa pemrograman web, sedangkan GitHub adalah aplikasi editor teks seperti Visual Studio Code."
+        text: "Git adalah bahasa skrip untuk membangun antarmuka web, sedangkan GitHub adalah sistem database cloud untuk menyimpan data dinamis pengguna."
       },
       {
         id: "B",
-        text: "Git adalah sistem Version Control untuk mencatat riwayat perubahan kode, sedangkan GitHub adalah platform cloud untuk menyimpan dan mengelola repositori secara online via browser."
+        text: "Git adalah sistem Version Control lokal untuk mencatat riwayat kode, sedangkan GitHub adalah platform cloud untuk hosting repositori."
       },
       {
         id: "C",
-        text: "Git hanya dapat digunakan pada sistem operasi Linux, sedangkan GitHub hanya dapat diakses melalui Windows."
+        text: "Git adalah layanan web hosting khusus website statis, sedangkan GitHub adalah aplikasi desktop visual untuk mengedit kode program bersama tim."
       },
       {
         id: "D",
-        text: "Git dan GitHub adalah aplikasi yang sama persis tanpa perbedaan fungsi maupun cara penggunaan."
+        text: "Git berfungsi menjalankan kode program secara online, sedangkan GitHub berfungsi mendeteksi kesalahan sintaks dan bug secara otomatis di cloud."
       }
     ],
     correctAnswer: "B",
@@ -168,11 +168,11 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         id: "A",
-        text: "Menyalin teks kode satu per satu dari browser ke dalam dokumen Microsoft Word."
+        text: "Menekan tombol 'Fork' di pojok kanan atas repositori lalu memilih opsi 'Save to Local Disk' pada menu browser."
       },
       {
         id: "B",
-        text: "Menekan kombinasi tombol Ctrl + Alt + Delete pada keyboard."
+        text: "Membuka menu 'Settings' pada repositori lalu mengekspor seluruh basis data proyek ke dalam format arsip RAR."
       },
       {
         id: "C",
@@ -180,7 +180,7 @@ export const quizQuestions: QuizQuestion[] = [
       },
       {
         id: "D",
-        text: "Mengirimkan email permohonan berkas secara manual ke kantor pusat GitHub."
+        text: "Menyorot seluruh baris kode pada tab 'Pull requests' kemudian menyalinnya secara manual ke editor teks lokal."
       }
     ],
     correctAnswer: "C",
@@ -196,19 +196,19 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         id: "A",
-        text: "Secret"
+        text: "Opsi 'Private' agar kode sumber tidak dapat dilihat orang lain sebelum proses deployment disetujui."
       },
       {
         id: "B",
-        text: "Public"
+        text: "Opsi 'Public' agar repositori dapat diakses dan diimpor secara gratis oleh Netlify Dashboard."
       },
       {
         id: "C",
-        text: "Archived"
+        text: "Opsi 'Internal' agar repositori hanya dapat diakses oleh anggota organisasi berbayar di GitHub."
       },
       {
         id: "D",
-        text: "Internal Enterprise"
+        text: "Opsi 'Archived' agar repositori terkunci secara otomatis dan terlindungi dari perubahan kode yang tidak disengaja."
       }
     ],
     correctAnswer: "B",
@@ -224,19 +224,19 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         id: "A",
-        text: "Mengirimkan berkas melalui fitur direct message obrolan ke akun teman."
+        text: "Memanfaatkan menu 'Actions' lalu menjalankan alur kerja otomatis untuk menarik berkas dari drive komputer pengembang."
       },
       {
         id: "B",
-        text: "Memanfaatkan menu 'Add file' > 'Upload files' (atau tautan 'uploading an existing file') dengan metode tarik dan lepas (drag and drop)."
+        text: "Memanfaatkan menu 'Add file' > 'Upload files' (atau tautan 'uploading an existing file') dengan metode drag and drop."
       },
       {
         id: "C",
-        text: "Menempelkan seluruh berkas ke dalam kolom kotak pencarian (search bar) GitHub."
+        text: "Membuka menu 'Issues' lalu melampirkan berkas proyek sebagai dokumen pendukung pada tiket diskusi publik repositori."
       },
       {
         id: "D",
-        text: "Mengunggah berkas ke Google Drive lalu menempel tautannya di kolom komentar GitHub."
+        text: "Menekan tombol 'Create new release' lalu melampirkan seluruh dokumen proyek ke dalam paket distribusi versi terbaru."
       }
     ],
     correctAnswer: "B",
@@ -252,19 +252,19 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         id: "A",
-        text: "Agar ukuran berkas HTML dan CSS otomatis mengecil menjadi nol kilobyte."
+        text: "Membantu mesin perayap (crawler) Google mengindeks struktur halaman web agar peringkat SEO website meningkat di hasil pencarian."
       },
       {
         id: "B",
-        text: "Untuk mendokumentasikan riwayat perubahan proyek secara rapi sehingga tujuan dan isi perubahan mudah dipahami di masa depan."
+        text: "Mendokumentasikan riwayat perubahan secara rapi agar maksud dan tujuan pembaruan kode mudah dipahami di masa depan."
       },
       {
         id: "C",
-        text: "Karena GitHub akan menolak penyimpanan jika pesan commit tidak berima seperti bait puisi."
+        text: "Memicu kompilasi otomatis kode CSS dan JavaScript menjadi format binary terkompresi sebelum disimpan ke server GitHub."
       },
       {
         id: "D",
-        text: "Untuk menyembunyikan identitas akun pemilik repositori dari publik."
+        text: "Memberikan otorisasi keamanan dua faktor (2FA) agar berkas yang diunggah tidak dapat diubah kembali oleh pengguna lain."
       }
     ],
     correctAnswer: "B",
@@ -280,19 +280,19 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         id: "A",
-        text: "Membuka menu Add new site > Import an existing project, lalu memilih provider GitHub dan menentukan repositori proyek."
+        text: "Memilih menu 'Add new site' > 'Import an existing project', memilih provider GitHub, lalu menentukan repositori proyek."
       },
       {
         id: "B",
-        text: "Menyalin seluruh kode HTML ke dalam kolom komentar di forum Netlify Community."
+        text: "Membuka menu 'Billing & Plans' lalu mengunggah berkas zip proyek melalui formulir verifikasi pembayaran langganan hosting."
       },
       {
         id: "C",
-        text: "Mengirimkan flashdisk berisi kode ke kantor perwakilan Netlify melalui pos."
+        text: "Masuk ke menu 'Domains Management' lalu mendaftarkan nama repositori GitHub sebagai server nama (Nameserver) utama Netlify."
       },
       {
         id: "D",
-        text: "Mengetikkan perintah npx netlify-cli di browser Google Chrome."
+        text: "Mengakses menu 'Integrations' lalu menempelkan tautan profil akun GitHub pribadi pada kolom webhook eksternal organisasi."
       }
     ],
     correctAnswer: "A",
@@ -308,19 +308,19 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         id: "A",
-        text: "Website akan otomatis terhapus dari server cloud Netlify."
+        text: "Netlify secara otomatis membatalkan status publikasi situs dan mengembalikan versi website ke pengaturan awal pabrik (factory reset)."
       },
       {
         id: "B",
-        text: "Netlify menerima notifikasi Webhook dari GitHub, lalu secara otomatis merilis versi terbaru website tanpa perlu tindakan manual di Netlify Dashboard."
+        text: "Netlify menerima sinyal Webhook dari GitHub lalu otomatis memproses dan merilis pembaruan website tanpa tindakan manual."
       },
       {
         id: "C",
-        text: "Developer wajib login ke server Linux Netlify via SSH untuk merestart komputer server."
+        text: "Netlify mewajibkan developer melakukan sinkronisasi manual melalui terminal SSH untuk menyetujui setiap perubahan kode di cloud."
       },
       {
         id: "D",
-        text: "Netlify akan mematikan koneksi internet developer selama 24 jam."
+        text: "Netlify menangguhkan sementara nama domain publik selama 24 jam hingga proses verifikasi keaslian kode selesai diverifikasi."
       }
     ],
     correctAnswer: "B",
@@ -336,19 +336,19 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         id: "A",
-        text: "Berkas HTML utama tidak bernama index.html atau berada di dalam subfolder yang tidak terdaftar di akar repositori."
+        text: "Berkas utama tidak bernama index.html atau tersimpan di dalam subfolder sehingga tidak ditemukan di akar repositori."
       },
       {
         id: "B",
-        text: "Netlify belum menerima pembayaran langganan sertifikat SSL dari developer."
+        text: "Sertifikat enkripsi SSL domain belum diperpanjang sehingga server Netlify memblokir seluruh akses halaman bagi publik."
       },
       {
         id: "C",
-        text: "Komputer developer dalam keadaan mati saat pengguna internet membuka website."
+        text: "Kuota bandwidth jaringan global Netlify telah terlampaui sehingga server otomatis menampilkan halaman galat pemeliharaan."
       },
       {
         id: "D",
-        text: "Akun GitHub yang terhubung tidak memiliki centang verifikasi biru."
+        text: "Repositori GitHub menggunakan lisensi open-source yang membatasi hak akses publikasi berkas ke layanan cloud pihak ketiga."
       }
     ],
     correctAnswer: "A",
@@ -364,19 +364,19 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         id: "A",
-        text: "Karena website statis murni tidak membutuhkan proses kompilasi kode sehingga berkas siap langsung disajikan ke CDN."
+        text: "Website statis murni tidak memerlukan proses kompilasi atau bundler sehingga berkas siap disajikan langsung ke CDN."
       },
       {
         id: "B",
-        text: "Karena Netlify melarang pengisian teks pada kolom Build command untuk semua jenis website."
+        text: "Netlify secara otomatis memblokir eksekusi perintah terminal jika akun pengguna belum diverifikasi menggunakan kartu kredit."
       },
       {
         id: "C",
-        text: "Agar sistem operasi Netlify dapat mengunduh database MySQL secara otomatis."
+        text: "Pengisian kolom Build command akan menghapus seluruh isi berkas CSS dan JavaScript yang berada di repositori utama GitHub."
       },
       {
         id: "D",
-        text: "Karena kolom Build command hanya boleh diisi oleh pengguna berbayar."
+        text: "Server build Netlify hanya dapat mengeksekusi skrip kompilasi yang ditulis secara spesifik menggunakan bahasa pemrograman C++."
       }
     ],
     correctAnswer: "A",
@@ -392,19 +392,19 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         id: "A",
-        text: "Karena sistem operasi Windows bersifat case-insensitive, sedangkan server Linux Netlify bersifat case-sensitive dan hanya mengenali index.html."
+        text: "Sistem operasi Windows bersifat case-insensitive, sedangkan server Linux Netlify bersifat case-sensitive terhadap nama berkas."
       },
       {
         id: "B",
-        text: "Karena Netlify melarang penggunaan huruf kapital pada seluruh baris kode HTML."
+        text: "Huruf kapital pada nama berkas menyebabkan server Netlify mengidentifikasi dokumen tersebut sebagai berkas biner terenkripsi."
       },
       {
         id: "C",
-        text: "Karena berkas yang diawali huruf kapital membutuhkan kuota hosting yang lebih besar."
+        text: "Sistem keamanan GitHub membatasi hak akses berkas yang diawali huruf kapital agar tidak dapat dibaca oleh webhook pihak ketiga."
       },
       {
         id: "D",
-        text: "Karena GitHub secara otomatis menghapus berkas yang memiliki nama dengan huruf kapital."
+        text: "Protokol transfer HTTP/2 mewajibkan seluruh berkas dokumen web diubah namanya menjadi huruf kecil saat diunggah ke cloud."
       }
     ],
     correctAnswer: "A",
@@ -420,19 +420,19 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         id: "A",
-        text: "Frontend, Backend, Database, dan Server Hardware"
+        text: "Frontend Layout, Backend Architecture, Database Security, dan Cloud Storage"
       },
       {
         id: "B",
-        text: "Performance, Accessibility, Best Practices, dan SEO"
+        text: "Performance, Accessibility, Best Practices, dan Search Engine Optimization (SEO)"
       },
       {
         id: "C",
-        text: "HTML, CSS, JavaScript, dan TypeScript"
+        text: "Code Quality, Network Latency, Memory Leak Detection, dan Responsive Breakpoints"
       },
       {
         id: "D",
-        text: "Localhost, Staging, Production, dan Disaster Recovery"
+        text: "Continuous Integration, Disaster Recovery, Containerization, dan DNS Resolution"
       }
     ],
     correctAnswer: "B",
@@ -448,19 +448,19 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         id: "A",
-        text: "Memastikan website dapat diakses dan digunakan dengan baik oleh semua orang, termasuk pengguna dengan disabilitas (kontras teks, atribut alt gambar, label form)."
+        text: "Memastikan website ramah bagi semua pengguna termasuk penyandang disabilitas melalui kontras warna, teks alt, dan label form."
       },
       {
         id: "B",
-        text: "Memastikan kecepatan server cloud dalam menampung jutaan data transaksi per detik."
+        text: "Menilai tingkat ketahanan server hosting dalam menangani ribuan transaksi permintaan data secara bersamaan tanpa mengalami lonjakan latensi."
       },
       {
         id: "C",
-        text: "Menilai seberapa mahal harga sewa domain yang dibeli oleh pemilik website."
+        text: "Memeriksa kelayakan arsitektur database backend dalam memproses kueri SQL kompleks serta konsistensi replikasi data ke server cadangan."
       },
       {
         id: "D",
-        text: "Memeriksa apakah website memiliki integrasi pembayaran perbankan internasional."
+        text: "Menguji kepatuhan antarmuka visual terhadap pedoman desain sistem operasi tertentu seperti Material Design atau Apple Human Interface."
       }
     ],
     correctAnswer: "A",
@@ -476,19 +476,19 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         id: "A",
-        text: "Koneksi aman HTTPS penuh, bebas pesan error di console, serta keberadaan tag title, meta description, dan viewport responsif."
+        text: "Penerapan protokol HTTPS, kebersihan log console dari pesan error, serta kelengkapan tag title, deskripsi, dan meta viewport."
       },
       {
         id: "B",
-        text: "Jumlah total baris kode HTML minimal harus mencapai 10.000 baris."
+        text: "Keberadaan integrasi sistem autentikasi OAuth pihak ketiga, pelacakan analitik Google Tag Manager, dan banner cookie GDPR."
       },
       {
         id: "C",
-        text: "Keberadaan fitur animasi 3D dan pemutar video otomatis di latar belakang."
+        text: "Penggunaan framework CSS terkini, kompresi seluruh gambar ke format WebP, serta implementasi Service Worker untuk mode luring."
       },
       {
         id: "D",
-        text: "Apakah website dibuat menggunakan komputer berspesifikasi gaming tinggi."
+        text: "Pengujian kompatibilitas rendering halaman pada peramban warisan (legacy browser) serta ketersediaan pintasan keyboard kustom."
       }
     ],
     correctAnswer: "A",
@@ -504,19 +504,19 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         id: "A",
-        text: "Mengukur waktu render elemen visual konten terbesar di layar pengguna, dengan target ideal di bawah 2,5 detik."
+        text: "Waktu render elemen visual konten utama terbesar di layar pengguna, dengan target ideal di bawah 2,5 detik."
       },
       {
         id: "B",
-        text: "Mengukur kapasitas penyimpanan harddisk server, dengan target ideal di atas 1 Terabyte."
+        text: "Total waktu respon awal yang dibutuhkan oleh server untuk mengembalikan byte data pertama, dengan target di bawah 0,5 detik."
       },
       {
         id: "C",
-        text: "Mengukur jumlah klik mouse pengunjung, dengan target minimal 100 klik."
+        text: "Tingkat pergeseran tata letak visual tak terduga saat elemen halaman dimuat, dengan skor target kumulatif di bawah nilai 0,1."
       },
       {
         id: "D",
-        text: "Mengukur kecepatan mengetik developer di Visual Studio Code."
+        text: "Jeda waktu antara interaksi pertama pengguna (klik tombol) hingga browser merespons aksi tersebut, dengan target di bawah 100 ms."
       }
     ],
     correctAnswer: "A",
@@ -532,19 +532,19 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         id: "A",
-        text: "Agar riwayat penelusuran developer tidak terbaca oleh server Netlify."
+        text: "Mencegah server web Netlify mendeteksi identitas alamat IP asli developer guna menghindari pemblokiran batas kuota akses harian."
       },
       {
         id: "B",
-        text: "Agar hasil skor audit murni dan tidak terpengaruh oleh ekstensi browser pihak ketiga yang dapat memperlambat proses halaman."
+        text: "Menghindari interferensi ekstensi browser pihak ketiga yang dapat menyuntikkan skrip tambahan dan mendistorsi hasil skor audit."
       },
       {
         id: "C",
-        text: "Karena fitur tab Lighthouse hanya dapat diaktifkan pada jendela penyamaran saja."
+        text: "Mengaktifkan mode simulasi jaringan berkecepatan tinggi yang hanya tersedia secara eksklusif pada sesi penyamaran peramban Chrome."
       },
       {
         id: "D",
-        text: "Untuk mempercepat koneksi internet pengguna secara instan hingga sepuluh kali lipat."
+        text: "Memastikan seluruh data cookie dan sesi login pengguna dihapus secara otomatis sebelum proses pengujian keamanan SSL dijalankan."
       }
     ],
     correctAnswer: "B",
@@ -560,19 +560,19 @@ export const quizQuestions: QuizQuestion[] = [
     options: [
       {
         id: "A",
-        text: "Klik nama berkas index.html di repositori GitHub, klik ikon pensil ('Edit this file'), ubah teksnya, lalu klik 'Commit changes'."
+        text: "Membuka berkas index.html di GitHub, mengeklik ikon pensil ('Edit this file'), memperbaiki teks, lalu menyimpan via 'Commit changes'."
       },
       {
         id: "B",
-        text: "Menghapus seluruh akun GitHub dan mendaftar akun baru dari awal."
+        text: "Menghapus repositori lama secara permanen di menu Settings, membuat repositori baru, lalu mengunggah kembali seluruh berkas proyek."
       },
       {
         id: "C",
-        text: "Menginstal ulang sistem operasi komputer dan memasang browser baru."
+        text: "Membuka menu Pull Requests, membuat tiket isu pelaporan kesalahan penulisan, lalu menunggu konfirmasi verifikasi dari tim teknis GitHub."
       },
       {
         id: "D",
-        text: "Menghubungi customer service Netlify agar mereka yang mengedit kode HTML kita."
+        text: "Mengunduh arsip ZIP proyek ke komputer lokal, mengekstrak berkas, mengubah teks pada Notepad, lalu membuat repositori cadangan kedua."
       }
     ],
     correctAnswer: "A",
