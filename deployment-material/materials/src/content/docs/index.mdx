@@ -1,16 +1,16 @@
 ---
 title: Belajar Deployment Aplikasi Web di Netlify
-description: Panduan praktis & terstruktur dalam Bahasa Indonesia untuk Junior Developer yang ingin menguasai deployment frontend, backend serverless TypeScript, dan aplikasi fullstack di Netlify.
+description: Panduan praktis dan terstruktur untuk pemula (SMA/SMK dan mahasiswa awal) dalam mempelajari deployment website statis, version control dengan Git dan GitHub, serta audit performa menggunakan Google Lighthouse.
 template: splash
 hero:
-  tagline: Dari Lokal ke Production dengan Cepat, Aman, dan Efisien.
+  tagline: Dari Komputer Lokal ke Server Cloud Publik dengan Aman, Cepat, dan Terukur.
   image:
     file: ../../assets/houston.webp
   actions:
-    - text: Mulai Pembelajaran
+    - text: Mulai Belajar
       link: /modul-1/konsep-deployment/
       icon: right-arrow
-    - text: Lihat Cheatsheet CLI
+    - text: Lihat Cheatsheet
       link: /referensi/cheatsheet-troubleshooting/
       icon: external
       variant: minimal
@@ -18,42 +18,44 @@ hero:
 
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
-## Apa yang Akan Anda Pelajari?
+## Rencana Pembelajaran
 
-Dokumentasi ini dirancang khusus untuk **Junior Developer** agar dapat memahami alur kerja deployment modern dari nol hingga berhasil merilis aplikasi ke internet.
+Materi ini disusun secara bertahap bagi pemula, baik siswa SMA/SMK maupun mahasiswa tingkat awal, yang ingin mempublikasikan karya website ke internet dengan standar industri modern.
 
 <CardGrid stack>
-  <Card title="Modul 1: Konsep Deployment" icon="open-book">
-    Memahami apa itu deployment, perbedaan lingkungan **Local vs Production**, peran DNS/Domain, serta alur otomatisasi **CI/CD**.
+  <Card title="Modul 1: Konsep Dasar Deployment" icon="open-book">
+    Mengenal pengertian deployment, perbedaan lingkungan **Local vs Production**, peran Domain dan DNS, keamanan HTTPS/SSL, serta konsep Content Delivery Network (CDN).
   </Card>
-  <Card title="Modul 2: Deploy Frontend Statis" icon="rocket">
-    Langkah demi langkah menyebarkan web statis (HTML, CSS, JS) menggunakan Netlify CLI dan integrasi GitHub repository.
+  <Card title="Modul 2: Pengelolaan Kode dengan GitHub Web" icon="pencil">
+    Praktik mengelola berkas proyek secara langsung via browser di GitHub tanpa command line: mengunduh starter code (Download ZIP), membuat repositori baru, dan mengunggah berkas dengan pesan commit (Upload Files).
   </Card>
-  <Card title="Modul 3: Deploy Backend TypeScript" icon="setting">
-    Membuat dan me-deploy Serverless Functions menggunakan TypeScript native di Netlify beserta pengelolaan Environment Variables.
+  <Card title="Modul 3: Deploy Website Statis ke Netlify" icon="rocket">
+    Praktik langsung mempublikasikan website statis (HTML, CSS, dan JavaScript) ke Netlify melalui antarmuka web dashboard terhubung ke GitHub (CI/CD otomatis).
   </Card>
-  <Card title="Modul 4: Deploy Fullstack App" icon="puzzle">
-    Menghubungkan Frontend dan Backend, menangani CORS, membuat URL rewrite/redirects, serta komunikasi REST API di cloud.
+  <Card title="Modul 4: Benchmark Performa dengan Google Lighthouse" icon="star">
+    Melakukan audit performa website menggunakan Google Lighthouse, memahami 5 metrik performa utama (FCP, LCP, CLS, TBT, Speed Index), menginterpretasikan 4 kategori skor evaluasi, dan menerapkan teknik optimasi aset.
   </Card>
 </CardGrid>
 
 ---
 
-## Struktur Kode Sumber (Source Code)
+## Proyek Praktik (Source Code)
 
-Seluruh contoh kode yang dibahas dalam modul dapat diakses pada folder repository `sources/`:
+Praktik pada panduan ini berfokus pada aplikasi website statis yang dapat ditemukan pada direktori repository:
 
-- 📂 `sources/01-frontend-static/`: Web statis kalkulator diskon (Vanilla HTML/CSS/JS).
-- 📂 `sources/02-backend-ts/`: Serverless backend TypeScript dengan Netlify Functions.
-- 📂 `sources/03-fullstack/`: Aplikasi Task Manager fullstack yang saling berkomunikasi.
+- `sources/01-frontend-static/`: Aplikasi website statis kalkulator diskon berbasis Vanilla HTML, CSS, dan JavaScript tanpa *bundler*.
 
 ---
 
-## Memulai Pembelajaran
+## Langkah Awal
 
-Silakan pilih modul di bawah ini atau gunakan menu navigasi di samping untuk memulai:
+Silakan pilih modul pembelajaran di bawah ini untuk memulai langkah pertama Anda:
 
 <CardGrid>
-  <LinkCard title="Mulai dari Modul 1: Konsep Deployment" href="/modul-1/konsep-deployment/" description="Pahami perbedaan localhost dan server cloud." />
-  <LinkCard title="Langsung ke Cheatsheet Perintah CLI" href="/referensi/cheatsheet-troubleshooting/" description="Kumpulan perintah Git dan Netlify CLI penting." />
+  <LinkCard title="Modul 1: Konsep Dasar Deployment" href="/modul-1/konsep-deployment/" description="Pahami prinsip kerja server web dan alur rilis ke cloud." />
+  <LinkCard title="Modul 2: Penggunaan Git & GitHub" href="/modul-2/git-dan-github/" description="Pelajari cara mengelola dan menyimpan versi kode proyek." />
+  <LinkCard title="Modul 3: Deploy Website Statis" href="/modul-3/deploy-frontend-statis/" description="Praktik rilis web kalkulator diskon ke Netlify." />
+  <LinkCard title="Modul 4: Benchmark Performa Lighthouse" href="/modul-4/benchmark-lighthouse/" description="Uji kecepatan dan kualitas website dengan Google Lighthouse." />
+  <LinkCard title="Cheatsheet & Troubleshooting" href="/referensi/cheatsheet-troubleshooting/" description="Daftar perintah penting Git, Netlify CLI, dan panduan solusi kendala." />
+  <LinkCard title="Uji Pemahaman: Quiz Deployment" href="/quiz/quiz-deployment/" description="Uji pemahaman Anda melalui kuis interaktif 20 soal." />
 </CardGrid>

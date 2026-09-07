@@ -1,0 +1,547 @@
+---
+// Component Leaderboard Modal untuk Quiz Netlify
+---
+
+<div id="leaderboard-modal" class="lb-modal not-content">
+  <div class="lb-modal-backdrop" id="lb-modal-backdrop"></div>
+  <div class="lb-modal-content not-content">
+    <div class="lb-modal-header">
+      <div class="lb-modal-title-group">
+        <h3 class="lb-modal-title">🏆 Papan Peringkat (Leaderboard)</h3>
+      </div>
+      <button type="button" id="btn-close-leaderboard" class="lb-modal-close" title="Tutup">✕</button>
+    </div>
+
+    <div class="lb-modal-controls">
+      <input
+        type="text"
+        id="lb-search-input"
+        class="lb-search-input"
+        placeholder="Cari nama peserta..."
+      />
+      <button type="button" id="btn-refresh-leaderboard" class="lb-btn lb-btn-refresh">
+        🔄 Refresh
+      </button>
+    </div>
+
+    <div id="lb-db-notice" class="lb-db-notice" style="display: none;"></div>
+
+    <div class="lb-table-wrapper">
+      <table class="lb-table">
+        <thead>
+          <tr>
+            <th class="col-rank">Rank</th>
+            <th class="col-name">Nama Peserta</th>
+            <th class="col-score">Skor</th>
+            <th class="col-correct">Benar</th>
+            <th class="col-time">Waktu</th>
+            <th class="col-date">Tanggal</th>
+          </tr>
+        </thead>
+        <tbody id="lb-table-body">
+          <tr>
+            <td colspan="6" class="col-loading">⏳ Memuat data papan peringkat...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="lb-modal-footer">
+      <span id="lb-total-participants" class="lb-total-text">Total Peserta: 0</span>
+      <button type="button" id="btn-close-leaderboard-footer" class="lb-btn">
+        Tutup
+      </button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+(function() {
+  const STORAGE_KEY_PLAYER_NAME = 'netlify_quiz_player_name_v1';
+  let cachedLeaderboard = [];
+
+  const lbModal = document.getElementById('leaderboard-modal');
+  const lbModalBackdrop = document.getElementById('lb-modal-backdrop');
+  const btnCloseLb = document.getElementById('btn-close-leaderboard');
+  const btnCloseLbFooter = document.getElementById('btn-close-leaderboard-footer');
+  const btnRefreshLb = document.getElementById('btn-refresh-leaderboard');
+  const lbSearchInput = document.getElementById('lb-search-input');
+  const lbTableBody = document.getElementById('lb-table-body');
+  const lbTotalParticipants = document.getElementById('lb-total-participants');
+  const lbDbNotice = document.getElementById('lb-db-notice');
+
+  // Teleport modal to document.body to avoid stacking context & clipping issues
+  function ensureBodyAttached() {
+    if (lbModal && lbModal.parentElement !== document.body) {
+      document.body.appendChild(lbModal);
+    }
+  }
+
+  async function fetchLeaderboardData() {
+    if (lbTableBody) {
+      lbTableBody.innerHTML = `<tr><td colspan="6" class="col-loading">⏳ Mengambil data peringkat dari server...</td></tr>`;
+    }
+
+    try {
+      const res = await fetch('/api/leaderboard?limit=50', {
+        headers: { 'Accept': 'application/json' },
+        cache: 'no-store'
+      });
+
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+      }
+
+      const json = await res.json();
+
+      if (lbDbNotice) {
+        if (!json.isConfigured || json.error) {
+          lbDbNotice.style.display = 'block';
+          const msg = json.error || json.message || 'Database Turso belum dikonfigurasi. Silakan isi TURSO_DATABASE_URL dan TURSO_AUTH_TOKEN di .env';
+          lbDbNotice.innerHTML = `<span>ℹ️ <strong>Status Turso:</strong> ${escapeHtml(msg)}</span>`;
+        } else {
+          lbDbNotice.style.display = 'none';
+        }
+      }
+
+      if (json.success && Array.isArray(json.data) && json.data.length > 0) {
+        cachedLeaderboard = json.data;
+        renderLeaderboardTable(cachedLeaderboard);
+      } else {
+        cachedLeaderboard = [];
+        if (lbTableBody) {
+          lbTableBody.innerHTML = `<tr><td colspan="6" class="col-empty">Belum ada peserta yang terdaftar di papan peringkat.</td></tr>`;
+        }
+        if (lbTotalParticipants) {
+          lbTotalParticipants.textContent = 'Total Peserta: 0';
+        }
+      }
+    } catch (error) {
+      console.error('Failed to load leaderboard:', error);
+      if (lbTableBody) {
+        lbTableBody.innerHTML = `<tr><td colspan="6" class="col-error">⚠️ Gagal memuat data leaderboard (${escapeHtml(error.message || 'Koneksi gagal')}).</td></tr>`;
+      }
+    }
+  }
+
+  function renderLeaderboardTable(data) {
+    if (!lbTableBody) return;
+
+    const searchTerm = (lbSearchInput?.value || '').toLowerCase().trim();
+    const filtered = searchTerm
+      ? data.filter((item) => (item.name || '').toLowerCase().includes(searchTerm))
+      : data;
+
+    if (lbTotalParticipants) {
+      lbTotalParticipants.textContent = `Total Peserta: ${data.length}`;
+    }
+
+    if (filtered.length === 0) {
+      lbTableBody.innerHTML = `<tr><td colspan="6" class="col-empty">${searchTerm ? 'Tidak ada peserta yang cocok dengan pencarian.' : 'Belum ada data di papan peringkat.'}</td></tr>`;
+      return;
+    }
+
+    const savedPlayerName = (localStorage.getItem(STORAGE_KEY_PLAYER_NAME) || '').toLowerCase().trim();
+
+    lbTableBody.innerHTML = filtered
+      .map((item, index) => {
+        const rank = item.rank || index + 1;
+        const rankDisplay = rank === 1 ? '🥇 1' : rank === 2 ? '🥈 2' : rank === 3 ? '🥉 3' : `${rank}`;
+        const isCurrentPlayer = savedPlayerName && (item.name || '').toLowerCase().trim() === savedPlayerName;
+        const rowClass = isCurrentPlayer ? 'lb-row-highlight' : '';
+
+        return `
+          <tr class="${rowClass}">
+            <td class="col-rank">${rankDisplay}</td>
+            <td class="col-name">
+              <span class="lb-name-text">${escapeHtml(item.name)}</span>
+              ${isCurrentPlayer ? '<span class="lb-you-tag"></span>' : ''}
+            </td>
+            <td class="col-score"><strong>${item.score}</strong></td>
+            <td class="col-correct">${item.correct_count} / 20</td>
+            <td class="col-time">${item.time_spent_formatted || '-'}</td>
+            <td class="col-date">${item.created_at || '-'}</td>
+          </tr>
+        `;
+      })
+      .join('');
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>"']/g, function (m) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
+    });
+  }
+
+  function openLeaderboardModal() {
+    ensureBodyAttached();
+    if (lbModal) {
+      lbModal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      fetchLeaderboardData();
+    }
+  }
+
+  function closeLeaderboardModal() {
+    if (lbModal) {
+      lbModal.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+  }
+
+  // Global triggers
+  window.openQuizLeaderboard = openLeaderboardModal;
+  window.closeQuizLeaderboard = closeLeaderboardModal;
+  window.addEventListener('open-quiz-leaderboard', openLeaderboardModal);
+
+  // Event Listeners
+  if (btnCloseLb) {
+    btnCloseLb.addEventListener('click', function(e) {
+      e.preventDefault();
+      closeLeaderboardModal();
+    });
+  }
+
+  if (btnCloseLbFooter) {
+    btnCloseLbFooter.addEventListener('click', function(e) {
+      e.preventDefault();
+      closeLeaderboardModal();
+    });
+  }
+
+  if (lbModalBackdrop) {
+    lbModalBackdrop.addEventListener('click', function(e) {
+      e.preventDefault();
+      closeLeaderboardModal();
+    });
+  }
+
+  if (btnRefreshLb) {
+    btnRefreshLb.addEventListener('click', function(e) {
+      e.preventDefault();
+      fetchLeaderboardData();
+    });
+  }
+
+  if (lbSearchInput) {
+    lbSearchInput.addEventListener('input', () => {
+      renderLeaderboardTable(cachedLeaderboard);
+    });
+  }
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && lbModal && lbModal.classList.contains('is-open')) {
+      closeLeaderboardModal();
+    }
+  });
+
+  // Attach to body on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', ensureBodyAttached);
+  } else {
+    ensureBodyAttached();
+  }
+})();
+</script>
+
+<style>
+/* GLOBAL MODAL STYLING (ISOLATED OVERLAY) */
+.lb-modal {
+  position: fixed !important;
+  inset: 0 !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  display: none !important; /* HIDDEN BY DEFAULT */
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 1rem !important;
+  box-sizing: border-box !important;
+}
+
+/* SHOWN ONLY WHEN .is-open IS PRESENT */
+.lb-modal.is-open {
+  display: flex !important;
+  animation: fadeIn 0.2s ease-out !important;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lb-modal-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: rgba(0, 0, 0, 0.75) !important;
+  backdrop-filter: blur(4px) !important;
+  z-index: 1 !important;
+}
+
+.lb-modal-content {
+  position: relative !important;
+  width: 100% !important;
+  max-width: 800px !important;
+  max-height: 85vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  background: var(--sl-color-bg, #0f172a) !important;
+  border: 1px solid var(--sl-color-gray-5, #334155) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7) !important;
+  overflow: hidden !important;
+  z-index: 2 !important;
+  margin: 0 auto !important;
+}
+
+.lb-modal-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 0.75rem 1rem !important;
+  border-bottom: 1px solid var(--sl-color-gray-5, #334155) !important;
+  background: var(--sl-color-gray-6, #1e293b) !important;
+}
+
+.lb-modal-title {
+  margin: 0 !important;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  color: var(--sl-color-white, #ffffff) !important;
+}
+
+.lb-modal-close {
+  background: transparent !important;
+  border: 1px solid var(--sl-color-gray-5, #334155) !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 4px !important;
+  font-size: 0.9rem !important;
+  color: var(--sl-color-gray-2, #94a3b8) !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+}
+
+.lb-modal-close:hover {
+  background: var(--sl-color-gray-5, #334155) !important;
+  color: #ffffff !important;
+}
+
+/* CONTROLS */
+.lb-modal-controls {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  padding: 0.5rem 1rem !important;
+  background: var(--sl-color-bg, #0f172a) !important;
+  border-bottom: 1px solid var(--sl-color-gray-5, #334155) !important;
+}
+
+.lb-search-input {
+  flex: 1 !important;
+  background: var(--sl-color-gray-6, #1e293b) !important;
+  border: 1px solid var(--sl-color-gray-5, #334155) !important;
+  border-radius: 6px !important;
+  padding: 0.4rem 0.65rem !important;
+  color: var(--sl-color-text, #f8fafc) !important;
+  font-size: 0.85rem !important;
+  outline: none !important;
+}
+
+.lb-search-input:focus {
+  border-color: #3b82f6 !important;
+}
+
+.lb-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.4rem !important;
+  padding: 0.4rem 0.75rem !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  cursor: pointer !important;
+  background: var(--sl-color-gray-6, #1e293b) !important;
+  color: var(--sl-color-text, #f8fafc) !important;
+  border: 1px solid var(--sl-color-gray-5, #334155) !important;
+  transition: all 0.15s ease !important;
+}
+
+.lb-btn:hover {
+  background: var(--sl-color-gray-5, #334155) !important;
+}
+
+.lb-btn-refresh {
+  padding: 0.4rem 0.75rem !important;
+}
+
+.lb-db-notice {
+  padding: 0.5rem 1rem !important;
+  background: rgba(59, 130, 246, 0.1) !important;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.25) !important;
+  font-size: 0.8rem !important;
+  color: #60a5fa !important;
+}
+
+/* UNPADDED & CENTERED TABLE STYLING */
+.lb-table-wrapper {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  overflow-x: auto !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+  background: var(--sl-color-bg, #0f172a) !important;
+}
+
+.lb-table {
+  width: 100% !important;
+  max-width: 100% !important;
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+  font-size: 0.85rem !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  border: none !important;
+  table-layout: fixed !important;
+}
+
+.lb-table thead {
+  position: sticky !important;
+  top: 0 !important;
+  background: var(--sl-color-gray-6, #1e293b) !important;
+  z-index: 5 !important;
+}
+
+.lb-table th {
+  padding: 0.5rem 0.6rem !important;
+  margin: 0 !important;
+  font-weight: 700 !important;
+  font-size: 0.75rem !important;
+  color: var(--sl-color-gray-2, #94a3b8) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  border-bottom: 1px solid var(--sl-color-gray-5, #334155) !important;
+  background: var(--sl-color-gray-6, #1e293b) !important;
+  box-sizing: border-box !important;
+}
+
+.lb-table td {
+  padding: 0.5rem 0.6rem !important;
+  margin: 0 !important;
+  vertical-align: middle !important;
+  border-bottom: 1px solid var(--sl-color-gray-5, #334155) !important;
+  color: var(--sl-color-text, #f8fafc) !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.lb-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.04) !important;
+}
+
+.lb-table tbody tr.lb-row-highlight {
+  background: rgba(59, 130, 246, 0.15) !important;
+}
+
+/* FIXED COLUMN PROPORTIONS & BALANCED ALIGNMENT */
+.col-rank {
+  text-align: center !important;
+  width: 10% !important;
+}
+
+.col-name {
+  text-align: left !important;
+  width: 38% !important;
+  padding-left: 0.75rem !important;
+}
+
+.col-score {
+  text-align: center !important;
+  width: 12% !important;
+}
+
+.col-correct {
+  text-align: center !important;
+  width: 12% !important;
+}
+
+.col-time {
+  text-align: center !important;
+  width: 13% !important;
+}
+
+.col-date {
+  text-align: center !important;
+  width: 15% !important;
+  padding-right: 0.75rem !important;
+}
+
+.lb-name-text {
+  font-weight: 600 !important;
+  color: var(--sl-color-text, #f8fafc) !important;
+}
+
+.lb-you-tag {
+  display: inline-block !important;
+  background: #2563eb !important;
+  color: #ffffff !important;
+  font-size: 0.65rem !important;
+  font-weight: 700 !important;
+  padding: 0.05rem 0.35rem !important;
+  border-radius: 3px !important;
+  margin-left: 0.4rem !important;
+  vertical-align: middle !important;
+}
+
+.col-loading, .col-empty, .col-error {
+  text-align: center !important;
+  padding: 2.5rem 1rem !important;
+  color: var(--sl-color-gray-2, #94a3b8) !important;
+  white-space: normal !important;
+}
+
+/* FOOTER */
+.lb-modal-footer {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 0.6rem 1rem !important;
+  border-top: 1px solid var(--sl-color-gray-5, #334155) !important;
+  background: var(--sl-color-gray-6, #1e293b) !important;
+}
+
+.lb-total-text {
+  font-size: 0.8rem !important;
+  color: var(--sl-color-gray-2, #94a3b8) !important;
+}
+
+/* RESPONSIVENESS */
+@media (max-width: 640px) {
+  .lb-modal-content {
+    max-height: 90vh !important;
+  }
+  .lb-table {
+    table-layout: auto !important;
+    min-width: 480px !important;
+  }
+}
+</style>

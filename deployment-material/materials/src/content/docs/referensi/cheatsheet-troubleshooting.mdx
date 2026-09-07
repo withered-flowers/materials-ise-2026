@@ -1,114 +1,101 @@
 ---
-title: "Cheatsheet & Troubleshooting Netlify"
-description: Referensi cepat kumpulan perintah Netlify CLI, Git, serta panduan penyelesaian masalah (troubleshooting) untuk developer.
+title: "Cheatsheet & Troubleshooting"
+description: Referensi ringkas perintah Git, panduan navigasi Netlify Dashboard, matriks skor Google Lighthouse, serta penyelesaian masalah untuk pemula.
 ---
 
-Halaman ini berfungsi sebagai **ringkasan referensi cepat** (*cheatsheet*) yang dapat Anda simpan dan gunakan saat bekerja sehari-hari dengan Netlify.
+Halaman ini menyajikan rangkuman referensi cepat yang dapat Anda jadikan rujukan praktis saat mengelola repositori Git, melakukan deployment di Netlify Dashboard, serta mengevaluasi kualitas website menggunakan Google Lighthouse.
 
 ---
 
-## 1. Cheatsheet Perintah Netlify CLI
+## 1. Panduan Cepat Alur Kerja GitHub Web (Tanpa CLI)
 
-| Perintah | Deskripsi Fungsi |
+| Tindakan di GitHub Web | Tombol & Langkah Visual di Browser |
 | :--- | :--- |
-| `npx netlify-cli login` | Membuka browser untuk otentikasi login ke akun Netlify. |
-| `npx netlify-cli status` | Memeriksa status login, akun yang aktif, dan detail situs yang terhubung. |
-| `npx netlify-cli dev` | Menjalankan server pengembangan lokal (Frontend + Serverless Functions). |
-| `npx netlify-cli deploy` | Me-deploy situs ke lingkungan **Draft / Preview** (Bukan Live). |
-| `npx netlify-cli deploy --prod` | Me-deploy situs langsung ke lingkungan **Production (Live)**. |
-| `npx netlify-cli sites:list` | Menampilkan seluruh daftar situs yang ada di akun Netlify Anda. |
-| `npx netlify-cli env:list` | Menampilkan daftar Environment Variables yang diset di Netlify Cloud. |
-| `npx netlify-cli env:set KEY "VALUE"` | Menambahkan atau memperbarui Environment Variable di cloud. |
-| `npx netlify-cli functions:logs` | Menampilkan *streaming log* eksekusi Netlify Functions secara live di terminal. |
+| **Mengunduh Starter Code** | Buka repositori template materi > Klik tombol hijau **`<> Code`** > Pilih **Download ZIP** > Ekstrak berkas di komputer lokal. |
+| **Membuat Repositori Baru** | Buka [github.com](https://github.com) > Klik tombol **`+`** (atau tombol **New**) > Beri nama repositori > Pilih **Public** > Klik **Create repository**. |
+| **Mengunggah Berkas Pertama Kali** | Di repositori baru yang kosong, klik tautan **uploading an existing file** > *Drag and drop* berkas `index.html`, `style.css`, dan `script.js`. |
+| **Menyimpan Riwayat (Commit)** | Pada formulir **Commit changes**, ketik pesan ringkas > Pilih **Commit directly to the `main` branch** > Klik tombol hijau **Commit changes**. |
+| **Mengunggah Berkas Tambahan** | Klik menu **Add file** > **Upload files** > Tarik berkas baru ke area browser > Tulis pesan commit > Klik **Commit changes**. |
+| **Mengedit Kode Langsung di Web** | Klik nama berkas (misal `index.html`) > Klik ikon pensil (**Edit this file**) > Ubah kode di browser > Klik **Commit changes**. |
 
 ---
 
-## 2. Cheatsheet Perintah Dasar Git & GitHub
+## 2. Panduan Alur Kerja Netlify Dashboard (Web UI)
 
-| Perintah | Deskripsi Fungsi |
+Tanpa perlu menginstal Netlify CLI di terminal, seluruh pengelolaan situs dapat dilakukan secara visual melalui browser:
+
+| Tindakan di Netlify Dashboard | Lokasi Menu & Langkah |
 | :--- | :--- |
-| `git init` | Menginisialisasi repository Git baru di folder lokal. |
-| `git status` | Melihat status perubahan file (staged, unstaged, untracked). |
-| `git add .` | Menambahkan seluruh perubahan file ke penampungan (*staging area*). |
-| `git commit -m "pesan"` | Menyimpan jepretan (*snapshot*) perubahan dengan pesan yang jelas. |
-| `git push -u origin main` | Mengunggah commit lokal ke branch `main` di GitHub repository. |
-| `git pull origin main` | Mengambil dan menggabungkan perubahan terbaru dari GitHub ke lokal. |
+| **Menambahkan Proyek Baru** | Klik **Add new site** > **Import an existing project** > Pilih **GitHub** > Pilih repositori Anda. |
+| **Konfigurasi Build Statis** | *Branch*: `main`, *Build command*: (kosongkan), *Publish directory*: (kosongkan / `.`). |
+| **Mengubah Nama Subdomain** | Masuk ke situs > **Site configuration** > **General** > **Site details** > Klik **Change site name**. |
+| **Memantau Status Deployment** | Buka tab **Deploys** untuk melihat riwayat rilis otomatis dari commit GitHub (*Published* atau *Building*). |
+| **Melihat Log Rilis** | Klik pada salah satu riwayat deploy di tab **Deploys** untuk melihat log pemrosesan Netlify secara mendalam. |
 
 ---
 
-## 3. Matriks Troubleshooting Masalah & Solusi
+## 3. Ambang Batas & Kategori Audit Google Lighthouse
 
-### 1. Error HTTP 404 (Page Not Found)
-* **Gejala**: Saat membuka URL Netlify, muncul tampilan "Page Not Found".
-* **Penyebab Utama**:
-  1. Nama berkas utama bukan `index.html` (misal: `Index.html` atau `home.html`).
-  2. Direktori `publish` pada `netlify.toml` atau Netlify Dashboard tidak mengarah ke tempat `index.html` berada.
-* **Solusi**:
-  - Pastikan file bernama `index.html` (semua huruf kecil).
-  - Jika aset statis berada di folder `public/`, pastikan `publish = "public"` di `netlify.toml`.
+### A. Rentang Skor Kategori
+
+| Rentang Skor | Warna Indikator | Makna & Status Kualitas |
+| :---: | :---: | :--- |
+| **90 – 100** | Hijau | **Sangat Baik (Optimal)**: Memenuhi standar industri web modern. |
+| **50 – 89** | Oranye | **Cukup Baik**: Berfungsi normal, namun masih ada peluang penghematan waktu muat. |
+| **0 – 49** | Merah | **Perlu Perbaikan Segera**: Terdapat kendala performa atau aksesibilitas yang mendesak. |
+
+### B. 5 Metrik Kunci Performa Google Lighthouse
+
+| Indikator Metrik | Bobot Skor | Kategori Baik (Hijau) | Perlu Peningkatan (Oranye) | Kategori Buruk (Merah) |
+| :--- | :---: | :--- | :--- | :--- |
+| **First Contentful Paint (FCP)** | **10%** | ≤ 1,8 detik | 1,8 – 3,0 detik | > 3,0 detik |
+| **Speed Index (SI)** | **10%** | ≤ 3,4 detik | 3,4 – 5,8 detik | > 5,8 detik |
+| **Largest Contentful Paint (LCP)** | **25%** | ≤ 2,5 detik | 2,5 – 4,0 detik | > 4,0 detik |
+| **Total Blocking Time (TBT)** | **30%** | ≤ 200 ms | 200 – 600 ms | > 600 ms |
+| **Cumulative Layout Shift (CLS)** | **25%** | ≤ 0,1 | 0,1 – 0,25 | > 0,25 |
+
+### C. Fokus Pemeriksaan 4 Kategori Audit
+
+| Kategori Audit | Fokus Evaluasi Utama |
+| :--- | :--- |
+| **Performance** | Kecepatan pemuatan berkas, efisiensi script, dan kestabilan layout visual. |
+| **Accessibility** | Kontras warna teks, atribut `alt` pada gambar, label formulir, dan tombol yang jelas. |
+| **Best Practices** | Koneksi HTTPS penuh, bebas dari error di console browser, dan keamanan library. |
+| **SEO** | Keberadaan tag `<title>`, `<meta name="description">`, meta viewport, dan link deskriptif. |
 
 ---
 
-### 2. Error CORS (Cross-Origin Resource Sharing)
-* **Gejala**: Console browser menampilkan `Access to fetch at ... has been blocked by CORS policy`.
-* **Penyebab Utama**: Frontend memanggil URL backend domain berbeda tanpa header CORS yang sesuai.
-* **Solusi**:
-  - Gunakan **URL Rewrite** pada `netlify.toml`:
-    ```toml
-    [[redirects]]
-      from = "/api/*"
-      to = "/.netlify/functions/:splat"
-      status = 200
+## 4. Matriks Penyelesaian Masalah (Troubleshooting)
+
+### 1. Halaman Menampilkan "404 Page Not Found" di Netlify
+- **Gejala**: Ketika membuka tautan URL situs Netlify, muncul halaman bertuliskan *Page Not Found*.
+- **Penyebab**:
+  1. Berkas HTML utama tidak bernama `index.html` (misalnya bernama `home.html` atau `Index.html`).
+  2. Berkas `index.html` berada di dalam subfolder yang tidak terdaftar, bukan di akar repositori GitHub.
+- **Solusi**:
+  - Pastikan berkas utama bernama persis `index.html` (huruf kecil semua) dan berada tepat di akar repositori.
+
+### 2. Tampilan CSS Tidak Muncul atau Script Tidak Berfungsi
+- **Gejala**: Halaman web hanya berupa teks polos tanpa warna, tata letak berantakan, atau tombol tidak merespons.
+- **Penyebab**: Tag HTML menggunakan jalur berkas absolut dari harddisk komputer pribadi (misalnya: `href="C:/Users/Dokumen/style.css"`).
+- **Solusi**:
+  - Ganti seluruh pemanggilan berkas menjadi jalur relatif sederhana, seperti `<link rel="stylesheet" href="style.css">` dan `<script src="script.js"></script>`.
+
+### 3. Kendala Git: "fatal: remote origin already exists"
+- **Gejala**: Muncul pesan error saat menjalankan `git remote add origin <URL>`.
+- **Penyebab**: Repositori lokal sudah memiliki konfigurasi alamat remote dengan nama `origin`.
+- **Solusi**:
+  - Periksa alamat remote saat ini menggunakan `git remote -v`.
+  - Jika ingin memperbarui ke alamat repository baru, jalankan:
+    ```bash
+    git remote set-url origin <URL_REPOSITORY_BARU>
     ```
-  - Di JavaScript frontend, panggil endpoint dengan path relatif: `fetch('/api/nama-fungsi')`.
 
----
-
-### 3. Error HTTP 500 (Internal Server Error / Function Invocation Failed)
-* **Gejala**: Panggilan ke serverless backend gagal dengan kode status HTTP 500.
-* **Penyebab Utama**: Terdapat *uncaught exception*, modul tidak ditemukan, atau sintaks TypeScript yang error saat runtime serverless.
-* **Solusi**:
-  - Jalankan `npx netlify-cli functions:logs` di terminal untuk melihat stack trace error.
-  - Periksa apakah variabel lingkungan (`process.env.VAR_NAME`) bernilai `undefined`.
-
----
-
-### 4. Environment Variables Tidak Terbaca di Serverless
-* **Gejala**: `process.env.SECRET_KEY` bernilai `undefined` atau string kosong.
-* **Penyebab Utama**: Variable baru ditambahkan di Netlify Dashboard *setelah* deployment terakhir dilakukan.
-* **Solusi**:
-  - Lakukan deploy ulang (`npx netlify-cli deploy --prod`) atau *Trigger Deploy* ulang di Netlify Dashboard agar variable baru di-inject ke dalam instance fungsi.
-
----
-
-## 4. Contoh Berkas `netlify.toml` Serbaguna (Cheat Template)
-
-Gunakan template `netlify.toml` berikut untuk proyek Fullstack Vanilla JS + TypeScript Netlify Functions:
-
-```toml
-# netlify.toml - Template Serbaguna
-
-[build]
-  publish = "public"            # Folder tempat file HTML/CSS/JS statis berada
-  functions = "netlify/functions" # Folder fungsi serverless TypeScript
-
-# 1. URL Rewrite untuk API Backend (Bebas Isu CORS)
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
-
-# 2. Redirect Fallback untuk Single Page Application (SPA)
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-# 3. Security HTTP Headers
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-```
+### 4. Skor Google Lighthouse Rendah atau Berfluktuasi
+- **Gejala**: Skor performa menunjukkan warna oranye atau merah padahal website statis berukuran kecil.
+- **Penyebab**:
+  1. Pengujian dilakukan di jendela browser biasa yang aktif dengan ekstensi pihak ketiga (adblocker, translator, dsb.).
+  2. Gambar belum terkompresi atau tidak memiliki atribut `width` dan `height`.
+- **Solusi**:
+  - Selalu jalankan audit Lighthouse pada **Jendela Penyamaran (Incognito Window)** Google Chrome.
+  - Kompres berkas gambar menjadi format WebP dan tambahkan atribut dimensi pada tag `<img>`.

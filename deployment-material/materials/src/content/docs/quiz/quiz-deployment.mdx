@@ -1,0 +1,65 @@
+---
+title: "Quiz Deployment Aplikasi Web di Netlify"
+description: "Uji pemahaman konsep dasar deployment, penggunaan Git & GitHub, publikasi website statis via Netlify Dashboard, hingga audit performa dengan Google Lighthouse."
+---
+
+import QuizApp from '../../../components/QuizApp.astro';
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+Kuis interaktif ini dirancang untuk menguji dan mengevaluasi pemahaman Anda mengenai materi pembelajaran dari **Modul 1 hingga Modul 4** serta **Cheatsheet & Troubleshooting**.
+
+---
+
+## Petunjuk dan Ketentuan Pengerjaan
+
+<CardGrid>
+  <Card title="Jumlah dan Format Soal" icon="list-format">
+    Terdiri dari **20 butir soal pilihan ganda** dengan bobot 5 poin per butir (total skor maksimal 100).
+  </Card>
+  <Card title="Batas Waktu Pengerjaan" icon="seti:clock">
+    Durasi pengerjaan maksimal adalah **30 menit**. Pengatur waktu otomatis berjalan dan akan mengumpulkan lembar jawaban saat waktu habis.
+  </Card>
+  <Card title="Penyimpanan Otomatis" icon="laptop">
+    Pilihan jawaban dan progres waktu tersimpan secara otomatis pada penyimpanan lokal browser Anda.
+  </Card>
+  <Card title="Kriteria Kelulusan" icon="star">
+    Standar minimal kelulusan adalah skor **70 (minimal 14 soal benar)**. Skor dan ulasan kunci jawaban langsung ditampilkan setelah pengumpulan.
+  </Card>
+</CardGrid>
+
+---
+
+## Lembar Kuis Evaluasi
+
+Pilihlah salah satu opsi jawaban (**A**, **B**, **C**, atau **D**) yang paling tepat untuk setiap butir pertanyaan berikut:
+
+<QuizApp />
+
+---
+
+## Distribusi Topik Evaluasi
+
+Berikut adalah rincian materi yang diujikan pada setiap butir soal:
+
+| No | Modul Acuan | Topik Utama yang Diuji |
+| :---: | :--- | :--- |
+| **1** | Modul 1: Konsep Dasar Deployment | Pengertian proses deployment dan perpindahan Local ke Production |
+| **2** | Modul 1: Konsep Dasar Deployment | Peran Domain Name System (DNS) sebagai penerjemah nama domain ke IP address |
+| **3** | Modul 1: Konsep Dasar Deployment | Tantangan Traditional VPS vs keunggulan Modern Serverless Managed Cloud |
+| **4** | Modul 1: Konsep Dasar Deployment | Peran jaringan Content Delivery Network (CDN) dalam mendistribusikan berkas |
+| **5** | Modul 2: Pengelolaan Kode GitHub Web | Perbedaan fungsi Git (sistem kontrol versi) dan GitHub (platform cloud web) |
+| **6** | Modul 2: Pengelolaan Kode GitHub Web | Mengunduh starter code via browser menggunakan tombol Code > Download ZIP |
+| **7** | Modul 2: Pengelolaan Kode GitHub Web | Pengaturan visibilitas Public saat membuat repositori baru di GitHub |
+| **8** | Modul 2: Pengelolaan Kode GitHub Web | Mengunggah berkas proyek via browser menggunakan menu Add file > Upload files |
+| **9** | Modul 2: Pengelolaan Kode GitHub Web | Pentingnya menuliskan Commit message yang jelas pada form Commit changes |
+| **10** | Modul 3: Deploy Website Statis | Alur import proyek di Netlify Dashboard dari akun GitHub |
+| **11** | Modul 3: Deploy Website Statis | Otomatisasi rilis Continuous Deployment (CI/CD) saat Commit changes di GitHub |
+| **12** | Modul 3: Deploy Website Statis | Diagnosis penyebab pesan kesalahan HTTP 404 Page Not Found di Netlify |
+| **13** | Modul 3: Deploy Website Statis | Pengaturan Build command kosong untuk website statis di Netlify Dashboard |
+| **14** | Modul 3: Deploy Website Statis | Dampak perbedaan case-sensitivity OS Linux server Netlify vs Windows |
+| **15** | Modul 4: Benchmark Performa Lighthouse | Empat kategori utama evaluasi Google Lighthouse |
+| **16** | Modul 4: Benchmark Performa Lighthouse | Aspek evaluasi kategori Accessibility (kontras warna, alt gambar, label form) |
+| **17** | Modul 4: Benchmark Performa Lighthouse | Aspek evaluasi kategori Best Practices dan SEO (HTTPS penuh, title, viewport) |
+| **18** | Modul 4: Benchmark Performa Lighthouse | Pengertian dan target ideal indikator performa Largest Contentful Paint (LCP) |
+| **19** | Modul 4: Benchmark Performa Lighthouse | Alasan audit Lighthouse disarankan menggunakan Jendela Penyamaran (Incognito) |
+| **20** | Referensi & Troubleshooting | Memperbaiki kesalahan kode langsung di browser via ikon pensil Edit this file |

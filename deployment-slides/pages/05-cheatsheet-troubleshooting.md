@@ -3,29 +3,26 @@ layout: section
 ---
 
 # Referensi
-## Cheatsheet & Troubleshooting Netlify
+## Cheatsheet & Troubleshooting
 
-Referensi cepat kumpulan perintah Netlify CLI, Git, serta panduan penyelesaian masalah untuk developer.
+Referensi cepat alur GitHub Web tanpa CLI, navigasi Netlify Dashboard, metrik Google Lighthouse, serta panduan pemecahan masalah untuk pemula.
 
 ---
 layout: default
 ---
 
-# 1. Cheatsheet Perintah Netlify CLI
+# 1. Alur Cepat GitHub Web (Tanpa CLI)
 
 <div class="text-xs">
 
-| Perintah | Deskripsi Fungsi |
+| Tindakan di Browser | Tombol & Langkah di GitHub |
 | :--- | :--- |
-| `npx netlify-cli login` | Membuka browser untuk otentikasi login ke akun Netlify. |
-| `npx netlify-cli status` | Memeriksa status login, akun aktif, dan situs terhubung. |
-| `npx netlify-cli dev` | Menjalankan server pengembangan lokal (Frontend + Functions). |
-| `npx netlify-cli deploy` | Me-deploy situs ke lingkungan **Draft / Preview** (Bukan Live). |
-| `npx netlify-cli deploy --prod` | Me-deploy situs langsung ke lingkungan **Production (Live)**. |
-| `npx netlify-cli sites:list` | Menampilkan seluruh daftar situs di akun Netlify Anda. |
-| `npx netlify-cli env:list` | Menampilkan daftar Environment Variables di Netlify Cloud. |
-| `npx netlify-cli env:set KEY "VAL"` | Menambahkan atau memperbarui Environment Variable di cloud. |
-| `npx netlify-cli functions:logs` | Menampilkan *streaming log* eksekusi Functions live di terminal. |
+| **Unduh Starter Code** | Tombol hijau **`<> Code`** ➔ Pilih **Download ZIP** ➔ Ekstrak di PC/laptop. |
+| **Buat Repositori Baru** | Ikon **`+`** di kanan atas ➔ **New repository** ➔ Nama repo ➔ **Public** ➔ **Create repository**. |
+| **Unggah Berkas Awal** | Tautan **uploading an existing file** ➔ Drag & drop `index.html`, `style.css`, `script.js`. |
+| **Simpan Versi (Commit)** | Form **Commit changes** ➔ Isi pesan ringkas ➔ Pilih `main` ➔ **Commit changes**. |
+| **Unggah Berkas Tambahan** | Menu **Add file** ➔ **Upload files** ➔ Drag & drop berkas baru ➔ **Commit changes**. |
+| **Edit Langsung di Web** | Klik nama berkas ➔ Ikon pensil (**Edit this file**) ➔ Ubah kode ➔ **Commit changes**. |
 
 </div>
 
@@ -33,18 +30,19 @@ layout: default
 layout: default
 ---
 
-# 2. Cheatsheet Perintah Dasar Git & GitHub
+# 2. Panduan Alur Kerja Netlify Dashboard (Web UI)
 
-<div class="text-xs">
+Pengelolaan deployment website dapat dilakukan secara visual tanpa perintah command line:
 
-| Perintah | Deskripsi Fungsi |
+<div class="text-xs mt-2">
+
+| Tindakan di Netlify Dashboard | Lokasi Menu & Langkah |
 | :--- | :--- |
-| `git init` | Menginisialisasi repository Git baru di folder lokal. |
-| `git status` | Melihat status perubahan file (staged, unstaged, untracked). |
-| `git add .` | Menambahkan seluruh perubahan file ke penampungan (*staging area*). |
-| `git commit -m "pesan"` | Menyimpan jepretan (*snapshot*) perubahan dengan pesan. |
-| `git push -u origin main` | Mengunggah commit lokal ke branch `main` di GitHub repository. |
-| `git pull origin main` | Mengambil dan menggabungkan perubahan terbaru dari GitHub. |
+| **Menambahkan Proyek Baru** | Klik **Add new site** > **Import an existing project** > Pilih **GitHub**. |
+| **Konfigurasi Build Statis** | *Branch*: `main`, *Build command*: (kosongkan), *Publish directory*: (kosongkan / `.`). |
+| **Mengubah Nama Subdomain** | Menu situs > **Site configuration** > **General** > **Site details** > **Change site name**. |
+| **Memantau Status Deployment** | Tab **Deploys** untuk melihat riwayat rilis otomatis dari commit GitHub. |
+| **Melihat Log Rilis** | Klik salah satu riwayat deploy di tab **Deploys** untuk melihat detail proses. |
 
 </div>
 
@@ -52,92 +50,102 @@ layout: default
 layout: default
 ---
 
-# 3. Matriks Troubleshooting Ringkas
+# 3. Ambang Batas Metrik Google Lighthouse
 
-<div class="grid grid-cols-2 gap-4 mt-4 text-xs">
+<div class="text-xs mt-2">
+
+| Indikator Metrik | Bobot | Baik (Hijau) | Perlu Peningkatan (Oranye) | Buruk (Merah) |
+| :--- | :---: | :--- | :--- | :--- |
+| **First Contentful Paint (FCP)** | 10% | ≤ 1,8 detik | 1,8 – 3,0 detik | > 3,0 detik |
+| **Speed Index (SI)** | 10% | ≤ 3,4 detik | 3,4 – 5,8 detik | > 5,8 detik |
+| **Largest Contentful Paint (LCP)** | 25% | ≤ 2,5 detik | 2,5 – 4,0 detik | > 4,0 detik |
+| **Total Blocking Time (TBT)** | 30% | ≤ 200 ms | 200 – 600 ms | > 600 ms |
+| **Cumulative Layout Shift (CLS)** | 25% | ≤ 0,1 | 0,1 – 0,25 | > 0,25 |
+
+</div>
+
+<div class="mt-4 p-3 rounded-lg bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800/50 text-blue-950 dark:text-blue-100 text-xs">
+  <b>Tips Pengujian:</b> Jalankan audit di Google Chrome <b>Incognito Window</b> (Jendela Penyamaran) untuk memperoleh hasil benchmark yang murni tanpa distorsi ekstensi browser.
+</div>
+
+---
+layout: default
+---
+
+# 4. Fokus 4 Kategori Audit Google Lighthouse
+
+<div class="grid grid-cols-2 gap-3 mt-4 text-xs">
+
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+  <div class="font-bold text-cyan-700 dark:text-cyan-400 mb-1">1. Performance</div>
+  Kecepatan muat (FCP, SI, LCP), efisiensi eksekusi script (TBT), dan stabilitas layout (CLS).
+</div>
+
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+  <div class="font-bold text-emerald-700 dark:text-emerald-400 mb-1">2. Accessibility</div>
+  Rasio kontras warna teks (minimal 4.5:1), atribut <code>alt</code> gambar, dan label form input.
+</div>
+
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+  <div class="font-bold text-amber-700 dark:text-amber-400 mb-1">3. Best Practices</div>
+  Koneksi HTTPS penuh, bebas dari error di console browser, dan keamanan pustaka kode.
+</div>
+
+<div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+  <div class="font-bold text-purple-700 dark:text-purple-400 mb-1">4. SEO</div>
+  Keberadaan tag <code>&lt;title&gt;</code>, meta deskripsi, tag viewport mobile, dan link deskriptif.
+</div>
+
+</div>
+
+---
+layout: default
+---
+
+# 5. Matriks Penyelesaian Masalah (Troubleshooting)
+
+<div class="grid grid-cols-2 gap-4 mt-2 text-xs">
 
 <div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
   <div class="font-bold text-red-700 dark:text-red-400 mb-1">1. Error HTTP 404 (Page Not Found)</div>
-  <b>Solusi:</b> Pastikan nama berkas utama adalah <code>index.html</code> (huruf kecil semua) dan direktori <code>publish</code> mengarah ke lokasi file.
+  <b>Penyebab:</b> Berkas utama bukan <code>index.html</code> atau berada di dalam subfolder.<br>
+  <b>Solusi:</b> Pastikan nama berkas persis <code>index.html</code> (huruf kecil) di akar repositori.
 </div>
 
 <div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-  <div class="font-bold text-amber-700 dark:text-amber-400 mb-1">2. Error CORS Policy</div>
-  <b>Solusi:</b> Gunakan URL Rewrite pada <code>netlify.toml</code> (<code>status = 200</code> dari <code>/api/*</code> ke <code>/.netlify/functions/:splat</code>) dan panggil path relatif di JS.
+  <div class="font-bold text-amber-700 dark:text-amber-400 mb-1">2. Tampilan CSS / JS Tidak Muncul</div>
+  <b>Penyebab:</b> Penggunaan absolute path lokal (<code>C:/Users/...</code>).<br>
+  <b>Solusi:</b> Gunakan relative path di tag HTML: <code>&lt;link rel="stylesheet" href="style.css"&gt;</code>.
 </div>
 
 <div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-  <div class="font-bold text-purple-700 dark:text-purple-400 mb-1">3. Error HTTP 500 (Internal Error)</div>
-  <b>Solusi:</b> Jalankan <code class="text-cyan-700 dark:text-cyan-300">npx netlify-cli functions:logs</code> untuk melihat stack trace kesalahan pada kode TypeScript serverless.
+  <div class="font-bold text-purple-700 dark:text-purple-400 mb-1">3. Git: "remote origin already exists"</div>
+  <b>Penyebab:</b> Alamat remote origin sudah pernah diset.<br>
+  <b>Solusi:</b> Gunakan <code class="font-mono text-cyan-700 dark:text-cyan-300">git remote set-url origin &lt;URL&gt;</code> untuk memperbarui alamat repositori.
 </div>
 
 <div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-  <div class="font-bold text-cyan-700 dark:text-cyan-400 mb-1">4. Env Var Undefined di Production</div>
-  <b>Solusi:</b> Lakukan re-deploy (<code class="text-cyan-700 dark:text-cyan-300">npx netlify-cli deploy --prod</code>) setelah menambah variable baru di Dashboard Netlify.
+  <div class="font-bold text-cyan-700 dark:text-cyan-400 mb-1">4. Skor Lighthouse Rendah / Tidak Stabil</div>
+  <b>Penyebab:</b> Ekstensi browser aktif atau ukuran gambar terlalu besar.<br>
+  <b>Solusi:</b> Audit di Incognito Window dan kompres gambar ke format WebP.
 </div>
 
 </div>
-
----
-layout: default
----
-
-# 4. Template Cheat `netlify.toml` (Part 1)
-
-**Build Settings & API Rewrites**
-
-```toml [netlify.toml]
-# netlify.toml - Template Serbaguna Fullstack Vanilla JS + TS Netlify Functions
-
-[build]
-  publish = "public"            # Folder tempat file HTML/CSS/JS statis berada
-  functions = "netlify/functions" # Folder fungsi serverless TypeScript
-
-# 1. URL Rewrite untuk API Backend (Bebas Isu CORS)
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
-```
-
----
-layout: default
----
-
-# 4. Template Cheat `netlify.toml` (Part 2)
-
-**SPA Fallback & Security HTTP Headers**
-
-```toml [netlify.toml]
-# 2. Redirect Fallback untuk Single Page Application (SPA)
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-# 3. Security HTTP Headers
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-```
 
 ---
 layout: center
 class: text-center
 ---
 
-# 🎉 Selamat Belajar & Selamat Deployed!
+# Selamat Belajar dan Selamat Bereksperimen!
 
-### Dari Lokal ke Production dengan Netlify
+### Dari Komputer Lokal ke Server Cloud Publik dengan Netlify
 
 <div class="mt-6 text-sm opacity-80">
-  Dokumentasi & Slide Presentasi Deployment Aplikasi Web
+  Materi Pembelajaran & Slide Presentasi Deployment Aplikasi Web
 </div>
 
 <div class="mt-8 flex justify-center space-x-4">
-  <a href="https://netlify.com" target="_blank" class="px-4 py-2 bg-cyan-600 rounded-lg text-white font-bold hover:bg-cyan-500 transition">Buka Netlify Cloud</a>
-  <a href="https://sli.dev" target="_blank" class="px-4 py-2 border border-slate-300 dark:border-slate-700 rounded-lg font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition">Dibuat dengan Slidev</a>
+  <a href="https://app.netlify.com" target="_blank" class="px-4 py-2 bg-cyan-600 rounded-lg text-white font-bold hover:bg-cyan-500 transition">Buka Netlify Dashboard</a>
+  <a href="https://github.com" target="_blank" class="px-4 py-2 border border-slate-300 dark:border-slate-700 rounded-lg font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition">Buka GitHub</a>
 </div>
